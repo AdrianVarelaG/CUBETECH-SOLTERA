@@ -117,7 +117,12 @@ foreach ($inventariomovimientos as $inventariomovimiento) {
     }
 	$fpdf->Cell(25,5,$transito,'TB',0,'C');
 	$fpdf->Cell(25,5,(($inventariomovimiento[0]['entrada']-$inventariomovimiento[0]['salida']) - $transito),'TB',0,'C');
-	$fpdf->Cell(0,5, (($inventariomovimiento[0]['entrada']-$inventariomovimiento[0]['salida'])/$marca) ,'TBR',1,'C');
+    if($marca!=0){
+                   $fpdf->Cell(0,5, (($inventariomovimiento[0]['entrada']-$inventariomovimiento[0]['salida'])/$marca) ,'TBR',1,'C');
+    }else{
+                   $fpdf->Cell(0,5, '0' ,'TBR',1,'C');
+    }
+	
 }
 //pr($ventadetalles);
 $fpdf->Output('D',$name);

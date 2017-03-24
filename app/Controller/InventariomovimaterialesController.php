@@ -209,7 +209,12 @@ class InventariomovimaterialesController extends AppController {
 		foreach($data_ as $key) {
 			$almacen[] = $key['Almacenuser']['almacene_id'];
 		}
-		$data = $this->Inventariomovimateriale->Almacene->find('list', array('conditions'=>array('almacentipo_id'=>$id, 'Almacene.id'=>$almacen)));
+		if(!isset($almacen[0])){
+
+		}else{
+			$data = $this->Inventariomovimateriale->Almacene->find('list', array('conditions'=>array('almacentipo_id'=>$id, 'Almacene.id'=>$almacen)));
+		}
+		if(!isset($data[0])){$data=array();}
 		$this->set('almacenes',$data);
 	}		
 }
