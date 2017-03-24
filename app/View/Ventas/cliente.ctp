@@ -1,0 +1,1 @@
+<?php echo $this->Form->input('Venta.informacion', array('readonly'=>true, 'id'=>'Ventainformacion', 'value'=>$data, 'div'=>false, 'label'=>false, 'class'=>'form-control', 'type'=>'textarea'));	?>
