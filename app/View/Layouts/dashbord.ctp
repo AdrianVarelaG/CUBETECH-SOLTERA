@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>
-      <?php 
+      <?php
             if(isset($title_for_layout_)){
                   echo $title_for_layout_;
             }else{
@@ -30,8 +30,8 @@
     <!-- jQuery 2.1.4 -->
     <script src="<?= $this->Html->templateinclude('/plugins/jQuery/jQuery-2.1.4.min.js', 'AdminLTE-2.3.0');?>"></script>
     <!-- DataTable CSS -->
-    <?php 
-    //echo $this->Html->css('datatable/jquery.dataTables.css'); 
+    <?php
+    //echo $this->Html->css('datatable/jquery.dataTables.css');
     ?>
     <?php echo $this->Html->css('datatable/buttons.dataTables.min.css'); ?>
     <?php echo $this->Html->css('datatable/dataTables.bootstrap.min.css'); ?>
@@ -48,7 +48,7 @@
     <?php echo $this->Html->script('datatable/buttons.html5.min.js'); ?>
     <?php echo $this->Html->script('datatable/buttons.print.min.js'); ?>
 
-    
+
 
     <!-- Calendar JS -->
     <?php echo $this->Html->css('jquery-ui.css'); ?>
@@ -133,7 +133,7 @@
                   <!-- User image -->
                   <li class="user-header">
                     <p>
-                      <?= $_SESSION['USUARIO_NAME']; ?> 
+                      <?= $_SESSION['USUARIO_NAME']; ?>
                     </p>
                   </li>
                   <!-- Menu Body -->
@@ -172,12 +172,12 @@
             <li class="header">Opciones del sistema</li>
             <li><a href="<?= $this->Html->url('/Dashboard/')?>"><i class="fa fa-home"></i><span>Inicio</span></a></li>
 
-            
+
             <li class="treeview" id="activa2">
               <a href="#">
                 <i class="fa fa-paper-plane"></i> <span>Sucursales</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
-              <ul class="treeview-menu"> 
+              <ul class="treeview-menu">
                 <li><a href="<?= $this->Html->url('/Empresasurcusales/')?>"><span>Sucursales</span></a></li>
               </ul>
             </li>
@@ -186,7 +186,7 @@
               <a href="#">
                 <i class="fa fa-users"></i> <span>Clientes</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
-              <ul class="treeview-menu"> 
+              <ul class="treeview-menu">
                 <li><a href="<?= $this->Html->url('/Clientes/')?>"><span>Clientes</span></a></li>
               </ul>
             </li>
@@ -195,7 +195,7 @@
               <a href="#">
                 <i class="fa fa-building "></i> <span>Almacen/Inventario</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
-              <ul class="treeview-menu"> 
+              <ul class="treeview-menu">
                 <li><a href="<?= $this->Html->url('/Almacentipos/')?>"><span>Catálogo de Tipos de Almacen</span></a></li>
                 <li><a href="<?= $this->Html->url('/Almacenes/')?>"><span>Catálogo de Almacenes</span></a></li>
                 <li><a href="<?= $this->Html->url('/Almacenusers/')?>"><span>Usuarios por Almacen</span></a></li>
@@ -222,7 +222,7 @@
               <a href="#">
                 <i class="fa fa-calculator"></i> <span>Ventas</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
-              <ul class="treeview-menu"> 
+              <ul class="treeview-menu">
                 <li><a href="<?= $this->Html->url('/Ventas/')?>">Ventas</a></li>
               </ul>
             </li>
@@ -232,7 +232,7 @@
               <a href="#">
                 <i class="fa fa-print"></i> <span>Reportes</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
-              <ul class="treeview-menu"> 
+              <ul class="treeview-menu">
                 <li><a href="<?= $this->Html->url('/Reportes/reporte1')?>">Stock total </a></li>
               </ul>
             </li>
@@ -242,7 +242,7 @@
               <a href="#">
                 <i class="fa fa-line-chart"></i> <span>Graficas</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
-              <ul class="treeview-menu"> 
+              <ul class="treeview-menu">
                 <li><a href="<?= $this->Html->url('/Graficas/grafica1')?>">Ventas anuales Soltera </a></li>
                 <li><a href="<?= $this->Html->url('/Graficas/grafica2')?>">Pagos de Soltera </a></li>
                 <li><a href="<?= $this->Html->url('/Graficas/grafica3')?>">Ventas por vendedor</a></li>
@@ -257,7 +257,7 @@
               <a href="#">
                 <i class="fa fa-user-o"></i> <span>Usuarios</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
-              <ul class="treeview-menu"> 
+              <ul class="treeview-menu">
                 <li><a href="<?= $this->Html->url('/Users/')?>">Usuarios</a></li>
               </ul>
             </li>
@@ -266,7 +266,7 @@
               <a href="#">
                 <i class="fa fa-wrench"></i> <span>Configuración</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
-              <ul class="treeview-menu"> 
+              <ul class="treeview-menu">
                 <li>
                     <a href="#"><span>Parametros</span> <i class="fa fa-angle-left pull-right"></i></a>
                     <ul class="treeview-menu">
@@ -290,19 +290,18 @@
 
       <!-- Bootstrap 3.3.5 -->
       <script src="<?= $this->Html->templateinclude('/bootstrap/js/bootstrap.min.js', 'AdminLTE-2.3.0');?>"></script>
-      
+
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <?php echo $this->Flash->render(); ?>
         <?php echo $this->fetch('content'); ?>
       </div><!-- /.content-wrapper -->
-
-
-      <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-          <b>Version</b> 1.0.0
+      <footer class="main-footer hidden-xs">
+        <div class="row">
+            <div class="col-sm-4"><strong>Copyright &copy; 2016-2017.</strong> All rights reserved.</div>
+            <div class="col-sm-4 text-center"><strong>Powey by</strong> Cube Technologies</div>
+            <div class="col-sm-4 text-right"><strong>Version</strong> 1.0.0</div>
         </div>
-        <strong>Copyright &copy; 2016-2017.</strong> All rights reserved.
       </footer>
 
  </div><!-- ./wrapper -->
@@ -313,7 +312,7 @@
      echo "<script> $('#activa".$_SESSION["MODULO_ACTIVO"]."').addClass('active'); </script>";
     }
     ?>
-    
+
     <!-- SlimScroll -->
     <script src="<?= $this->Html->templateinclude('/plugins/slimScroll/jquery.slimscroll.min.js', 'AdminLTE-2.3.0');?>"></script>
     <!-- FastClick -->
@@ -322,10 +321,10 @@
     <script src="<?= $this->Html->templateinclude('/dist/js/app.min.js', 'AdminLTE-2.3.0');?>"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="<?= $this->Html->templateinclude('/dist/js/demo.js', 'AdminLTE-2.3.0');?>"></script>
-    
+
     <!-- highcharts JS -->
-    <?php 
-     //echo $this->Html->script('highcharts/highcharts.js'); 
+    <?php
+     //echo $this->Html->script('highcharts/highcharts.js');
     ?>
     <?php echo $this->Html->script('highcharts/exporting.js'); ?>
     <?php echo $this->Html->script('highcharts/drilldown.js'); ?>

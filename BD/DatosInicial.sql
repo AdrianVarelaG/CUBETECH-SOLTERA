@@ -1,6 +1,6 @@
-INSERT INTO `almacenes` (`empresa_id`, `empresasurcusale_id`, `almacentipo_id`, `nombre`, `direccion`, `foraneo`, `maquila`, `activo`, `created`, `modified`) VALUES
-( 1, 1, 1, 'CERVECERIA', 'DIRECCIÃ“N cerveceria', 2, 1, 1, '2017-03-17 03:46:26', '2017-03-17 03:46:26'),
-( 1, 1, 2, 'cedis slp', 'AV SALVADOR NAVA', 1, 1, 1, '2017-03-17 03:48:36', '2017-03-17 03:50:23');
+INSERT INTO `almacenes` (`id`, `empresa_id`, `empresasurcusale_id`, `almacentipo_id`, `nombre`, `direccion`, `foraneo`, `maquila`, `activo`, `created`, `modified`) VALUES
+(1, 1, 1, 1, 'CERVECERIA', 'DIRECCIÃ“N cerveceria', 2, 1, 1, '2017-03-17 03:46:26', '2017-03-24 10:29:39'),
+(2, 1, 1, 2, 'cedis slp', 'AV SALVADOR NAVA', 2, 2, 1, '2017-03-17 03:48:36', '2017-03-24 23:08:47');
 
 INSERT INTO `almacenmarcas` ( `empresa_id`, `nombre`, `fechaalta`, `activo`, `created`, `modified`) VALUES
 ( 1, 'SOLTERA', '2017-03-17', 1, '2017-03-17 15:14:32', '2017-03-17 15:56:35');
