@@ -104,16 +104,17 @@ foreach ($inventariomovimientos as $inventariomovimiento) {
          $inventariomovimiento['Inventariomovimiento']['almacenproducto_id'] == $ventadetalle['Ventadetalle']['almacenproducto_id']
         ){
             $transito = $ventadetalle[0]['cantidad'];
-            foreach ($almacenmarcas as $almacenmarca) {
-                if($almacenmarca['Almacenmarca']['id'] == $ventadetalle[0]['almacenmarca_id']){
-                    foreach ($almacenmarca['Almacenmarcadetalle'] as $almacenmarcadetalle) {
-                        if($almacenmarcadetalle['default']==1){
-                           $marca = $almacenmarcadetalle['cantidad'];
-                        }
-                    }
+            
+      }
+    }
+    foreach ($almacenmarcas as $almacenmarca) {
+        if($almacenmarca['Almacenmarca']['id'] == $inventariomovimiento['Almacenproducto']['almacenmarca_id']){
+            foreach ($almacenmarca['Almacenmarcadetalle'] as $almacenmarcadetalle) {
+                if($almacenmarcadetalle['default']==1){
+                   $marca = $almacenmarcadetalle['cantidad'];
                 }
             }
-      }
+        }
     }
 	$fpdf->Cell(25,5,$transito,'TB',0,'C');
 	$fpdf->Cell(25,5,(($inventariomovimiento[0]['entrada']-$inventariomovimiento[0]['salida']) - $transito),'TB',0,'C');
