@@ -49,7 +49,7 @@
 		<td><?php echo h($inventariomovimiento['Almacentipo']['denominacion']); ?></td>
 		<td><?php echo h($inventariomovimiento['Almacene']['nombre']); ?></td>
 		<td><?php echo h($inventariomovimiento['Almacenproducto']['nombre']); ?></td>
-		<td><?php 
+		<td><?php
 
               if($inventariomovimiento['Inventariomovimiento']['tipo']==1){ echo "ENTRADA";
 
@@ -67,19 +67,19 @@
 		<td><?php echo h($inventariomovimiento['Inventariomovimiento']['ordenventa_id']); ?>&nbsp;</td>
 		<td><?php echo h($inventariomovimiento['Inventariomovimiento']['userventa_id']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php 			 
-			  $empresa_id          = $this->Session->read('empresa_id'); 			 
-			  $empresasurcusale_id = $this->Session->read('empresasurcusale_id'); 			 
-			  $rol_id              = $this->Session->read('ROL'); 			 
-			  $user_id             = $this->Session->read('USUARIO_ID'); 			
-			?> 			
-			<?php 
+			<?php
+			  $empresa_id          = $this->Session->read('empresa_id');
+			  $empresasurcusale_id = $this->Session->read('empresasurcusale_id');
+			  $rol_id              = $this->Session->read('ROL');
+			  $user_id             = $this->Session->read('USUARIO_ID');
+			?>
+			<?php
 			if($inventariomovimiento['Inventariomovimiento']['userventa_id']==0){
 			     //echo $this->Html->link(__('Editar'), array('action' => 'edit', $inventariomovimiento['Inventariomovimiento']['id']), array('class'=>'btn btn-primary'));
 		    }
 			?>
 			<?php echo $this->Html->link(__('Ver'), array('action' => 'view', $inventariomovimiento['Inventariomovimiento']['id']),   array('class'=>'btn btn-success')); ?>
-			<?php 
+			<?php
 			if($inventariomovimiento['Inventariomovimiento']['userventa_id']==0 && $inventariomovimiento['Inventariomovimiento']['almacenefunte_id']!=0){
 				echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $inventariomovimiento['Inventariomovimiento']['id']), array('class'=>'btn btn-danger', 'confirm'=>__('Esta seguro que desea eliminar el registro # %s?', $inventariomovimiento['Inventariomovimiento']['id'])));
             }else if($inventariomovimiento['Inventariomovimiento']['userventa_id']==0 && $inventariomovimiento['Inventariomovimiento']['tipo']!=3){
@@ -101,6 +101,7 @@
 	    $('#data').DataTable( {
 	    	dom: 'Bfrtlip',
 	    	responsive: true,
+        order: [[0, 'desc']],
 	        buttons: [
 	            {
 	                extend: 'excel',
@@ -109,7 +110,7 @@
 	                }
 	            }
 	        ],
-		    columnDefs: [ 
+		    columnDefs: [
 		            {
 		                targets: [0,1,2,3,5,6,7,14],
 		                visible: true,
@@ -125,10 +126,10 @@
 		            	visible: false,
 		            	searchable: false
 		            },
-		           
-		            
+
+
 		     ],
-	        "language": 
+	        "language":
 	        {
 				"sProcessing":     "Procesando...",
 				"sLengthMenu":     "Mostrar _MENU_ registros",

@@ -51,20 +51,20 @@
 									<td><?php echo h($inventariomovimateriale['Usermovi']['username']); ?></td>
 									<td><?php echo h($inventariomovimateriale['Inventariomovimiento']['almacenproducto_id']); ?></td>
 									<td class="actions">
-										<?php 	  $empresa_id          = $this->Session->read('empresa_id'); 			 
-										          $empresasurcusale_id = $this->Session->read('empresasurcusale_id'); 			 
-										          $rol_id              = $this->Session->read('ROL'); 			 
-										          $user_id             = $this->Session->read('USUARIO_ID'); 			
-										 ?> 			
-										<?php 
+										<?php 	  $empresa_id          = $this->Session->read('empresa_id');
+										          $empresasurcusale_id = $this->Session->read('empresasurcusale_id');
+										          $rol_id              = $this->Session->read('ROL');
+										          $user_id             = $this->Session->read('USUARIO_ID');
+										 ?>
+										<?php
 										if($inventariomovimateriale['Inventariomovimateriale']['inventariomovimiento_id']==0){
 										      echo $this->Html->link(__('Editar'), array('action' => 'edit', $inventariomovimateriale['Inventariomovimateriale']['id']), array('class'=>'btn btn-primary'));
 										  }
 									    ?>
 										<?php echo $this->Html->link(__('Ver'), array('action' => 'view', $inventariomovimateriale['Inventariomovimateriale']['id']),   array('class'=>'btn btn-success')); ?>
-										<?php 
+										<?php
 										if($inventariomovimateriale['Inventariomovimiento']['almacenproducto_id']==0){
-										    echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $inventariomovimateriale['Inventariomovimateriale']['id']), array('class'=>'btn btn-danger', 'confirm'=>__('EEsta seguro que desea eliminar este Movimiento', $inventariomovimateriale['Inventariomovimateriale']['id']))); 
+										    echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $inventariomovimateriale['Inventariomovimateriale']['id']), array('class'=>'btn btn-danger', 'confirm'=>__('EEsta seguro que desea eliminar este Movimiento', $inventariomovimateriale['Inventariomovimateriale']['id'])));
 										}
 										?>
 									</td>
@@ -82,6 +82,7 @@
 	    $('#data').DataTable( {
 	    	dom: 'Bfrtlip',
 	    	responsive: true,
+          order: [[0, 'desc']],
 	        buttons: [
 	            {
 	                extend: 'excel',
@@ -90,7 +91,7 @@
 	                }
 	            }
 	        ],
-		    columnDefs: [ 
+		    columnDefs: [
 		            {
 		                targets: [0,1,2,3,5,6,7,11],
 		                visible: true,
@@ -106,10 +107,10 @@
 		            	visible: false,
 		            	searchable: false
 		            },
-		           
-		            
+
+
 		     ],
-	        "language": 
+	        "language":
 	        {
 				"sProcessing":     "Procesando...",
 				"sLengthMenu":     "Mostrar _MENU_ registros",
