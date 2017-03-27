@@ -32,7 +32,7 @@
 									<th><?php echo __('Nombre contacto'); ?></th>
 									<th><?php echo __('Email'); ?></th>
 									<th><?php echo __('Fecha alta'); ?></th>
-									<th><?php echo __('Requiere factura'); ?></th>
+									<th><?php echo __('Factura'); ?></th>
 									<th><?php echo __('Razón social'); ?></th>
 									<th><?php echo __('Calle'); ?></th>
 									<th><?php echo __('Número exterior'); ?></th>
@@ -73,7 +73,7 @@
 									<td class="actions">
 										<?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $cliente['Cliente']['id']), array('class'=>'btn btn-primary')); ?>
 										<?php echo $this->Html->link(__('Ver'), array('action' => 'view', $cliente['Cliente']['id']),   array('class'=>'btn btn-success')); ?>
-										<?php 
+										<?php
 										$empresa_id          = $this->Session->read('empresa_id');
 								     	$empresasurcusale_id = $this->Session->read('empresasurcusale_id');
 								     	$rol_id              = $this->Session->read('ROL');
@@ -84,12 +84,12 @@
 								     	}
 										      if($rol_id==3 || $rol_id==2 || $rol_id==1){
 
-										 echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $cliente['Cliente']['id']), array('class'=>'btn btn-danger', 'confirm'=>__('Esta seguro que desea eliminar el registro # %s?', $cliente['Cliente']['id']))); 	
-										
-										}else if($rol_id==4 && $pedido==0){ 
-                                         
-                                         echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $cliente['Cliente']['id']), array('class'=>'btn btn-danger', 'confirm'=>__('Esta seguro que desea eliminar el registro # %s?', $cliente['Cliente']['id']))); 	
-										
+										 echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $cliente['Cliente']['id']), array('class'=>'btn btn-danger', 'confirm'=>__('Esta seguro que desea eliminar el registro # %s?', $cliente['Cliente']['id'])));
+
+										}else if($rol_id==4 && $pedido==0){
+
+                                         echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $cliente['Cliente']['id']), array('class'=>'btn btn-danger', 'confirm'=>__('Esta seguro que desea eliminar el registro # %s?', $cliente['Cliente']['id'])));
+
 										}
 										?>
 									</td>
@@ -115,7 +115,7 @@
 	                }
 	            }
 	        ],
-		    columnDefs: [ 
+		    columnDefs: [
 		            {
 		                targets: [ 3 ],
 		                visible: true,
@@ -131,10 +131,10 @@
 		            	visible: false,
 		            	searchable: false
 		            },
-		           
-		            
+
+
 		     ],
-	        "language": 
+	        "language":
 	        {
 				"sProcessing":     "Procesando...",
 				"sLengthMenu":     "Mostrar _MENU_ registros",

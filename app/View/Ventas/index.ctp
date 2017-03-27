@@ -30,7 +30,7 @@
 									<th><?php echo __('Almacen tipo'); ?></th>
 									<th><?php echo __('Almacen'); ?></th>
 									<th><?php echo __('Tipo'); ?></th>
-									<th><?php echo __('Fecha'); ?></th>
+									<th><?php echo __('Registro'); ?></th>
 									<th><?php echo __('Pagado'); ?></th>
 									<th><?php echo __('Total'); ?></th>
 									<th><?php echo __('Estado'); ?></th>
@@ -38,7 +38,12 @@
 							</tr>
 							</thead>
 							<tbody>
-							<?php foreach($ventas as $venta): ?>
+							<?php
+              $empresa_id          = $this->Session->read('empresa_id');
+              $empresasurcusale_id = $this->Session->read('empresasurcusale_id');
+              $rol_id              = $this->Session->read('ROL');
+              $user_id             = $this->Session->read('USUARIO_ID');
+                foreach($ventas as $venta): ?>
 								<tr>
 									<td><?php echo h($venta['Venta']['id']); ?>&nbsp;</td>
 									<td><?php echo h($venta['Empresa']['razon_social']); ?></td>
@@ -50,21 +55,24 @@
 									<td><?php echo h($venta['Venta']['tipo']==1?"Venta":"Cortesia"); ?></td>
 									<td><?php echo h($venta['Venta']['fecha']); ?></td>
 									<td>
-									<?php 
-										//echo h($venta['Venta']['pagado']); 
+									<?php
+										//echo h($venta['Venta']['pagado']);
 									    if($venta['Venta']['tipo']==1){
 	                                        if($venta['Venta']['pagado']==2){
 													echo $this->Html->link(__('Pagar'), array('action' => 'pagar', $venta['Venta']['id']), array('class'=>'btn btn-danger'));
 											}else{
-	                                                echo "PAGADO";
-											}
+	                       //echo $this->Html->tag('span', $venta['Venta']['fecha'], array('class' => 'label label-success'));
+                         ?>
+                  <button class="btn btn-success btn-sm" disabled="disabled"><?php  echo $venta['Venta']['fecha_pagado'] ?></button>
+                    <?php
+                    }
 										}else{
 											echo "GRATIS";
 										}
 									?>&nbsp;
 									</td>
 									<td><?php echo h($venta['Venta']['total']); ?>&nbsp;</td>
-									<td><?php 
+									<td><?php
 											      if($venta['Venta']['estado']==1){ echo "Registrado";
 
 											}else if($venta['Venta']['estado']==2){ echo "Pendiente Autorizar";
@@ -74,21 +82,43 @@
 											}
 									?></td>
 									<td class="actions">
-										<?php 	
-									        $empresa_id          = $this->Session->read('empresa_id'); 			 
-									        $empresasurcusale_id = $this->Session->read('empresasurcusale_id'); 			 
-									        $rol_id              = $this->Session->read('ROL'); 			 
-									        $user_id             = $this->Session->read('USUARIO_ID'); 			
-										?> 			
-										<?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $venta['Venta']['id']), array('class'=>'btn btn-primary')); ?>
+										<?php
+                      if($venta['Venta']['edicion']){
+                        echo $this->Html->link(__('Editar'), array('action' => 'edit', $venta['Venta']['id']), array('class'=>'btn btn-primary'));
+                      }
+                      else {
+                        echo $this->Html->link(__('Editar'), array('action' => 'edit', $venta['Venta']['id']), array('class'=>'btn btn-primary', 'disabled'=>'disabled'));
+                      }
+                    ?>
 										<?php echo $this->Html->link(__('Ver'), array('action' => 'view', $venta['Venta']['id']),   array('class'=>'btn btn-success')); ?>
-										<?php 
-										      if($venta['Venta']['estado']!=3){
-										      	echo $this->Html->link(__('Estado'), array('action' => 'cambiar', $venta['Venta']['id']),   array('class'=>'btn btn-warning'));
+										<?php
+										      if(($rol_id ==1 || $rol_id ==2 || $rol_id ==3 || $rol_id ==5) &&  $venta['Venta']['estado']!=3){
+										      //	echo $this->Html->link(__('Estado'), array('action' => 'cambiar', $venta['Venta']['id']),   array('class'=>'btn btn-warning'));
+                            ?>
+                            <div class="btn-group">
+                              <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Estado <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li><?php
+                                  echo $this->Html->link(__('Registrado'), array('action' => 'estado', 'id' => $venta['Venta']['id'], 'estado' => 1));
+                                ?></li>
+                                <li><a href="#">Entregado</a></li>
+                              </ul>
+                            </div>
+                    <?php
 									          }
 									    ?>
-										<?php echo $this->Html->link(__('Eliminar'), array('action' => 'delete', $venta['Venta']['id']), array('class'=>'btn btn-danger', 'confirm'=>__('Esta seguro que desea eliminar el registro # %s?', $venta['Venta']['id']))); ?>
-										<?php echo $this->Html->link(__('Reporte'), array('action' => 'reporte1', $venta['Venta']['id']),   array('class'=>'btn btn-warning'));?>
+										<?php
+                      if($venta['Venta']['edicion'])
+                        echo $this->Html->link(__('Eliminar'), array('action' => 'delete', $venta['Venta']['id']), array('class'=>'btn btn-danger', 'confirm'=>__('Esta seguro que desea eliminar el registro # %s?', $venta['Venta']['id'])));
+                      else {
+                        echo $this->Html->link(__('Eliminar'), array('action' => 'delete', $venta['Venta']['id']), array('class'=>'btn btn-danger','disabled'=>'disabled'));
+                      }
+                    ?>
+
+										<a class="btn btn-link" href= <?php echo "/Ventas/reporte1/" . (string) $venta['Venta']['id']  ?> ><span class="glyphicon glyphicon-print" aria-hidden="true"></span></a>
+
 									</td>
 								</tr>
 							<?php endforeach; ?>
@@ -112,26 +142,26 @@
 	                }
 	            }
 	        ],
-		    columnDefs: [ 
+		    columnDefs: [
 		            {
-		                targets: [0,1,2,3,4,7,8,9,10,11],
+		                targets: [0,3,4,6,7,8,9,10,11],
 		                visible: true,
 		                searchable: true
 		            },
 		            {
-		            	targets: [0,1,2,3,4,7,8,9,10,11],
+		            	targets: [0,3,4,6,7,8,9,10,11],
 		            	visible: true,
 		            	searchable: false
 		            },
 		            {
-		            	targets: [5,6,11],
+		            	targets: [1,2,5,11],
 		            	visible: false,
 		            	searchable: false
 		            },
-		           
-		            
+
+
 		     ],
-	        "language": 
+	        "language":
 	        {
 				"sProcessing":     "Procesando...",
 				"sLengthMenu":     "Mostrar _MENU_ registros",

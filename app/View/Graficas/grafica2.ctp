@@ -12,7 +12,7 @@
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
-            <div class="box"> 
+            <div class="box">
                 <div class="box-header">
                     <h3 class="box-title"><?php echo __('Grafica Pagos de Soltera'); ?></h3>
                     <hr>
@@ -22,18 +22,18 @@
 					<div class='row'>
 							<div class='col-md-12'>
 							<?php
-								echo'<div class="form-group">';	
-								echo'<label class="control-label col-md-2" for="Graficafecha_a">Fecha desde</label>';		
-								echo'<div class="col-md-9">';			
-								echo $this->Form->input('fecha_a', array('id'=>'Graficafecha_a', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'type'=>'date2'));		
-								echo '</div>';	
+								echo'<div class="form-group">';
+								echo'<label class="control-label col-md-2" for="Graficafecha_a">Fecha desde</label>';
+								echo'<div class="col-md-9">';
+								echo $this->Form->input('fecha_a', array('id'=>'Graficafecha_a', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'type'=>'date2'));
 								echo '</div>';
-									
-								echo'<div class="form-group">';	
-								echo'<label class="control-label col-md-2" for="Graficafecha_b">Fecha hasta</label>';		
-								echo'<div class="col-md-9">';			
-								echo $this->Form->input('fecha_b', array('id'=>'Graficafecha_b', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'type'=>'date2'));		
-								echo '</div>';	
+								echo '</div>';
+
+								echo'<div class="form-group">';
+								echo'<label class="control-label col-md-2" for="Graficafecha_b">Fecha hasta</label>';
+								echo'<div class="col-md-9">';
+								echo $this->Form->input('fecha_b', array('id'=>'Graficafecha_b', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'type'=>'date2'));
+								echo '</div>';
 								echo '</div>';
 
 
@@ -76,7 +76,7 @@
                             <div class='col-md-12'>
                             		<br><br><br>
                                     <?php
-                                    // pr($ventadetalles); 
+                                    // pr($ventadetalles);
                                     ?>
                             	<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
                                 <script type="text/javascript">
@@ -94,7 +94,7 @@
                                     },
                                     xAxis: {
                                         categories: [
-                                            <?php 
+                                            <?php
                                               foreach ($ventadetalles as $ventadetalle) {
                                                   echo "'".$ventadetalle[0]['deno_producto']."',";
 
@@ -125,7 +125,8 @@
                                     },
                                     series: [{
                                         name: 'Cobrada',
-                                        data: [<?php 
+                                        color: '#00FF00',
+                                        data: [<?php
                                                       foreach ($ventadetalles as $ventadetalle) {
                                                           echo "".$ventadetalle[0]['pago'].",";
 
@@ -134,7 +135,8 @@
 
                                     }, {
                                         name: 'Pendiente por cobrar',
-                                        data: [<?php 
+                                        color: '#FF0000'
+                                        data: [<?php
                                                       foreach ($ventadetalles as $ventadetalle) {
                                                           echo "".$ventadetalle[0]['nopago'].",";
 
@@ -148,11 +150,11 @@
                                 <div class="col-md-12">
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <?php echo $this->Html->link(__('Volver'), array('action' => 'grafica2')); ?>    
+                                        <?php echo $this->Html->link(__('Volver'), array('action' => 'grafica2')); ?>
                                     </div>
                                 </div>
                             </div>
-                    </div>           
+                    </div>
                     </div><!-- /.box-body -->
             </div><!-- /.box -->
         </div><!-- /.col -->
@@ -160,6 +162,3 @@
 </section><!-- /.content -->
 
 <?php } ?>
-
-
-
