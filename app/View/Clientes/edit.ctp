@@ -21,146 +21,146 @@
 					<div class='row'>
 							<div class='col-md-12'>
 								<?php
-			
-echo $this->Form->input('id', array('class'=>'form-horizontal'));	
-echo'<div class="form-group">';	
-echo'<label class="control-label col-md-2" for="Clienteempresa_id">Empresa</label>';		
-echo'<div class="col-md-9">';			
-echo $this->Form->input('empresa_id', array('id'=>'Clienteempresa_id', 'div'=>false, 'label'=>false, 'class'=>'form-control'));		
-echo '</div>';	
+
+echo $this->Form->input('id', array('class'=>'form-horizontal'));
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Clienteempresa_id">Empresa</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('empresa_id', array('id'=>'Clienteempresa_id', 'div'=>false, 'label'=>false, 'class'=>'form-control'));
 echo '</div>';
-	
-echo'<div class="form-group">';	
-echo'<label class="control-label col-md-2" for="Clienteempresasrucusale_id">Sucursal</label>';		
-echo'<div class="col-md-9">';			
-echo $this->Form->input('empresasurcusale_id', array('id'=>'Clienteempresasrucusale_id', 'div'=>false, 'label'=>false, 'class'=>'form-control'));		
-echo '</div>';	
-echo '</div>';
-	
-echo'<div class="form-group">';	
-echo'<label class="control-label col-md-2" for="Clientenombre">Nombre</label>';		
-echo'<div class="col-md-9">';			
-echo $this->Form->input('nombre', array('id'=>'Clientenombre', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'readonly'=>true));		
-echo '</div>';	
-echo '</div>';
-	
-echo'<div class="form-group">';	
-echo'<label class="control-label col-md-2" for="Clienteuser_id">Vendedor</label>';		
-echo'<div class="col-md-9">';			
-echo $this->Form->input('user_id', array('id'=>'Clienteuser_id', 'div'=>false, 'label'=>false, 'class'=>'form-control'));		
-echo '</div>';	
-echo '</div>';
-	
-echo'<div class="form-group">';	
-echo'<label class="control-label col-md-2" for="Clientetelefono">Teléfono</label>';		
-echo'<div class="col-md-9">';			
-echo $this->Form->input('telefono', array('id'=>'Clientetelefono', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'type'=>'number', 'maxlength'=>'10'));		
-echo '</div>';	
-echo '</div>';
-	
-echo'<div class="form-group">';	
-echo'<label class="control-label col-md-2" for="Clientecelular">Celular</label>';		
-echo'<div class="col-md-9">';			
-echo $this->Form->input('celular', array('id'=>'Clientecelular', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'type'=>'number', 'maxlength'=>'10'));		
-echo '</div>';	
-echo '</div>';
-	
-echo'<div class="form-group">';	
-echo'<label class="control-label col-md-2" for="Clientenombre_contacto">Nombre contacto</label>';		
-echo'<div class="col-md-9">';			
-echo $this->Form->input('nombre_contacto', array('id'=>'Clientenombre_contacto', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'onBlur'=>'validar_nombre_cliente();'));			
-echo '</div>';	
-echo '</div>';
-	
-echo'<div class="form-group">';	
-echo'<label class="control-label col-md-2" for="Clienteemail">Email</label>';		
-echo'<div class="col-md-9">';			
-echo $this->Form->input('email', array('id'=>'Clienteemail', 'div'=>false, 'label'=>false, 'class'=>'form-control'));		
-echo '</div>';	
-echo '</div>';
-	
-echo'<div class="form-group">';	
-echo'<label class="control-label col-md-2" for="Clientefecha_alta">Fecha alta</label>';		
-echo'<div class="col-md-9">';			
-echo $this->Form->input('fecha_alta', array('id'=>'Clientefecha_alta', 'div'=>false, 'label'=>false, 'class'=>'form-control'));		
-echo '</div>';	
-echo '</div>';
-	
-echo'<div class="form-group">';	
-echo'<label class="control-label col-md-2" for="Clienterequiere_factura">Requiere factura</label>';		
-echo'<div class="col-md-9">';			
-echo $this->Form->input('requiere_factura', array('options'=>array('1'=>'Si', '2'=>'No'),  'id'=>'Clienterequiere_factura', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'onclick'=>'activa_requiere_factura(this.value);'));			
-echo '</div>';	
-echo '</div>';
-	
-echo'<div class="form-group">';	
-echo'<label class="control-label col-md-2" for="Clienterazon_social">Razón social</label>';		
-echo'<div class="col-md-9">';			
-echo $this->Form->input('razon_social', array('id'=>'Clienterazon_social', 'div'=>false, 'label'=>false, 'class'=>'form-control'));		
-echo '</div>';	
-echo '</div>';
-	
-echo'<div class="form-group">';	
-echo'<label class="control-label col-md-2" for="Clientecalle">Calle</label>';		
-echo'<div class="col-md-9">';			
-echo $this->Form->input('calle', array('id'=>'Clientecalle', 'div'=>false, 'label'=>false, 'class'=>'form-control'));		
-echo '</div>';	
-echo '</div>';
-	
-echo'<div class="form-group">';	
-echo'<label class="control-label col-md-2" for="Clientenumero_exterior">Número exterior</label>';		
-echo'<div class="col-md-9">';			
-echo $this->Form->input('numero_exterior', array('id'=>'Clientenumero_exterior', 'div'=>false, 'label'=>false, 'class'=>'form-control'));		
-echo '</div>';	
-echo '</div>';
-	
-echo'<div class="form-group">';	
-echo'<label class="control-label col-md-2" for="Clientenumero_interior">Número interior</label>';		
-echo'<div class="col-md-9">';			
-echo $this->Form->input('numero_interior', array('id'=>'Clientenumero_interior', 'div'=>false, 'label'=>false, 'class'=>'form-control'));		
-echo '</div>';	
 echo '</div>';
 
-echo'<div class="form-group">';	
-echo'<label class="control-label col-md-2" for="Clientecolonia">Colonia</label>';		
-echo'<div class="col-md-9">';			
-echo $this->Form->input('colonia', array('id'=>'Clientecolonia', 'div'=>false, 'label'=>false, 'class'=>'form-control'));		
-echo '</div>';	
-echo '</div>';
-	
-echo'<div class="form-group">';	
-echo'<label class="control-label col-md-2" for="Clientecod_postal">código postal</label>';		
-echo'<div class="col-md-9">';			
-echo $this->Form->input('cod_postal', array('id'=>'Clientecod_postal', 'div'=>false, 'label'=>false, 'class'=>'form-control'));		
-echo '</div>';	
-echo '</div>';
-	
-echo'<div class="form-group">';	
-echo'<label class="control-label col-md-2" for="Clienterfc">Rfc</label>';		
-echo'<div class="col-md-9">';			
-echo $this->Form->input('rfc', array('id'=>'Clienterfc', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'onBlur'=>'validar_nombre_rfc();'));		
-echo '</div>';	
-echo '</div>';
-	
-echo'<div class="form-group">';	
-echo'<label class="control-label col-md-2" for="Clientedirepai_id">Pais</label>';		
-echo'<div class="col-md-9">';			
-echo $this->Form->input('direpai_id', array('id'=>'Clientedirepai_id', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'empty'=>'--Seleccione--', "onChange"=>"selectTagRemote('".$this->Html->url('/Clientes/estado')."', 'div-estados', this.value);")); 
-echo '</div>';	
-echo '</div>';
-	
-echo'<div class="form-group">';	
-echo'<label class="control-label col-md-2" for="Clientedireprovincia_id">Estado</label>';		
-echo'<div class="col-md-9" id="div-estados">';			
-echo $this->Form->input('direprovincia_id', array('id'=>'Clientedireprovincia_id', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'empty'=>'--Seleccione--', "onChange"=>"selectTagRemote('".$this->Html->url('/Clientes/estado'.$this->request->data['Cliente']['direpai_id'])."', 'div-municipios', this.value);")); 
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Clienteempresasrucusale_id">Sucursal</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('empresasurcusale_id', array('id'=>'Clienteempresasrucusale_id', 'div'=>false, 'label'=>false, 'class'=>'form-control'));
 echo '</div>';
 echo '</div>';
-	
-echo'<div class="form-group">';	
-echo'<label class="control-label col-md-2" for="Clientedirmunicipio_id">Municipio</label>';		
-echo'<div class="col-md-9" id="div-municipios">';			
-echo $this->Form->input('dirmunicipio_id', array('id'=>'Clientedirmunicipio_id', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'empty'=>'--Seleccione--'));		
-echo '</div>';	
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Clientenombre">Nombre</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('nombre', array('id'=>'Clientenombre', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'readonly'=>true));
+echo '</div>';
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Clienteuser_id">Vendedor</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('user_id', array('id'=>'Clienteuser_id', 'div'=>false, 'label'=>false, 'class'=>'form-control'));
+echo '</div>';
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Clientetelefono">Teléfono</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('telefono', array('id'=>'Clientetelefono', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'type'=>'number', 'maxlength'=>'10'));
+echo '</div>';
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Clientecelular">Celular</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('celular', array('id'=>'Clientecelular', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'type'=>'number', 'maxlength'=>'10'));
+echo '</div>';
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Clientenombre_contacto">Nombre contacto</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('nombre_contacto', array('id'=>'Clientenombre_contacto', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'onBlur'=>'validar_nombre_cliente();'));
+echo '</div>';
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Clienteemail">Email</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('email', array('id'=>'Clienteemail', 'div'=>false, 'label'=>false, 'class'=>'form-control'));
+echo '</div>';
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Clientefecha_alta">Fecha alta</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('fecha_alta', array('id'=>'Clientefecha_alta', 'div'=>false, 'label'=>false, 'class'=>'form-control'));
+echo '</div>';
+
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Clienterequiere_factura">Requiere factura</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('requiere_factura', array('options'=>array('1'=>'Si', '2'=>'No'),  'id'=>'Clienterequiere_factura', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'onclick'=>'activa_requiere_factura(this.value);'));
+echo '</div>';
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Clienterazon_social">Razón social</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('razon_social', array('id'=>'Clienterazon_social', 'div'=>false, 'label'=>false, 'class'=>'form-control'));
+echo '</div>';
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Clientecalle">Calle</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('calle', array('id'=>'Clientecalle', 'div'=>false, 'label'=>false, 'class'=>'form-control'));
+echo '</div>';
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Clientenumero_exterior">Número exterior</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('numero_exterior', array('id'=>'Clientenumero_exterior', 'div'=>false, 'label'=>false, 'class'=>'form-control'));
+echo '</div>';
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Clientenumero_interior">Número interior</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('numero_interior', array('id'=>'Clientenumero_interior', 'div'=>false, 'label'=>false, 'class'=>'form-control'));
+echo '</div>';
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Clientecolonia">Colonia</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('colonia', array('id'=>'Clientecolonia', 'div'=>false, 'label'=>false, 'class'=>'form-control'));
+echo '</div>';
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Clientecod_postal">código postal</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('cod_postal', array('id'=>'Clientecod_postal', 'div'=>false, 'label'=>false, 'class'=>'form-control'));
+echo '</div>';
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Clienterfc">Rfc</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('rfc', array('id'=>'Clienterfc', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'onBlur'=>'validar_nombre_rfc();'));
+echo '</div>';
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Clientedirepai_id">Pais</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('direpai_id', array('id'=>'Clientedirepai_id', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'empty'=>'--Seleccione--', "onChange"=>"selectTagRemote('".$this->Html->url('/Clientes/estado')."', 'div-estados', this.value);"));
+echo '</div>';
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Clientedireprovincia_id">Estado</label>';
+echo'<div class="col-md-9" id="div-estados">';
+echo $this->Form->input('direprovincia_id', array('id'=>'Clientedireprovincia_id', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'empty'=>'--Seleccione--', "onChange"=>"selectTagRemote('".$this->Html->url('/Clientes/estado'.$this->request->data['Cliente']['direpai_id'])."', 'div-municipios', this.value);"));
+echo '</div>';
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Clientedirmunicipio_id">Municipio</label>';
+echo'<div class="col-md-9" id="div-municipios">';
+echo $this->Form->input('dirmunicipio_id', array('id'=>'Clientedirmunicipio_id', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'empty'=>'--Seleccione--'));
+echo '</div>';
 echo '</div>';
 	?>
 							</div>

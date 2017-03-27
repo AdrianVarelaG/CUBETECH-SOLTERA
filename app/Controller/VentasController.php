@@ -17,7 +17,7 @@ class VentasController extends AppController {
 	public $components = array('Paginator', 'Session', 'Flash');
 
 
-	public $uses = array('Venta', 'Almacenproducto', 'Almacenmarcadetalle', 'Inventariomovimiento', 'Ventadetalle', 'Almacene', 'Inventariomovimateriale');
+	public $uses = array('Venta', 'Almacenproducto', 'Almacenmarcadetalle', 'Inventariomovimiento', 'Ventadetalle', 'Almacene', 'Inventariomovimateriale', 'Vstock');
 
 	/*
 	** var de layout
@@ -646,6 +646,8 @@ class VentasController extends AppController {
 			if(count($data) > 0){
 				switch ($data[0]['Venta']['estado']) {
 					case 1:
+						//$this->generaMovimientosInventario($data[0], 2);
+						$this->calculaMateriales($data[0]);
 						if($estado = 2){
 							if($rol_id ==1 || $rol_id ==2 || $rol_id ==3){
 								$actualizar = true;
@@ -653,6 +655,7 @@ class VentasController extends AppController {
 								$ok = false;
 							}
 						}else if($estado = 3){
+
 							//Se deben genera los Movimientos del almacen de productos
 							//Validar el Almacen para generar movimeintos de materiales de embalaje
 							$actualizar = true;
@@ -671,11 +674,73 @@ class VentasController extends AppController {
 				}
 
 			}
-			debug($id);
-			debug($estado);
-			debug($data);
 		}
 	}
+	/*
+	$tipo = 1 Entrada
+				= 2 Salida
+	*/
+	protected function generaMovimientosInventario($venta, $tipo){
+		$user_id             = $this->Session->read('USUARIO_ID');
+		$valido = true;
+		$data[] = array();
 
+		for ($i=0, $j=0; $i < count($venta['Ventadetalle']) && $valido; $i++) {
+			if ($tipo == 2) {
+					$valido =  $this->validaInventario($venta['Ventadetalle'][$i], $venta['Venta']['almacene_id'] );
+			}
+			if($valido){
+				$movimientoProducto = array(
+					'empresa_id' 						=> $venta['Venta']['empresa_id'],
+					'empresa_id'          	=> $venta['Venta']['empresa_id'],
+					'empresasurcusale_id' 	=> $venta['Venta']['empresasurcusale_id'],
+					'almacentipo_id'      	=> $venta['Venta']['almacentipo_id'],
+					'almacene_id'         	=> $venta['Venta']['almacene_id'],
+					'almacenproducto_id'  	=> $venta['Ventadetalle'][$i]['almacenproducto_id'],
+					'tipo'                	=> $tipo,
+					'cantidad'            	=> $venta['Ventadetalle'][$i]['cantidad'],
+					'fechaalta'           	=> $venta['Venta']['fecha'],
+					'almacentipofunte_id' 	=> 0,
+					'almacenefunte_id'    	=> 0,
+					'referencia'          	=> 0,
+					'ordenventa_id'	       	=> $venta['Venta']['id'],
+					'userventa_id'        	=> $user_id,
+				);
+				$data[$j] = array('Inventariomovimiento' => $movimientoProducto);
+				$j++;
+			}
+		}
+		if($valido == false){
+			return null;
+		}
+		else {
+			return ($this->Inventariomovimiento->saveMany($data));
+		}
+	}
+  protected function validaInventario($ventadetalle, $almacene_id, $banTransito = false){
+		$ret = false;
+		$dis = 0;
+		$options =  array(
+			'conditions'=>array(
+				'Vstock.almacenproducto_id'=> $ventadetalle['almacenproducto_id'],
+				'Vstock.almacene_id'=> $almacene_id,
+			));
+		$stock = $this->Vstock->find('all',$options);
+		if(count($stock) > 0){
+			for ($i=0; $i < count($stock) ; $i++) {
+				$dis = $dis + $stock[$i]['Vstock']['entradas'] - $stock[$i]['Vstock']['salidas'] - $ventadetalle['cantidad'];
+			}
+			$ret = $dis >= 1;
+		}
+		return $ret;
+	}
+	protected function validaMateriales(){
+
+	}
+	protected function calculaMateriales($venta){
+	 	$ret[] = array();
+		debug($venta);
+		return $ret;
+	}
 }
 ?>
