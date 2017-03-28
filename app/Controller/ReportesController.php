@@ -55,6 +55,7 @@ class ReportesController extends AppController {
 		     	 $user_id             = $this->Session->read('USUARIO_ID');
 		     	 $almacentipo_id      = $this->request->data['Reporte']['almacentipo_id'];
 			     $almacene_id         = $this->request->data['Reporte']['almacene_id'];
+			     $this->Inventariomovimiento->recursive = 3;
 		     	      if($empresa_id==0 && $empresasurcusale_id==0){ 
 		     		  	$this->set('inventariomovimientos', $this->Inventariomovimiento->find('all', array(
 																								            'conditions' => array('Inventariomovimiento.almacentipo_id'=>$almacentipo_id, 'Inventariomovimiento.almacene_id'=>$almacene_id, 'Inventariomovimiento.activo'=>1),

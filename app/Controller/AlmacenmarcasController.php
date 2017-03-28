@@ -83,7 +83,11 @@ class AlmacenmarcasController extends AppController {
 				$id   =  $this->Almacenmarca->id;
 				$stop = 0;
 				if(!empty($this->request->data["Almacenmarca"]["Materiales"])){
-					$pre =$this->request->data["Almacenmarca"]["Materiales"][0]['pre'];
+					if(isset($this->request->data["Almacenmarca"]["Materiales"][0]['pre'])){
+					  $pre = $this->request->data["Almacenmarca"]["Materiales"][0]['pre'];
+					}else{
+					  $pre = "";
+					}
 					$i   = 0;
 					foreach($this->request->data["Almacenmarca"]["Materiales"] as $material){
 						$this->request->data["Almacenmarcadetalle"]["almacenmarca_id"]     = $id;
@@ -147,7 +151,11 @@ class AlmacenmarcasController extends AppController {
 			if ($this->Almacenmarca->save($this->request->data)){
 				$this->Almacenmarcadetalle->deleteAll(array('Almacenmarcadetalle.almacenmarca_id'=>$id));
 				$stop = 0;
-				$pre  = $this->request->data["Almacenmarca"]["Materiales"][0]['pre'];
+				if(isset($this->request->data["Almacenmarca"]["Materiales"][0]['pre'])){
+					  $pre = $this->request->data["Almacenmarca"]["Materiales"][0]['pre'];
+					}else{
+					  $pre = "";
+					}
 				$i    = 0;
 				if(!empty($this->request->data["Almacenmarca"]["Materiales"])){
 					foreach($this->request->data["Almacenmarca"]["Materiales"] as $material){

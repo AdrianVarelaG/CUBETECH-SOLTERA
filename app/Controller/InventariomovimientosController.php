@@ -17,7 +17,7 @@ class InventariomovimientosController extends AppController {
 	public $components = array('Paginator', 'Session', 'Flash');
 
 
-	public $uses = array('Inventariomovimiento','Inventariomovimateriale', 'Almacenproductodetalle', 'Almacenmarcadetalle', 'Almacenproducto', 'Almacene', 'Almacenuser');
+	public $uses = array('Inventariomovimiento','Inventariomovimateriale', 'Almacenproductodetalle', 'Almacenmarcadetalle', 'Almacenproducto'                 , 'Almacene', 'Almacenuser');
 
 /*
 ** var de layout
@@ -1066,12 +1066,12 @@ class InventariomovimientosController extends AppController {
 		foreach($data_ as $key) {
 			$almacen[] = $key['Almacenuser']['almacene_id'];
 		}
-		if(!isset($almacen[0])){
+		if(!isset($almacen)){
 
 		}else{
 			$data  = $this->Inventariomovimiento->Almacene->find('list', array('conditions'=>array('almacentipo_id'=>$id, 'Almacene.id'=>$almacen)));
 		}
-		if(!isset($data[0])){$data=array();}
+		if(!isset($data)){$data=array();}
 		$this->set('almacenes',$data);
 	}		
 
@@ -1094,12 +1094,12 @@ class InventariomovimientosController extends AppController {
 		foreach($data_ as $key) {
 			$almacen[] = $key['Almacenuser']['almacene_id'];
 		}
-		if(!isset($almacen[0])){
+		if(!isset($almacen)){
 
 		}else{
 			$data = $this->Inventariomovimiento->Almacene->find('list', array('conditions'=>array('almacentipo_id'=>$id, 'Almacene.id'=>$almacen)));
 		}
-		if(!isset($data[0])){$data=array();}
+		if(!isset($data)){$data=array();}
 		$this->set('almacenefuntes',$data);
 	}		
 }

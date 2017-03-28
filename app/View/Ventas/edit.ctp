@@ -138,15 +138,18 @@ echo '</div>';
 	                            <input class="form-control pro-0-ext text-box single-line"  id="Productos_<?= $c ?>__Precio"   name="data[Venta][Productos][<?= $c ?>][pre]"  type="text" value="<?= $ventadetalle['Ventadetalle']['precio'] ?>" required="required"  readonly=true />
 	                        </div>
 	                        <div class="col-md-2" id="div-embalaje-<?= $c ?>">
-	                            <select class="form-control tel-0" id="Productos_<?= $c ?>__Embalaje" name="data[Venta][Productos][<?= $c ?>][emb]" >
+	                        <?php
+                                    //pr($almacenmarcadetalles);
+	                        ?>
+	                            <select class="form-control tel-0" id="Productos_<?= $c ?>__Embalaje" name="data[Venta][Productos][<?= $c ?>][emb]" required="required">
 								<option value="">--Embalaje--</option>
 								<?php
 								foreach($almacenmarcadetalles as $almacenmarcadetalle){
                                     if($almacenmarcadetalle['Almacenmarcadetalle']['almacenmarca_id'] == $almacenmarca_id){
 									 	if($ventadetalle['Ventadetalle']['embalaje']==$almacenmarcadetalle['Almacenmateriale']['id']){
-									 		echo "  '<option value=\"".$almacenmarcadetalle['Almacenmarcadetalle']['id']."\" selected>".$almacenmarcadetalle['Almacenmateriale']['nombre']."</option>'+   ";
+									 		echo "  '<option value=\"".$almacenmarcadetalle['Almacenmateriale']['id']."\" selected>".$almacenmarcadetalle['Almacenmateriale']['nombre']."</option>'+   ";
 									    }else{
-	                                        echo "  '<option value=\"".$almacenmarcadetalle['Almacenmarcadetalle']['id']."\">".$almacenmarcadetalle['Almacenmateriale']['nombre']."</option>'+   ";
+	                                        echo "  '<option value=\"".$almacenmarcadetalle['Almacenmateriale']['id']."\">".$almacenmarcadetalle['Almacenmateriale']['nombre']."</option>'+   ";
 									    }
                                     }
 								}

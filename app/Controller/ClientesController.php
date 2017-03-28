@@ -176,8 +176,8 @@ class ClientesController extends AppController {
                 $users    = $this->Cliente->User->find('list', array('conditions'=>array('or'=>array('role_id'=>array(4, 3)), 'empresa_id'=>$empresa_id, 'empresasurcusale_id'=>$empresasurcusale_id, 'User.id'=>$user_id)));
       	}
 		$direpais = $this->Cliente->Direpai->find('list');
-		$direprovincias = array();
-		$dirmunicipios  = array();
+		$direprovincias = $this->Cliente->Direprovincia->find('list', array('conditions'=>array('Direprovincia.direpai_id'=>$this->request->data['Cliente']['direpai_id'])));
+		$dirmunicipios  = $this->Cliente->Dirmunicipio->find('list', array('conditions'=>array('Dirmunicipio.direpai_id'=>$this->request->data['Cliente']['direpai_id'], 'Dirmunicipio.direprovincia_id'=>$this->request->data['Cliente']['direprovincia_id'])));
 		$this->set(compact('empresas', 'empresasurcusales', 'users', 'direpais', 'direprovincias', 'dirmunicipios'));
 	}
 
