@@ -27,7 +27,7 @@ class VentasController extends AppController {
 	** var de layout
 	*
 	*/
-	public $layout = "default";
+	public $layout = "dashbord";
 
 	/*
 	*  *  beforeFilter check de session
@@ -486,8 +486,7 @@ class VentasController extends AppController {
 		$this->set('almacenmarcadetalles',$almacenmarcadetalles);
 		//pr($data2);
 	}
-
-
+}
 	/**
  * pagar method
  *
