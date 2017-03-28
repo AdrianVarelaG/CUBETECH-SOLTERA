@@ -74,7 +74,7 @@ class DATABASE_CONFIG {
 		'host' => 'localhost',
 		'login' => 'cervezas_ADMIN',
 		'password' => 'aA2oeC=dhTAI',
-		'database' => 'cervezas_sistema',
+		'database' => 'cervezas_SISTEMA',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
