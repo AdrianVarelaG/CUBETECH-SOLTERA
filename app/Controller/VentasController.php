@@ -17,7 +17,11 @@ class VentasController extends AppController {
 	public $components = array('Paginator', 'Session', 'Flash');
 
 
-	public $uses = array('Venta', 'Almacenproducto', 'Almacenmarcadetalle', 'Inventariomovimiento', 'Ventadetalle', 'Almacene', 'Inventariomovimateriale', 'Vstock', 'Vstockmateriale');
+<<<<<<< HEAD
+
+	public $uses = array('Venta', 'Almacenproducto', 'Almacenmarcadetalle', 'Inventariomovimiento', 'Ventadetalle', 'Almacene',
+	                     'Inventariomovimateriale', 'Almacenuser','Vstock', 'Vstockmateriale');
+>>>>>>> ejuan
 
 	/*
 	** var de layout
@@ -231,6 +235,7 @@ class VentasController extends AppController {
 			if ($this->Venta->save($this->request->data)) {
 				$this->Ventadetalle->deleteAll(array('Ventadetalle.venta_id'=>$id));
 				$stop = 0;
+				//pr($this->request->data["Venta"]["Productos"]);
 				if(!empty($this->request->data["Venta"]["Productos"])){
 					foreach($this->request->data["Venta"]["Productos"] as $producto){
 						$this->request->data["Ventadetalle"]["venta_id"]           = $id;
@@ -246,7 +251,7 @@ class VentasController extends AppController {
 						}else{
 							$stop = 1;
 						}
-						$i++;
+						//$i++;
 					}
 				}
 				if($stop==0){
@@ -377,6 +382,7 @@ class VentasController extends AppController {
 	* @return void
 	*/
 	public function pagar($id = null) {
+<<<<<<< HEAD
 		$empresa_id          = $this->Session->read('empresa_id');
 		$empresasurcusale_id = $this->Session->read('empresasurcusale_id');
 		$rol_id              = $this->Session->read('ROL');
@@ -389,6 +395,120 @@ class VentasController extends AppController {
 			$this->Flash->success(__('El Registro fue Actualizado.'));
 		} else {
 			$this->Flash->error(__('El Registro no fue Actualizado. Por favor, inténtelo de nuevo.'));
+	    $empresa_id          = $this->Session->read('empresa_id');
+     	$empresasurcusale_id = $this->Session->read('empresasurcusale_id');
+     	$rol_id              = $this->Session->read('ROL');
+     	$user_id             = $this->Session->read('USUARIO_ID');
+		if (!$this->Venta->exists($id)) {
+			throw new NotFoundException(__('Invalid venta'));
+		}
+		if ($this->request->is(array('post', 'put'))) {
+			if($this->request->data['Venta']['tipo']==1){
+			   $this->request->data['Venta']['estado']=1; //Registrado
+			}else{
+               $this->request->data['Venta']['estado']=2; //Pendiente Autorizar
+			}
+			if ($this->Venta->save($this->request->data)) {
+                $this->Ventadetalle->deleteAll(array('Ventadetalle.venta_id'=>$id));
+				$stop = 0;
+				if(!empty($this->request->data["Venta"]["Productos"])){
+					foreach($this->request->data["Venta"]["Productos"] as $producto){
+						$this->request->data["Ventadetalle"]["venta_id"]           = $id;
+						$this->request->data["Ventadetalle"]["almacenproducto_id"] = $producto['pro'];
+						$this->request->data["Ventadetalle"]["cantidad"]           = $producto['cant'];
+						$this->request->data["Ventadetalle"]["existencia"]         = $producto['exist'];
+						$this->request->data["Ventadetalle"]["precio"]             = $producto['pre'];
+						$this->request->data["Ventadetalle"]["total"]              = $producto['total'];
+						$this->request->data["Ventadetalle"]["embalaje"]           = $producto['emb'];
+						$this->Ventadetalle->create();
+						if ($this->Ventadetalle->save($this->request->data)){
+
+						}else{
+							$stop = 1;
+						}
+						$i++;
+					}
+				}
+				if($stop==0){
+                    $this->Venta->commit();
+                	$this->Flash->success(__('Registro Guardado.'));
+					return $this->redirect(array('action' => 'index'));
+
+                }else{
+                	$this->Venta->rollback();
+                    $this->Flash->error(__('Registro no Guardado. Por favor, inténtelo de nuevo.'));
+                }
+
+
+
+			} else {
+				$this->Flash->error(__('Registro no Guardado. Por favor, inténtelo de nuevo.'));
+			}
+		} else {
+			$options = array('conditions' => array('Venta.' . $this->Venta->primaryKey => $id));
+			$this->request->data = $this->Venta->find('first', $options);
+		}
+		$empresas = $this->Venta->Empresa->find('list', array('conditions'=>array('id'=>$empresa_id) ));
+			  if($empresa_id==0 && $empresasurcusale_id==0){
+            	$empresasurcusales = $this->Venta->Empresasurcusale->find('list');
+     	}else if($empresa_id!=0 && $empresasurcusale_id==0){
+                $empresasurcusales = $this->Venta->Empresasurcusale->find('list', array('conditions'=>array('Empresasurcusale.empresa_id'=>$empresa_id)));
+      	}else if($empresa_id!=0 && $empresasurcusale_id!=0){
+                $empresasurcusales = $this->Venta->Empresasurcusale->find('list', array('conditions'=>array('Empresasurcusale.empresa_id'=>$empresa_id,'Empresasurcusale.id'=>$empresasurcusale_id)));
+      	}
+              if($empresa_id==0 && $empresasurcusale_id==0){
+            	$users    = $this->Venta->User->find('list', array('conditions'=>array('or'=>array('role_id'=>array(3,4)))));
+     	}else if($empresa_id!=0 && $empresasurcusale_id==0){
+                $users    = $this->Venta->User->find('list', array('conditions'=>array('or'=>array('role_id'=>array(3,4)), 'empresa_id'=>$empresa_id)));
+      	}else if($empresa_id!=0 && $empresasurcusale_id!=0 && $rol_id==3){
+                $users    = $this->Venta->User->find('list', array('conditions'=>array('or'=>array('role_id'=>array(3,4)), 'empresa_id'=>$empresa_id, 'empresasurcusale_id'=>$empresasurcusale_id)));
+      	}else if($empresa_id!=0 && $empresasurcusale_id!=0 && $rol_id==4){
+                $users    = $this->Venta->User->find('list', array('conditions'=>array('or'=>array('role_id'=>array(3,4)), 'User.empresa_id'=>$empresa_id, 'User.empresasurcusale_id'=>$empresasurcusale_id, 'User.id'=>$user_id)));
+      	}
+      	     if($empresa_id==0 && $empresasurcusale_id==0){
+            	$clientes    = $this->Venta->Cliente->find('list', array('conditions'=>array('activo'=>1)));
+     	}else if($empresa_id!=0 && $empresasurcusale_id==0){
+                $clientes    = $this->Venta->Cliente->find('list', array('conditions'=>array('activo'=>1, 'empresa_id'=>$empresa_id)));
+      	}else if($empresa_id!=0 && $empresasurcusale_id!=0 && $rol_id==3){
+                $clientes    = $this->Venta->Cliente->find('list', array('conditions'=>array('activo'=>1, 'empresa_id'=>$empresa_id, 'empresasurcusale_id'=>$empresasurcusale_id)));
+      	}else if($empresa_id!=0 && $empresasurcusale_id!=0 && $rol_id==4){
+                $clientes    = $this->Venta->Cliente->find('list', array('conditions'=>array('activo'=>1, 'empresa_id'=>$empresa_id, 'empresasurcusale_id'=>$empresasurcusale_id, 'user_id'=>$user_id)));
+      	}
+		$almacentipos     = $this->Venta->Almacentipo->find('list', array('conditions'=>array('empresa_id'=>$empresa_id)));
+		$almacenes        = $this->Venta->Almacene->find('list',    array('conditions'=>array('almacentipo_id'=>$this->request->data['Venta']['almacentipo_id'])));
+		$almacenproductos = $this->Almacenproducto->find('all',     array('conditions'=>array('Almacenproducto.empresa_id'=>$empresa_id)));
+		$ventadetalles    = $this->Ventadetalle->find('all',        array('conditions'=>array('Ventadetalle.venta_id'=>$this->request->data['Venta']['id'])));
+		$this->set(compact('ventadetalles', 'almacenproductos', 'empresas', 'empresasurcusales', 'clientes', 'users', 'almacentipos', 'almacenes'));
+		$this->set('id1',$this->request->data['Venta']['almacentipo_id']);
+		$this->set('id2',$this->request->data['Venta']['almacene_id']);
+      //$this->Almacenmarcadetalle->recursive = 3;
+		$almacenmarcadetalles = $this->Almacenmarcadetalle->find('all', array('conditions'=>array('Almacenmarca.empresa_id'=>$empresa_id)));
+		$this->set('almacenmarcadetalles',$almacenmarcadetalles);
+		//pr($data2);
+	}
+
+
+	/**
+ * pagar method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function pagar2($id = null) {
+	    $empresa_id          = $this->Session->read('empresa_id');
+     	$empresasurcusale_id = $this->Session->read('empresasurcusale_id');
+     	$rol_id              = $this->Session->read('ROL');
+     	$user_id             = $this->Session->read('USUARIO_ID');
+
+       // $this->request->data['Venta']['id']     = $id;
+	    $this->request->data['Venta']['pagado'] = 1;
+	    $this->request->data['Venta']['fecha_pagado'] = date("Y-m-d");
+		if ($this->Venta->save($this->request->data)) {
+			$this->Flash->success(__('El Registro fue modificado.'));
+		} else {
+			$this->Flash->error(__('El Registro no fue modificado. Por favor, inténtelo de nuevo.'));
+>>>>>>> ejuan
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
@@ -409,47 +529,51 @@ class VentasController extends AppController {
 			throw new NotFoundException(__('Invalid venta'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
-			$this->request->data['Venta']['id']     = $id;
-			//$this->request->data['Venta']['activo'] = 2;
-			if ($this->Venta->save($this->request->data)) {
-				if($this->request->data['Venta']['estado']==3){
-					$ventadetalles = $this->Ventadetalle->find('all', array('conditions' =>array('Ventadetalle.venta_id'=>$id)));
-					// pr($ventadetalles);
-					foreach($ventadetalles as $ventadetalle){
-						$this->request->data['Inventariomovimiento']['empresa_id']              = $ventadetalle['Venta']['empresa_id'];
-						$this->request->data['Inventariomovimiento']['empresasurcusale_id']     = $ventadetalle['Venta']['empresasurcusale_id'];
-						$this->request->data['Inventariomovimiento']['almacentipo_id']          = $ventadetalle['Venta']['almacentipo_id'];
-						$this->request->data['Inventariomovimiento']['almacene_id']             = $ventadetalle['Venta']['almacene_id'];
-						$this->request->data['Inventariomovimiento']['almacenproducto_id']      = $ventadetalle['Ventadetalle']['almacenproducto_id'];
-						$this->request->data['Inventariomovimiento']['tipo']                    = 2;
-						$this->request->data['Inventariomovimiento']['cantidad']                = $ventadetalle['Ventadetalle']['cantidad'];
-						$this->request->data['Inventariomovimiento']['fechaalta']               = $ventadetalle['Venta']['fecha'];
-						$this->request->data['Inventariomovimiento']['almacentipofunte_id']     = 0;
-						$this->request->data['Inventariomovimiento']['almacenefunte_id']        = 0;
-						$this->request->data['Inventariomovimiento']['referencia']              = 0;
-						$this->request->data['Inventariomovimiento']['ordenventa_id']           = $id;
-						$this->request->data['Inventariomovimiento']['userventa_id']            = $user_id;
-						$this->Inventariomovimiento->save($this->request->data);
-						$almacenmarca_id  = $ventadetalle['Almacenproducto']['almacenmarca_id'];
-						$almacene_id      = $ventadetalle['Venta']['almacene_id'];
-						$almacenes            = $this->Almacene->find('all', array('conditions'=>array('Almacene.id'=>$almacene_id)));
-						$almacenmarcadetalles = $this->Almacenmarcadetalle->find('all', array('conditions'=>array('almacenmarca_id'=>$almacenmarca_id, 'default'=>1)));
-						if($almacenes[0]['Almacene']['foraneo']==2){
-							foreach($almacenmarcadetalles as $datos){
-								$cantidad =  $datos['Almacenmarcadetalle']['cantidad']/$ventadetalle['Ventadetalle']['cantidad'];
-								$this->request->data['Inventariomovimateriale']['empresa_id']              = $empresa_id;
-								$this->request->data['Inventariomovimateriale']['empresasurcusale_id']     = $empresasurcusale_id;
-								$this->request->data['Inventariomovimateriale']['almacentipo_id']          = $this->request->data['Inventariomovimiento']['almacentipo_id'];
-								$this->request->data['Inventariomovimateriale']['almacene_id']             = $this->request->data['Inventariomovimiento']['almacene_id'];
-								$this->request->data['Inventariomovimateriale']['almacenmateriale_id']     = $datos['Almacenmarcadetalle']['almacenmateriale_id'];
-								$this->request->data['Inventariomovimateriale']['tipo']                    = 2;
-								$this->request->data['Inventariomovimateriale']['cantidad']                = $cantidad;
-								$this->request->data['Inventariomovimateriale']['fechaalta']               = $this->request->data['Inventariomovimiento']['fechaalta'];
-								$this->request->data['Inventariomovimateriale']['usermovi_id']             = $user_id;
-								$this->request->data['Inventariomovimateriale']['inventariomovimiento_id'] = $id ;
-								$this->Inventariomovimateriale->save($this->request->data);
-							}
-						}
+<<<<<<< HEAD
+			    $this->request->data['Venta']['id']     = $id;
+			    //$this->request->data['Venta']['activo'] = 2;
+				if ($this->Venta->save($this->request->data)) {
+                   if($this->request->data['Venta']['estado']==3){
+                   	        $ventadetalles = $this->Ventadetalle->find('all', array('conditions' =>array('Ventadetalle.venta_id'=>$id)));
+                   	      // pr($ventadetalles);
+                            foreach($ventadetalles as $ventadetalle){
+	       						$this->request->data['Inventariomovimiento']['empresa_id']              = $ventadetalle['Venta']['empresa_id'];
+							    $this->request->data['Inventariomovimiento']['empresasurcusale_id']     = $ventadetalle['Venta']['empresasurcusale_id'];
+							    $this->request->data['Inventariomovimiento']['almacentipo_id']          = $ventadetalle['Venta']['almacentipo_id'];
+							    $this->request->data['Inventariomovimiento']['almacene_id']             = $ventadetalle['Venta']['almacene_id'];
+							    $this->request->data['Inventariomovimiento']['almacenproducto_id']      = $ventadetalle['Ventadetalle']['almacenproducto_id'];
+							    $this->request->data['Inventariomovimiento']['tipo']                    = 2;
+							    $this->request->data['Inventariomovimiento']['cantidad']                = $ventadetalle['Ventadetalle']['cantidad'];
+							    $this->request->data['Inventariomovimiento']['fechaalta']               = $ventadetalle['Venta']['fecha'];
+							    $this->request->data['Inventariomovimiento']['almacentipofunte_id']     = 0;
+							    $this->request->data['Inventariomovimiento']['almacenefunte_id']        = 0;
+							    $this->request->data['Inventariomovimiento']['referencia']              = 0;
+							    $this->request->data['Inventariomovimiento']['ordenventa_id']           = $id;
+							    $this->request->data['Inventariomovimiento']['userventa_id']            = $user_id;
+							    $this->Inventariomovimiento->create();
+								$this->Inventariomovimiento->save($this->request->data);
+								$almacenmarca_id  = $ventadetalle['Almacenproducto']['almacenmarca_id'];
+								$almacene_id      = $ventadetalle['Venta']['almacene_id'];
+								$almacenes            = $this->Almacene->find('all', array('conditions'=>array('Almacene.id'=>$almacene_id)));
+								$almacenmarcadetalles = $this->Almacenmarcadetalle->find('all', array('conditions'=>array('almacenmarca_id'=>$almacenmarca_id, 'default'=>1)));
+								if($almacenes[0]['Almacene']['foraneo']==2){
+									foreach($almacenmarcadetalles as $datos){
+                                        $cantidad =  $datos['Almacenmarcadetalle']['cantidad']/$ventadetalle['Ventadetalle']['cantidad'];
+		                                $this->request->data['Inventariomovimateriale']['empresa_id']              = $empresa_id;
+									    $this->request->data['Inventariomovimateriale']['empresasurcusale_id']     = $empresasurcusale_id;
+									    $this->request->data['Inventariomovimateriale']['almacentipo_id']          = $this->request->data['Inventariomovimiento']['almacentipo_id'];
+									    $this->request->data['Inventariomovimateriale']['almacene_id']             = $this->request->data['Inventariomovimiento']['almacene_id'];
+									    $this->request->data['Inventariomovimateriale']['almacenmateriale_id']     = $datos['Almacenmarcadetalle']['almacenmateriale_id'];
+									    $this->request->data['Inventariomovimateriale']['tipo']                    = 2;
+									    $this->request->data['Inventariomovimateriale']['cantidad']                = $cantidad;
+									    $this->request->data['Inventariomovimateriale']['fechaalta']               = $this->request->data['Inventariomovimiento']['fechaalta'];
+									    $this->request->data['Inventariomovimateriale']['usermovi_id']             = $user_id;
+									    $this->request->data['Inventariomovimateriale']['inventariomovimiento_id'] = $id ;
+										$this->Inventariomovimateriale->create();
+										$this->Inventariomovimateriale->save($this->request->data);
+									}
+								}
+>>>>>>> ejuan
 
 
 					}
@@ -499,7 +623,21 @@ class VentasController extends AppController {
 	*/
 	public function almacen($id = null) {
 		$this->layout="ajax";
-		$data = $this->Venta->Almacene->find('list', array('conditions'=>array('almacentipo_id'=>$id)));
+		$empresa_id          = $this->Session->read('empresa_id');
+     	$empresasurcusale_id = $this->Session->read('empresasurcusale_id');
+     	$rol_id              = $this->Session->read('ROL');
+     	$user_id             = $this->Session->read('USUARIO_ID');
+		$data_ = $this->Almacenuser->find('all', array('conditions'=>array('user_id'=>$user_id)));
+		//pr($data_);
+		foreach($data_ as $key) {
+			$almacen[] = $key['Almacenuser']['almacene_id'];
+		}
+		if(!isset($almacen)){
+
+		}else{
+			$data  = $this->Inventariomovimiento->Almacene->find('list', array('conditions'=>array('almacentipo_id'=>$id, 'Almacene.id'=>$almacen)));
+		}
+		if(!isset($data)){$data=array();}
 		$this->set('almacenes',$data);
 		$this->set('id',$id);
 	}

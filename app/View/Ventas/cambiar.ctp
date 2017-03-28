@@ -91,8 +91,8 @@
 								if($this->request->data["Venta"]["tipo"]==1){
 										   $options = array('1'=>'Registrado', '3'=>'Entregado');
 								}else{
-									if($rol_id==3){
-                                           $options = array('2'=>'Pendiente Autorizar', '1'=>'Registrado');
+									if($rol_id==3 || $rol_id==4){
+                                           $options = array('3'=>'Entregado', '2'=>'Pendiente Autorizar', '1'=>'Registrado');
 									}else{
 									       $options = array('2'=>'Pendiente Autorizar');	
 									}
@@ -100,7 +100,7 @@
 								echo'<div class="form-group">';	
 								echo'<label class="control-label col-md-2" for="Ventaestado">Estado</label>';		
 								echo'<div class="col-md-9">';			
-								echo $this->Form->input('estado', array('options'=>$options,  'id'=>'Ventaestado', 'div'=>false, 'label'=>false, 'class'=>'form-control'));		
+								echo $this->Form->input('estado', array('options'=>$options,  'id'=>'Ventaestado', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'empty'=>'--Seleccione--'));		
 								echo '</div>';	
 								echo '</div>';
 									

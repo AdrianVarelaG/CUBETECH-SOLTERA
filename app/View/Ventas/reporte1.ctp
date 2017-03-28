@@ -16,9 +16,17 @@ $fpdf->Cell(0,5,"IMPRESIÓN VENTA",'',1,'C');
 $fpdf->Ln(5);
 
 $fpdf->SetFont('Arial','',7);
-$fpdf->Cell(18,8,"CLIENTE:",'LT',0,'L');
-//$fpdf->SetFont('Arial','',9);
-$fpdf->Cell(0,8, $datas[0]['Venta']['informacion'],'TR',1,'L');
+$fpdf->Cell(18,10,"CLIENTE:",'LT',0,'L');
+$fpdf->Cell(1,10,"",'T',0);//margen izquierdo
+    $varX = $fpdf->GetX();//capturo X
+    $varY = $fpdf->GetY();//capturo Y
+    $fpdf->Cell(150,0,"",'T',2);
+    $fpdf->MultiCell(150,4,trim($datas[0]['Venta']['informacion']),'','L');//Concepto Orden de Pago
+    $varX = $varX+150;//le sumo a X ---> 180.
+    $fpdf->SetXY($varX,$varY);// cargo XY
+$fpdf->Cell(0,10,"",'TR',1);//margen derecho
+
+
 
 $fpdf->SetFont('Arial','',7);
 $fpdf->Cell(18,8,"VENDEDOR:",'L',0,'L');
@@ -53,7 +61,14 @@ $total = 0;
 foreach ($datas[0]['Ventadetalle'] as $ventadetalle) {
     $fpdf->Cell(35,5,$ventadetalle['Almacenproducto']['nombre'],'BL',0,'R');
     $fpdf->Cell(35,5,$ventadetalle['cantidad'],'LB',0,'R');
-    $fpdf->Cell(45,5,$ventadetalle['precio'],'LB',0,'R');
+
+    if($datas[0]['Venta']['tipo']==1){
+        $fpdf->Cell(45,5,$ventadetalle['precio'],'LB',0,'R');
+    }else{
+        $fpdf->Cell(45,5,"Cortesia",'LB',0,'R');
+        $ventadetalle['total'] = 0;
+    }
+
     $fpdf->Cell(35,5,(isset($ventadetalle['Almacenmateriale']['nombre'])?$ventadetalle['Almacenmateriale']['nombre']:"" ),'LB',0,'R');
     $fpdf->Cell(0,5,$ventadetalle['total'],'LRB',1,'R');
     $total += $ventadetalle['total'];

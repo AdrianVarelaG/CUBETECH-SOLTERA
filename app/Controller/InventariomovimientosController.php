@@ -17,7 +17,7 @@ class InventariomovimientosController extends AppController {
 	public $components = array('Paginator', 'Session', 'Flash');
 
 
-	public $uses = array('Inventariomovimiento','Inventariomovimateriale', 'Almacenproductodetalle', 'Almacenmarcadetalle', 'Almacenproducto', 'Almacene', 'Almacenuser');
+	public $uses = array('Inventariomovimiento','Inventariomovimateriale', 'Almacenproductodetalle', 'Almacenmarcadetalle', 'Almacenproducto'                 , 'Almacene', 'Almacenuser');
 
 /*
 ** var de layout
