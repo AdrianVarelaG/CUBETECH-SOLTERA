@@ -299,7 +299,7 @@
       <footer class="main-footer hidden-xs">
         <div class="row">
             <div class="col-sm-4"><strong>Copyright &copy; 2016-2017.</strong> All rights reserved.</div>
-            <div class="col-sm-4 text-center"><strong>Powered by <a href="cubetechnologies.com.mx">Cube Technologies</a></strong></div>
+            <div class="col-sm-4 text-center"><strong>Powered by <a href="http://cubetechnologies.com.mx">Cube Technologies</a></strong></div>
             <div class="col-sm-4 text-right"><strong>Version</strong> 1.0.0</div>
         </div>
       </footer>

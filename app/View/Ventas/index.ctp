@@ -92,22 +92,50 @@
                     ?>
 										<?php echo $this->Html->link(__('Ver'), array('action' => 'view', $venta['Venta']['id']),   array('class'=>'btn btn-success')); ?>
 										<?php
-										      if(($rol_id ==1 || $rol_id ==2 || $rol_id ==3 || $rol_id ==5) &&  $venta['Venta']['estado']!=3){
+										      if(($rol_id ==1 || $rol_id ==2 || $rol_id ==3) || $rol_id ==5){
 										      //	echo $this->Html->link(__('Estado'), array('action' => 'cambiar', $venta['Venta']['id']),   array('class'=>'btn btn-warning'));
+                          if(($rol_id ==1 || $rol_id ==2 || $rol_id ==3) || ($rol_id == 5  && $venta['Venta']['estado']!=3 && count($venta['Venta']['cambioEstado'])) > 0){
                             ?>
                             <div class="btn-group">
                               <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Estado <span class="caret"></span>
                               </button>
                               <ul class="dropdown-menu">
-                                <li><?php
-                                  echo $this->Html->link(__('Registrado'), array('action' => 'estado', 'id' => $venta['Venta']['id'], 'estado' => 1));
-                                ?></li>
-                                <li><a href="#">Entregado</a></li>
+                                <?php
+                                  if (in_array(1, $venta['Venta']['cambioEstado'], true)) {
+                                    echo '<li>';
+                                    echo $this->Html->link(__('Registrado'), array('action' => 'estado', 'id' => $venta['Venta']['id'], 'estado' => 1));
+                                    echo '</li>';
+                                  }
+                                ?>
+                                <?php
+                                  if (in_array(2, $venta['Venta']['cambioEstado'], true)) {
+                                    echo '<li>';
+                                    echo $this->Html->link(__('Pendiente Autorizar'), array('action' => 'estado', 'id' => $venta['Venta']['id'], 'estado' => 2));
+                                    echo '</li>';
+                                  }
+                                ?>
+                                <?php
+                                  if (in_array(3, $venta['Venta']['cambioEstado'], true)) {
+                                    echo '<li>';
+                                    echo $this->Html->link(__('Entregado'), array('action' => 'estado', 'id' => $venta['Venta']['id'], 'estado' => 3));
+                                    echo '</li>';
+                                  }
+                                ?>
                               </ul>
                             </div>
                     <?php
+                          }else {
+                                ?>
+                                <div class="btn-group">
+                                  <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" disabled = "disabled">
+                                    Estado <span class="caret"></span>
+                                  </button>
+                                </div>
+                                <?php
+                          }
 									          }
+
 									    ?>
 										<?php
                       if($venta['Venta']['edicion'])

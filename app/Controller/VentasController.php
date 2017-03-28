@@ -9,6 +9,9 @@ App::uses('AppController', 'Controller');
 */
 class VentasController extends AppController {
 
+	const REGISTRADO = 1;
+	const PENAUT 		 = 2;
+	const ENTREGADO  = 3;
 	/**
 	* Components
 	*
@@ -40,6 +43,37 @@ class VentasController extends AppController {
 
 	protected function validaEdicion($rol, $estado, $pagado){
 		return ($rol == 3 || ($rol == 4 && ($estado==1 || $estado==2) && $pagado == 2));
+	}
+/*
+const REGISTRADO = 'REG';
+const PENAUT 		 = 'PENAUT';
+const ENTREGADO  = 'ENT';
+*/
+	protected function cambioEstado($rol, $estadoActual){
+		$ret = array();
+		switch ($estadoActual) {
+			case  self::REGISTRADO:
+				if($rol >= 1 and $rol <=3){
+					$ret[] = self::PENAUT ;
+				}
+				if(($rol >= 1 and $rol <=3) || $rol = 5 ){
+					$ret[] = self::ENTREGADO;
+				}
+			break;
+			case self::PENAUT:
+			if($rol >= 1 and $rol <=3){
+				$ret[] = self::REGISTRADO;
+				$ret[] = self::ENTREGADO;
+			}
+			break;
+			case self::ENTREGADO:
+				if(($rol >= 1 and $rol <=3) ){
+					$ret[] = self::PENAUT ;
+					$ret[] = self::REGISTRADO;
+				}
+			break;
+		}
+		return $ret;
 	}
 
 	/**
@@ -104,6 +138,7 @@ class VentasController extends AppController {
 		$consulta = $this->Venta->find('all', $options);
 		for ($i=0; $i < count($consulta); $i++) {
 			$consulta[$i]['Venta']['edicion'] = $this->validaEdicion($rol_id,$consulta[$i]['Venta']['estado'], $consulta[$i]['Venta']['pagado']);
+			$consulta[$i]['Venta']['cambioEstado'] = $this->cambioEstado($rol_id, $consulta[$i]['Venta']['estado']);
 		}
 		$this->set('ventas', $consulta);
 	}
@@ -606,10 +641,6 @@ class VentasController extends AppController {
 		//pr($data2);
 
 	}
-
-
-
-
 	/**
 	* almacen method
 	*
@@ -768,50 +799,80 @@ class VentasController extends AppController {
 	}
 
 	public function estado(){
-		//$this->autoRender = false;
+		$this->autoRender = false;
 		$rol_id= $this->Session->read('ROL');
-
 		if($rol_id ==1 || $rol_id ==2 || $rol_id ==3 || $rol_id ==5){
 			$id= $this->request->params['named']['id'];
-			$estado = $this->request->params['named']['estado'];
+			$estado = (int)$this->request->params['named']['estado'];
 			$data = $this->Venta->findAllById($id);
 			$ok = true;
-			$actualizar = false;
 			if(count($data) > 0){
-				switch ($data[0]['Venta']['estado']) {
-					case 1:
-						//$this->generaMovimientosInventario($data[0], 2);
-						$materiales = $this->calculaMateriales($data[0]);
-						if($this->validaMateriales($data[0], $materiales)){
-							$this->generaMovimientosMateriales($data[0], $materiales, 2);
-						}
-						if($estado = 2){
-							if($rol_id ==1 || $rol_id ==2 || $rol_id ==3){
-								$actualizar = true;
+				$estadosValidos = $this->cambioEstado($rol_id, $data[0]['Venta']['estado']);
+				if(in_array($estado, $estadosValidos , true)){
+					$estadoAnte = $data[0]['Venta']['estado'];
+					$data[0]['Venta']['estado'] = $estado;
+					if($this->Venta->save($data[0]['Venta'])){
+						if($estado == self::ENTREGADO){
+							$materiales = $this->calculaMateriales($data[0]);
+							if($this->validaMateriales($data[0], $materiales)){
+								if($this->generaMovimientosInventario($data[0], 2)){
+									if(!$this->generaMovimientosMateriales($data[0], $materiales, 2)){
+										$this->generaMovimientosInventario($data[0], 1);
+										$data[0]['Venta']['estado'] = $estadoAnte;
+										$this->Venta->save($data[0]['Venta']);
+										$ok = false;
+										$this->Flash->error(__('Error al afectar el inventario de materiales'));
+									}
+								}else{
+									$data[0]['Venta']['estado'] = $estadoAnte;
+									$this->Venta->save($data[0]['Venta']);
+									$ok = false;
+									$this->Flash->error(__('Error al afectar el inventario de productos'));
+								}
 							}else{
+								$data[0]['Venta']['estado'] = $estadoAnte;
+								$this->Venta->save($data[0]['Venta']);
+								$ok = false;
+								$this->Flash->error(__('Error No hay materiales suficientes'));
+							}
+						}else if($estadoAnte == self::ENTREGADO){
+							$materiales = $this->calculaMateriales($data[0]);
+							if($this->generaMovimientosInventario($data[0], 1)){
+								if(!$this->generaMovimientosMateriales($data[0], $materiales, 1)){
+									$this->generaMovimientosInventario($data[0], 2);
+									$data[0]['Venta']['estado'] = $estadoAnte;
+									$this->Venta->save($data[0]['Venta']);
+									$ok = false;
+									$this->Flash->error(__('Error al afectar el inventario de materiales'));
+								}
+							}
+							else {
+								$data[0]['Venta']['estado'] = $estadoAnte;
+								$this->Venta->save($data[0]['Venta']);
+								$this->Flash->error(__('Error al afectar el inventario de productos'));
 								$ok = false;
 							}
-						}else if($estado = 3){
-
-							//Se deben genera los Movimientos del almacen de productos
-							//Validar el Almacen para generar movimeintos de materiales de embalaje
-							$actualizar = true;
 						}
-					break;
-					case 2:
-						if($estado != 2 and $rol_id ==3){
-							$actualizar = true;
-							//Se deben genera los Movimientos del almacen de productos
-							//Validar el Almacen para generar movimeintos de materiales de embalaje
-						}
-					break;
-					case 3:
-						# code...
-					break;
+					}else{
+						//marca error de actualizacion de estado
+						$this->Flash->error(__('Error al tratar de actualizar el estado'));
+						$ok = false;
+					}
+				}else{
+					$this->Flash->error(__('Cambio de estado Invalido'));
+					$ok = false;
+					//Error cambio de estado
 				}
-
+				if($ok == true){
+					$this->Flash->success(__('Cambio de Estado realizado con exito'));
+				}
+			}else{
+				$this->Flash->error(__('No se encontraron los datos de la venta'));
 			}
+		}else{
+			$this->Flash->error(__('Usuario Invalido para esta opcion.'));
 		}
+		return $this->redirect(array('action' => 'index'));
 	}
 	/*
 	$tipo = 1 Entrada
@@ -847,7 +908,7 @@ class VentasController extends AppController {
 			}
 		}
 		if($valido == false){
-			return null;
+			return false;
 		}
 		else {
 			return ($this->Inventariomovimiento->saveMany($data));
@@ -857,22 +918,28 @@ class VentasController extends AppController {
 	protected function generaMovimientosMateriales($venta, $materiales, $tipo){
 		$user_id             = $this->Session->read('USUARIO_ID');
 		$data[]  = array();
-		for ($i=0; $i < count($materiales) ; $i++) {
-			$movimentosMateriales = array(
-				'empresa_id'          		=> $venta['Venta']['empresa_id'],
-				'empresasurcusale_id' 		=> $venta['Venta']['empresasurcusale_id'],
-				'almacentipo_id'      		=> $venta['Venta']['almacentipo_id'],
-				'almacene_id'         		=> $venta['Venta']['almacene_id'],
-				'almacenmateriale_id' 		=> $materiales[$i]['almacenmateriale_id'],
-				'tipo'                		=> $tipo,
-				'cantidad'            		=> $materiales[$i]['cantidadMaterial'],
-				'fechaalta'           		=> $venta['Venta']['fecha'],
-				'usermovi_id'         		=> $user_id,
-				'inventariomovimiento_id' => $venta['Venta']['id']
-			);
-			$data[$i] = array('Inventariomovimateriale' =>  $movimentosMateriales);
+		$ret = true;
+
+		if($venta['Almacene']['foraneo'] == 2){
+			$ret = false;
+			for ($i=0; $i < count($materiales) ; $i++) {
+				$movimentosMateriales = array(
+					'empresa_id'          		=> $venta['Venta']['empresa_id'],
+					'empresasurcusale_id' 		=> $venta['Venta']['empresasurcusale_id'],
+					'almacentipo_id'      		=> $venta['Venta']['almacentipo_id'],
+					'almacene_id'         		=> $venta['Venta']['almacene_id'],
+					'almacenmateriale_id' 		=> $materiales[$i]['almacenmateriale_id'],
+					'tipo'                		=> $tipo,
+					'cantidad'            		=> $materiales[$i]['cantidadMaterial'],
+					'fechaalta'           		=> $venta['Venta']['fecha'],
+					'usermovi_id'         		=> $user_id,
+					'inventariomovimiento_id' => $venta['Venta']['id']
+				);
+				$data[$i] = array('Inventariomovimateriale' =>  $movimentosMateriales);
+			}
+			$ret = $this->Inventariomovimateriale->saveMany($data);
 		}
-		return ($this->Inventariomovimateriale->saveMany($data));
+		return ($ret);
 	}
 
   protected function validaInventario($ventadetalle, $almacene_id, $banTransito = false){
@@ -893,39 +960,41 @@ class VentasController extends AppController {
 		return $ret;
 	}
 	protected function validaMateriales($venta, $materiales){
-		$ret = false;
-
+		$ret = true;
 		$materiales_id[] =  array();
 
-		for ($i=0; $i < count($materiales); $i++) {
-			$materiales_id[$i] =  $materiales[$i]['almacenmateriale_id'];
-		}
-		$options =  array(
-			'conditions'=>array(
-				'Vstockmateriale.almacenmateriale_id'=> $materiales_id,
-				'Vstockmateriale.almacene_id'=> $venta['Venta']['almacene_id'],
-			));
-		$stock = $this->Vstockmateriale->find('all',$options);
-		$ret = true;
-		for ($i=0; $i < count($materiales) && $ret ; $i++) {
-			$found = false;
-			$j=0;
-			while($j < count($stock) && !$found) {
-				if($stock[$j]['Vstockmateriale']['almacenmateriale_id'] == $materiales[$i]['almacenmateriale_id']){
-					$found = true;
-				}
-				else {
-					$j++;
-				}
+		if($venta['Almacene']['foraneo'] == 2){
+			$ret = false;
+			for ($i=0; $i < count($materiales); $i++) {
+				$materiales_id[$i] =  $materiales[$i]['almacenmateriale_id'];
 			}
-			if($found){
-				$disponible = $stock[$j]['Vstockmateriale']['entradas']
-							  -  $stock[$j]['Vstockmateriale']['salidas']
-								-  $materiales[$i]['cantidadMaterial'];
-				$ret = ((int)$disponible >= 0);
-			}
-			else{
-				$ret = false;
+			$options =  array(
+				'conditions'=>array(
+					'Vstockmateriale.almacenmateriale_id'=> $materiales_id,
+					'Vstockmateriale.almacene_id'=> $venta['Venta']['almacene_id'],
+				));
+			$stock = $this->Vstockmateriale->find('all',$options);
+			$ret = true;
+			for ($i=0; $i < count($materiales) && $ret ; $i++) {
+				$found = false;
+				$j=0;
+				while($j < count($stock) && !$found) {
+					if($stock[$j]['Vstockmateriale']['almacenmateriale_id'] == $materiales[$i]['almacenmateriale_id']){
+						$found = true;
+					}
+					else {
+						$j++;
+					}
+				}
+				if($found){
+					$disponible = $stock[$j]['Vstockmateriale']['entradas']
+								  -  $stock[$j]['Vstockmateriale']['salidas']
+									-  $materiales[$i]['cantidadMaterial'];
+					$ret = ((int)$disponible >= 0);
+				}
+				else{
+					$ret = false;
+				}
 			}
 		}
 		return($ret);
