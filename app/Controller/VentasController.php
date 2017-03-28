@@ -17,11 +17,11 @@ class VentasController extends AppController {
 	public $components = array('Paginator', 'Session', 'Flash');
 
 
-<<<<<<< HEAD
+
 
 	public $uses = array('Venta', 'Almacenproducto', 'Almacenmarcadetalle', 'Inventariomovimiento', 'Ventadetalle', 'Almacene',
 	                     'Inventariomovimateriale', 'Almacenuser','Vstock', 'Vstockmateriale');
->>>>>>> ejuan
+
 
 	/*
 	** var de layout
@@ -382,7 +382,7 @@ class VentasController extends AppController {
 	* @return void
 	*/
 	public function pagar($id = null) {
-<<<<<<< HEAD
+
 		$empresa_id          = $this->Session->read('empresa_id');
 		$empresasurcusale_id = $this->Session->read('empresasurcusale_id');
 		$rol_id              = $this->Session->read('ROL');
@@ -508,7 +508,7 @@ class VentasController extends AppController {
 			$this->Flash->success(__('El Registro fue modificado.'));
 		} else {
 			$this->Flash->error(__('El Registro no fue modificado. Por favor, inténtelo de nuevo.'));
->>>>>>> ejuan
+
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
@@ -529,7 +529,7 @@ class VentasController extends AppController {
 			throw new NotFoundException(__('Invalid venta'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
-<<<<<<< HEAD
+
 			    $this->request->data['Venta']['id']     = $id;
 			    //$this->request->data['Venta']['activo'] = 2;
 				if ($this->Venta->save($this->request->data)) {
@@ -573,9 +573,6 @@ class VentasController extends AppController {
 										$this->Inventariomovimateriale->save($this->request->data);
 									}
 								}
->>>>>>> ejuan
-
-
 					}
 				}
 				$this->Flash->success(__('El Registro fue actualizadp.'));
