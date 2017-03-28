@@ -452,3 +452,80 @@ CREATE TABLE IF NOT EXISTS `ventas` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- Estructura Stand-in para la vista `vstockmateriales`
+--
+CREATE TABLE IF NOT EXISTS `vstockmateriales` (
+`almacene_id` int(11)
+,`almacenmateriale_id` int(11)
+,`entradas` decimal(32,0)
+,`salidas` decimal(32,0)
+);
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `vstocks`
+--
+CREATE TABLE IF NOT EXISTS `vstocks` (
+`almacenproducto_id` int(11)
+,`almacene_id` int(11)
+,`entradas` decimal(32,0)
+,`salidas` decimal(32,0)
+,`transito` decimal(48,2)
+);
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `v_almacenesproductos`
+--
+CREATE TABLE IF NOT EXISTS `v_almacenesproductos` (
+`almacenproducto_id` int(11)
+,`almacene_id` int(11)
+,`entradas` decimal(32,0)
+,`salidas` decimal(32,0)
+);
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `v_transitoalmacenesproductos`
+--
+CREATE TABLE IF NOT EXISTS `v_transitoalmacenesproductos` (
+`almacene_id` int(11)
+,`almacenproducto_id` int(11)
+,`transito` decimal(48,2)
+);
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `vstockmateriales`
+--
+DROP TABLE IF EXISTS `vstockmateriales`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vstockmateriales` AS select `inventariomovimateriales`.`almacene_id` AS `almacene_id`,`inventariomovimateriales`.`almacenmateriale_id` AS `almacenmateriale_id`,sum((case when (`inventariomovimateriales`.`tipo` = 1) then `inventariomovimateriales`.`cantidad` else 0 end)) AS `entradas`,sum((case when (`inventariomovimateriales`.`tipo` = 2) then `inventariomovimateriales`.`cantidad` else 0 end)) AS `salidas` from `inventariomovimateriales` group by `inventariomovimateriales`.`almacene_id`,`inventariomovimateriales`.`almacenmateriale_id`;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `vstocks`
+--
+DROP TABLE IF EXISTS `vstocks`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vstocks` AS select `f`.`almacenproducto_id` AS `almacenproducto_id`,`f`.`almacene_id` AS `almacene_id`,`f`.`entradas` AS `entradas`,`f`.`salidas` AS `salidas`,`t`.`transito` AS `transito` from (`v_almacenesproductos` `f` left join `v_transitoalmacenesproductos` `t` on(((`f`.`almacenproducto_id` = `t`.`almacenproducto_id`) and (`f`.`almacene_id` = `t`.`almacene_id`))));
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `v_almacenesproductos`
+--
+DROP TABLE IF EXISTS `v_almacenesproductos`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_almacenesproductos` AS select `inventariomovimientos`.`almacenproducto_id` AS `almacenproducto_id`,`inventariomovimientos`.`almacene_id` AS `almacene_id`,sum((case when (`inventariomovimientos`.`tipo` = 1) then `inventariomovimientos`.`cantidad` else 0 end)) AS `entradas`,sum((case when (`inventariomovimientos`.`tipo` = 2) then `inventariomovimientos`.`cantidad` else 0 end)) AS `salidas` from `inventariomovimientos` where (`inventariomovimientos`.`activo` = 1) group by `inventariomovimientos`.`almacenproducto_id`,`inventariomovimientos`.`almacene_id`;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `v_transitoalmacenesproductos`
+--
+DROP TABLE IF EXISTS `v_transitoalmacenesproductos`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_transitoalmacenesproductos` AS select `v`.`almacene_id` AS `almacene_id`,`vd`.`almacenproducto_id` AS `almacenproducto_id`,sum(`vd`.`cantidad`) AS `transito` from (`ventas` `v` join `ventadetalles` `vd` on((`v`.`id` = `vd`.`venta_id`))) where ((`v`.`activo` = 1) and (`v`.`estado` = 1)) group by `v`.`almacene_id`,`vd`.`almacenproducto_id`;
