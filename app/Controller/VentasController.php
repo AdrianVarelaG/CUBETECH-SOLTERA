@@ -197,7 +197,6 @@ const ENTREGADO  = 'ENT';
 						}else{
 							$stop = 1;
 						}
-						$i++;
 					}
 				}
 				if($stop==0){
