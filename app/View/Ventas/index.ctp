@@ -59,7 +59,10 @@
 										//echo h($venta['Venta']['pagado']);
 									    if($venta['Venta']['tipo']==1){
 	                                        if($venta['Venta']['pagado']==2){
-													echo $this->Html->link(__('Pagar'), array('action' => 'pagar', $venta['Venta']['id']), array('class'=>'btn btn-danger'));
+                  ?>
+                      <button class="btn btn-danger" href="#" title="Pagar">Pagar</button>
+                      <input value="" title="Pagar"/>
+                  <?php
 											}else{
 	                       //echo $this->Html->tag('span', $venta['Venta']['fecha'], array('class' => 'label label-success'));
                          ?>
