@@ -36,6 +36,7 @@
     <?php echo $this->Html->css('datatable/buttons.dataTables.min.css'); ?>
     <?php echo $this->Html->css('datatable/dataTables.bootstrap.min.css'); ?>
     <?php echo $this->Html->css('datatable/responsive.dataTables.min.css'); ?>
+    <?php echo $this->Html->css('Adicionales.css'); ?>
     <!-- DataTable JS -->
     <?php echo $this->Html->script('datatable/jquery.dataTables.js'); ?>
     <?php echo $this->Html->script('datatable/dataTables.responsive.min.js'); ?>
@@ -312,7 +313,7 @@
      echo "<script> $('#activa".$_SESSION["MODULO_ACTIVO"]."').addClass('active'); </script>";
     }
     ?>
-
+      <?php echo $this->Html->script('Adicionales.js'); ?>
     <!-- SlimScroll -->
     <script src="<?= $this->Html->templateinclude('/plugins/slimScroll/jquery.slimscroll.min.js', 'AdminLTE-2.3.0');?>"></script>
     <!-- FastClick -->

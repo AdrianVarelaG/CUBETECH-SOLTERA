@@ -18,7 +18,7 @@ class Inventariomovimateriale extends AppModel {
  *
  * @var mixed False or table name
  */
-	public $useTable = 'Inventariomovimateriales';
+	public $useTable = 'inventariomovimateriales';
 
 /**
  * Display field

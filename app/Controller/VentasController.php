@@ -708,6 +708,16 @@ const ENTREGADO  = 'ENT';
 		$almacenmarca_id = isset($data[0]['Almacenproducto']['almacenmarca_id'])?$data[0]['Almacenproducto']['almacenmarca_id']:0;
 
 		$data2 = $this->Almacenmarcadetalle->find('all', array('conditions'=>array('Almacenmarcadetalle.almacenmarca_id'=>$almacenmarca_id)));
+		$existencia = 0;
+
+		$stock = $this->consultaInventario($id4, $id2 );
+		$existencia = $stock['totalFisico'] - $stock['totalTransito'];
+
+		/*
+		array(
+	'totalFisico' => (int) 400,
+	'totalTransito' => (float) 466
+)
 
 		$data3 = $this->Inventariomovimiento->find('all', array('conditions'=>array('Inventariomovimiento.activo'=>1, 'Inventariomovimiento.empresa_id'=>$empresa_id, 'Inventariomovimiento.empresasurcusale_id'=>$empresasurcusale_id, 'Inventariomovimiento.almacentipo_id'=>$id1, 'Inventariomovimiento.almacene_id'=>$id2, 'Inventariomovimiento.almacenproducto_id'=>$id4)));
 		$data4 = $this->Venta->Ventadetalle->find( 'all', array('conditions'=>array('Venta.estado'=>3, 'Venta.activo'=>1, 'Venta.empresa_id'=>$empresa_id, 'Venta.empresasurcusale_id'=>$empresasurcusale_id, 'Venta.almacentipo_id'=>$id1, 'Venta.almacene_id'=>$id2, 'Ventadetalle.almacenproducto_id'=>$id4)));
@@ -732,6 +742,7 @@ const ENTREGADO  = 'ENT';
 			$registrado  += $value2['Ventadetalle']['cantidad'];
 		}
 		$existencia = $entrada - ($salida + $registrado);
+		*/
 		// pr($data3);
 		$this->set('num',$id3);
 		$this->set('precio',isset($data[0]['Almacenproducto']['precio'])?$data[0]['Almacenproducto']['precio']:0);
@@ -945,17 +956,33 @@ const ENTREGADO  = 'ENT';
   protected function validaInventario($ventadetalle, $almacene_id, $banTransito = false){
 		$ret = false;
 		$dis = 0;
+		$stock = consultaInventario($ventadetalle['almacenproducto_id'], $almacene_id);
+		if(count($stock) > 0){
+			$dis = $stock['totalFisico'];
+			$dis = $dis - $ventadetalle['cantidad'];
+			$ret = $dis >= 1;
+		}
+		return $ret;
+	}
+	protected function consultaInventario($productoID, $almacene_id ){
+		$ret = null;
 		$options =  array(
 			'conditions'=>array(
-				'Vstock.almacenproducto_id'=> $ventadetalle['almacenproducto_id'],
+				'Vstock.almacenproducto_id'=> $productoID,
 				'Vstock.almacene_id'=> $almacene_id,
 			));
 		$stock = $this->Vstock->find('all',$options);
 		if(count($stock) > 0){
+			$fisico = 0;
+			$transito = 0;
 			for ($i=0; $i < count($stock) ; $i++) {
-				$dis = $dis + $stock[$i]['Vstock']['entradas'] - $stock[$i]['Vstock']['salidas'] - $ventadetalle['cantidad'];
+				$fisico = $fisico + $stock[$i]['Vstock']['entradas'] - $stock[$i]['Vstock']['salidas'];
+				if(!empty($stock[$i]['Vstock']['transito'])){
+					$transito = $transito + $stock[$i]['Vstock']['transito'];
+				}
 			}
-			$ret = $dis >= 1;
+			$ret = array('totalFisico' => $fisico,
+									'totalTransito' => $transito);
 		}
 		return $ret;
 	}

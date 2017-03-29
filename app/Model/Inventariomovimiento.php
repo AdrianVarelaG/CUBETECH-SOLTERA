@@ -21,7 +21,7 @@ class Inventariomovimiento extends AppModel {
  *
  * @var mixed False or table name
  */
-	public $useTable = 'Inventariomovimientos';
+	public $useTable = 'inventariomovimientos';
 
 /**
  * Display field

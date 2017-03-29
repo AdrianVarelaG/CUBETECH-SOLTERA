@@ -25,7 +25,7 @@ class AlmacenesController extends AppController {
 /*
 *  *  beforeFilter check de session
 *
-*/	
+*/
 	public function beforeFilter() {
 		$this->checkSession(5);
 	}
@@ -43,14 +43,14 @@ class AlmacenesController extends AppController {
 		//$this->Almacene->recursive = 0;
 		//$this->set('almacenes', $this->Paginator->paginate());
 		  //$this->set('almacenes', $this->Almacene->find('all'));
-		      if($empresa_id==0 && $empresasurcusale_id==0){ 
+		      if($empresa_id==0 && $empresasurcusale_id==0){
      		  	$this->set('almacenes', $this->Almacene->find('all', array('conditions'=>array('Almacene.activo'=>1))));
      	}else if($empresa_id!=0 && $empresasurcusale_id==0){
      		$this->set('almacenes', $this->Almacene->find('all', array('conditions'=>array('Almacene.activo'=>1, 'Almacene.empresa_id'=>$empresa_id))));
       	}else if($empresa_id!=0 && $empresasurcusale_id!=0 && $rol_id==3){
       		$this->set('almacenes', $this->Almacene->find('all', array('conditions'=>array('Almacene.activo'=>1, 'Almacene.empresa_id'=>$empresa_id, 'Almacene.empresasurcusale_id'=>$empresasurcusale_id))));
       	}else{
-      		$this->set('almacenes', $this->Almacene->find('all', array('conditions'=>array('Almacene.activo'=>1, 'Almacene.empresa_id'=>$empresa_id, 'Almacene.empresasurcusale_id'=>$empresasurcusale_id, 'Almacene.user_id'=>$user_id))));
+      		$this->set('almacenes', $this->Almacene->find('all', array('conditions'=>array('Almacene.activo'=>1, 'Almacene.empresa_id'=>$empresa_id, 'Almacene.empresasurcusale_id'=>$empresasurcusale_id))));
       	}
 	}
 
@@ -94,7 +94,7 @@ class AlmacenesController extends AppController {
 		}
 		$empresas     = $this->Almacene->Empresa->find('list', array('conditions'=>array('id'=>$empresa_id)));
 		$almacentipos = $this->Almacene->Almacentipo->find('list', array('conditions'=>array('activo'=>1, 'empresa_id'=>$empresa_id)));
-		      if($empresa_id==0 && $empresasurcusale_id==0){ 
+		      if($empresa_id==0 && $empresasurcusale_id==0){
             	$empresasurcusales = $this->Almacene->Empresasurcusale->find('list');
      	}else if($empresa_id!=0 && $empresasurcusale_id==0){
                 $empresasurcusales = $this->Almacene->Empresasurcusale->find('list', array('conditions'=>array('Empresasurcusale.empresa_id'=>$empresa_id)));
@@ -132,7 +132,7 @@ class AlmacenesController extends AppController {
 		}
 		$empresas     = $this->Almacene->Empresa->find('list', array('conditions'=>array('id'=>$empresa_id)));
 		$almacentipos = $this->Almacene->Almacentipo->find('list', array('conditions'=>array('activo'=>1, 'empresa_id'=>$empresa_id)));
-		      if($empresa_id==0 && $empresasurcusale_id==0){ 
+		      if($empresa_id==0 && $empresasurcusale_id==0){
             	$empresasurcusales = $this->Almacene->Empresasurcusale->find('list');
      	}else if($empresa_id!=0 && $empresasurcusale_id==0){
                 $empresasurcusales = $this->Almacene->Empresasurcusale->find('list', array('conditions'=>array('Empresasurcusale.empresa_id'=>$empresa_id)));
@@ -179,5 +179,5 @@ class AlmacenesController extends AppController {
 
 
 
-	
+
 }

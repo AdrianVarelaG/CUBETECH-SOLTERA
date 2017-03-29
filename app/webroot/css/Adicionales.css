@@ -1,0 +1,11 @@
+/*Reglas para desaparecer un boton y aparesca un datePicker en una tabla*/
+tbody tr td input{
+  display: none;
+}
+tbody tr td.date button{
+  display: none;
+}
+tbody tr td.date input{
+  display: initial;
+}
+/*Reglas para desaparecer un boton y aparesca un datePicker en una tabla*/
