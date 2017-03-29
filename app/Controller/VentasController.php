@@ -955,7 +955,7 @@ const ENTREGADO  = 'ENT';
   protected function validaInventario($ventadetalle, $almacene_id, $banTransito = false){
 		$ret = false;
 		$dis = 0;
-		$stock = consultaInventario($ventadetalle['almacenproducto_id'], $almacene_id);
+		$stock = $this->consultaInventario($ventadetalle['almacenproducto_id'], $almacene_id);
 		if(count($stock) > 0){
 			$dis = $stock['totalFisico'];
 			$dis = $dis - $ventadetalle['cantidad'];

@@ -27,7 +27,7 @@ class AlmacenproductosController extends AppController {
 /*
 *  *  beforeFilter check de session
 *
-*/	
+*/
 	public function beforeFilter() {
 		$this->checkSession(5);
 	}
@@ -93,7 +93,6 @@ class AlmacenproductosController extends AppController {
 						}else{
 							$stop = 1;
 						}
-						$i++;
 					}
 				}
 				if($stop==0){
@@ -146,7 +145,6 @@ class AlmacenproductosController extends AppController {
 						}else{
 							$stop = 1;
 						}
-						$i++;
 					}
 				}
 				if($stop==0){
