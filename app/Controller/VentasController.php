@@ -17,7 +17,7 @@ class VentasController extends AppController {
 	*
 	* @var array
 	*/
-	public $components = array('Paginator', 'Session', 'Flash');
+	public $components = array('Paginator', 'Session', 'Flash', 'RequestHandler');
 
 
 
@@ -297,9 +297,6 @@ const ENTREGADO  = 'ENT';
 					$this->Venta->rollback();
 					$this->Flash->error(__('Registro no Guardado. Por favor, inténtelo de nuevo.'));
 				}
-
-
-
 			} else {
 				$this->Flash->error(__('Registro no Guardado. Por favor, inténtelo de nuevo.'));
 			}
@@ -529,21 +526,25 @@ const ENTREGADO  = 'ENT';
  * @return void
  */
 	public function pagar2($id = null) {
-	    $empresa_id          = $this->Session->read('empresa_id');
-     	$empresasurcusale_id = $this->Session->read('empresasurcusale_id');
-     	$rol_id              = $this->Session->read('ROL');
-     	$user_id             = $this->Session->read('USUARIO_ID');
+		  $this->layout="ajax";
+			if(!$this->Session->check('usuario_valido')==false){
+				$rol_id              = $this->Session->read('ROL');
+				$response = array();
+				if($rol_id  == 1 || $rol_id == 2 || $rol_id  == 3){
+					$venta = $this->Venta->findAllById($this->request->data['venta']);
+					$venta[0]['Venta']['pagado'] = 1;
+					$venta[0]['Venta']['fecha_pagado'] = $this->request->data['fecha'];
 
-       // $this->request->data['Venta']['id']     = $id;
-	    $this->request->data['Venta']['pagado'] = 1;
-	    $this->request->data['Venta']['fecha_pagado'] = date("Y-m-d");
-		if ($this->Venta->save($this->request->data)) {
-			$this->Flash->success(__('El Registro fue modificado.'));
-		} else {
-			$this->Flash->error(__('El Registro no fue modificado. Por favor, inténtelo de nuevo.'));
-
-		}
-		return $this->redirect(array('action' => 'index'));
+					if($this->Venta->save($venta[0]['Venta'])){
+						$response['status'] = 'OK';
+						$response['venta'] = $venta[0]['Venta'];
+					}
+				}else{
+					$response['status'] = 'ERROR';
+					$response['message'] = 'Usted no tiene acceso para realizar esta operacion';
+				}
+				$this->set('response', $response);
+			}
 	}
 
 	/**

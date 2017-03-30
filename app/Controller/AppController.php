@@ -36,8 +36,18 @@ class AppController extends Controller {
 
 	function checkSession($mod=null){
 	    if($this->Session->check('usuario_valido')==false){
+				if($this->request->is('ajax')){
+					 $response = array(
+						 'status' => 'ERROR',
+						 'redirect' => '/login/logout/close',
+				  );
+					$this->set('response', $response);
+					 
+					 return false;
+				}else{
 	       $this->redirect('/login/logout/close');
 	       return false;
+			 }
 	    }else{
 	    	if($mod==100){
 

@@ -54,16 +54,23 @@
 									<td><?php echo h($venta['Almacene']['nombre']); ?></td>
 									<td><?php echo h($venta['Venta']['tipo']==1?"Venta":"Cortesia"); ?></td>
 									<td><?php echo h($venta['Venta']['fecha']); ?></td>
-									<td>
+									<td title="Pagar">
 									<?php
 										//echo h($venta['Venta']['pagado']);
-									    if($venta['Venta']['tipo']==1){
-	                                        if($venta['Venta']['pagado']==2){
+									if($venta['Venta']['tipo']==1){
+	                   if($venta['Venta']['pagado']==2){
+                       if($rol_id == 1 || $rol_id==2 || $rol_id==3){
                   ?>
-                      <button class="btn btn-danger" href="#" title="Pagar">Pagar</button>
-                      <input value="" title="Pagar"/>
+                      <button class="btn btn-danger" href="#">Pagar</button>
+                      <input data-id = "<?php echo h($venta['Venta']['id']) ?>"/>
                   <?php
-											}else{
+                      }else{
+                        ?>
+                        <button class="btn btn-danger" disabled="disabled" href="#">Pagar</button>
+                <?php
+                      }
+
+										}else{
 	                       //echo $this->Html->tag('span', $venta['Venta']['fecha'], array('class' => 'label label-success'));
                          ?>
                   <button class="btn btn-success btn-sm" disabled="disabled"><?php  echo $venta['Venta']['fecha_pagado'] ?></button>
