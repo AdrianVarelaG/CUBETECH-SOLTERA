@@ -313,7 +313,7 @@
      echo "<script> $('#activa".$_SESSION["MODULO_ACTIVO"]."').addClass('active'); </script>";
     }
     ?>
-      <?php echo $this->Html->script('Adicionales.js'); ?>
+
     <!-- SlimScroll -->
     <script src="<?= $this->Html->templateinclude('/plugins/slimScroll/jquery.slimscroll.min.js', 'AdminLTE-2.3.0');?>"></script>
     <!-- FastClick -->
@@ -330,6 +330,5 @@
     <?php echo $this->Html->script('highcharts/exporting.js'); ?>
     <?php echo $this->Html->script('highcharts/drilldown.js'); ?>
     <?php echo $this->Html->script('highcharts/data.js'); ?>
-
   </body>
 </html>

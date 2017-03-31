@@ -23,7 +23,8 @@
 								</select>
 	                        </div>
 	                        <div class="col-md-1">
-								<input class="form-control pro-0-ext text-box single-line" placeholder="Cantidad" id="Productos_0__Cantidad" name="data[Venta][Productos][0][cant]" type="text" value="0" required="required" onchange="Javascript:total_p(0);"/>
+								<input class="mayorcero form-control pro-0-ext text-box single-line" placeholder="Cantidad" id="Productos_0__Cantidad" name="data[Venta][Productos][0][cant]" type="text" value="0"  onchange="Javascript:total_p(0);"/>
+								<span></span>
 	                        </div>
 	                        <label class="control-label col-md-1">Existencia</label>
 	                        <div class="col-md-1">
@@ -74,7 +75,7 @@ $(document).ready(function() {
 														'</select>'+
 			                                        '</div>'+
 			                                        '<div class="col-md-1">'+
-														'<input class="form-control pro-'+FieldCount+'-ext text-box single-line"  placeholder="Cantidad" id="Productos_'+FieldCount+'__Cantidad" name="data[Venta][Productos]['+FieldCount+'][cant]" required="required"  type="text" value="0" onchange="Javascript:total_p('+FieldCount+');" />'+
+														'<input class="mayorcero form-control pro-'+FieldCount+'-ext text-box single-line"  placeholder="Cantidad" id="Productos_'+FieldCount+'__Cantidad" name="data[Venta][Productos]['+FieldCount+'][cant]" required="required"  type="text" value="0" onchange="Javascript:total_p('+FieldCount+');" />'+
 			                                        '</div>'+
 			                                        '<label class="control-label col-md-1">Existencia</label>'+
 			                                        '<div class="col-md-1">'+

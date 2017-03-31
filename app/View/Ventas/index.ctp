@@ -1,4 +1,6 @@
+
 <section class="content-header">
+
   <h1>
     Sistema de gestión
     <small><?php echo __('Ventas'); ?></small>
@@ -227,3 +229,8 @@
 	    } );
 	//} );
 </script>
+
+<?php
+  echo $this->Html->script('jquery.validate.min.js');
+  echo $this->Html->script('jquery-validate.bootstrap-tooltip.min.js');
+  echo $this->Html->script('Adicionales.js');?>

@@ -82,6 +82,7 @@ const ENTREGADO  = 'ENT';
 	* @return void
 	*/
 	public function index() {
+
 		//$this->Venta->recursive = 0;
 		//$this->set('ventas', $this->Paginator->paginate());
 		$empresa_id          = $this->Session->read('empresa_id');
@@ -173,43 +174,56 @@ const ENTREGADO  = 'ENT';
 		$rol_id              = $this->Session->read('ROL');
 		$user_id             = $this->Session->read('USUARIO_ID');
 		if ($this->request->is('post')) {
-			$this->Venta->create();
-			if($this->request->data['Venta']['tipo']==1){
-				$this->request->data['Venta']['estado']=1; //Registrado
-			}else{
-				$this->request->data['Venta']['estado']=2; //Pendiente Autorizar
-			}
-			if($this->Venta->save($this->request->data)) {
-				$id   =  $this->Venta->id;
-				$stop = 0;
-				if(!empty($this->request->data["Venta"]["Productos"])){
-					foreach($this->request->data["Venta"]["Productos"] as $producto){
-						$this->request->data["Ventadetalle"]["venta_id"]           = $id;
-						$this->request->data["Ventadetalle"]["almacenproducto_id"] = $producto['pro'];
-						$this->request->data["Ventadetalle"]["cantidad"]           = $producto['cant'];
-						$this->request->data["Ventadetalle"]["existencia"]         = $producto['exist'];
-						$this->request->data["Ventadetalle"]["precio"]             = $producto['pre'];
-						$this->request->data["Ventadetalle"]["total"]              = $producto['total'];
-						$this->request->data["Ventadetalle"]["embalaje"]           = $producto['emb'];
-						$this->Ventadetalle->create();
-						if ($this->Ventadetalle->save($this->request->data)){
+			if(!empty($this->request->data["Venta"]["total"])){
+
+				$validacionInventario = $this->validaEmbalajeCompleto($this->request->data);
+				if(empty($validacionInventario)){
+					$this->Venta->create();
+					if($this->request->data['Venta']['tipo']==1){
+						$this->request->data['Venta']['estado']=1; //Registrado
+					}else{
+						$this->request->data['Venta']['estado']=2; //Pendiente Autorizar
+					}
+					if($this->Venta->save($this->request->data)) {
+						$id   =  $this->Venta->id;
+						$stop = 0;
+						if(!empty($this->request->data["Venta"]["Productos"])){
+							foreach($this->request->data["Venta"]["Productos"] as $producto){
+								$this->request->data["Ventadetalle"]["venta_id"]           = $id;
+								$this->request->data["Ventadetalle"]["almacenproducto_id"] = $producto['pro'];
+								$this->request->data["Ventadetalle"]["cantidad"]           = $producto['cant'];
+								$this->request->data["Ventadetalle"]["existencia"]         = $producto['exist'];
+								$this->request->data["Ventadetalle"]["precio"]             = $producto['pre'];
+								$this->request->data["Ventadetalle"]["total"]              = $producto['total'];
+								$this->request->data["Ventadetalle"]["embalaje"]           = $producto['emb'];
+								$this->Ventadetalle->create();
+								if ($this->Ventadetalle->save($this->request->data)){
+
+								}else{
+									$stop = 1;
+								}
+							}
+						}
+						if($stop==0){
+							$this->Venta->commit();
+							$this->Flash->success(__('Registro Guardado.'));
+							return $this->redirect(array('action' => 'index'));
 
 						}else{
-							$stop = 1;
+							$this->Venta->rollback();
+							$this->Flash->error(__('Registro no Guardado. Por favor, inténtelo de nuevo.'));
 						}
+					}else{
+						$this->Flash->error(__('Registro no Guardado. Por favor, inténtelo de nuevo.'));
 					}
-				}
-				if($stop==0){
-					$this->Venta->commit();
-					$this->Flash->success(__('Registro Guardado.'));
-					return $this->redirect(array('action' => 'index'));
+				}else {
+					//$this->Session->setFlash(__($validacionInventario, true));
+					$this->Flash->error(__($validacionInventario));
 
-				}else{
-					$this->Venta->rollback();
-					$this->Flash->error(__('Registro no Guardado. Por favor, inténtelo de nuevo.'));
+					//return $this->render('edit');
 				}
-			}else{
-				$this->Flash->error(__('Registro no Guardado. Por favor, inténtelo de nuevo.'));
+			}else {
+				$this->Flash->error(__('No se pueden registar ventas sin productos'));
 			}
 		}
 		$empresas = $this->Venta->Empresa->find('list', array('conditions'=>array('id'=>$empresa_id) ));
@@ -707,7 +721,12 @@ const ENTREGADO  = 'ENT';
 
 		$almacenmarca_id = isset($data[0]['Almacenproducto']['almacenmarca_id'])?$data[0]['Almacenproducto']['almacenmarca_id']:0;
 
-		$data2 = $this->Almacenmarcadetalle->find('all', array('conditions'=>array('Almacenmarcadetalle.almacenmarca_id'=>$almacenmarca_id)));
+		$data2 = $this->Almacenmarcadetalle->find('all', array('conditions'=>array('Almacenmarcadetalle.almacenmarca_id'=>$almacenmarca_id),
+																												 'order' => array('Almacenmarcadetalle.default DESC')
+																									   )
+																							);
+
+
 		$existencia = 0;
 
 		$stock = $this->consultaInventario($id4, $id2 );
@@ -1054,12 +1073,13 @@ const ENTREGADO  = 'ENT';
 				$configMarca = $this->Almacenmarcadetalle->find('first', $options);
 				if(!empty($configMarca['Almacenmarcadetalle']['cantidad']) ){
 					$totalmaterial = $aux[0]['cantidad']/$configMarca['Almacenmarcadetalle']['cantidad'];
-					$totalmaterial = ceil ($totalmaterial);
+					$totalmaterialInt = ceil ($totalmaterial);
 					if($totalmaterial > 0){
 						$ret[$j] = array('almacenmarca_id' => $aux['Almacenproducto']['almacenmarca_id'],
 														'almacenmateriale_id' =>	$aux['Ventadetalle']['embalaje'],
 														'productos' => $aux[0]['cantidad'],
-														'cantidadMaterial' => (int)$totalmaterial
+														'cantidadMaterial' => (int)$totalmaterialInt,
+														'cantidadNoentera' => $totalmaterial
 												);
 						$j++;
 					}
@@ -1068,5 +1088,81 @@ const ENTREGADO  = 'ENT';
 		}
 		return $ret;
 	}
+	function validaEmbalajeCompleto($venta){
+		$tpe =array();
+		$productosId = array();
+		$totMarcaEmb = array();
+		$marcas = array();
+		$embalajes = array();
+		$message = '';
+
+		//Se suma el total por producto y embalaje
+		//Se genera un array para la consulta de los productos [Producto][Embalaje]
+		foreach ( $venta['Venta']['Productos'] as $detalle) {
+			if(empty($tpe[$detalle['pro']][$detalle['emb']])){
+				$tpe[$detalle['pro']][$detalle['emb']] = (int)$detalle['cant'];
+			}
+			else {
+				$tpe[$detalle['pro']][$detalle['emb']] = $tpe[$detalle['pro']][$detalle['emb']] + (int) $detalle['cant'];
+			}
+			if(!in_array($detalle['pro'], $productosId , true)){
+				$productosId[] = $detalle['pro'];
+			}
+		}
+		$options =  array(
+			'conditions'=>array(
+				'Almacenproducto.id'=> $productosId,
+			));
+		$productos = $this->Almacenproducto->find('all',$options);
+		//Se recorre la salida de los productos para generar una estructira de marca
+		//embalaje los valores ya vienen totalizados
+		//[Marca][Embalaje]
+		foreach ($productos as $producto) {
+
+			if(!in_array((int)$producto['Almacenmarca']['id'], $marcas , true)){
+				$marcas[] = (int)$producto['Almacenmarca']['id'];
+			}
+			foreach ($tpe[$producto['Almacenproducto']['id']] as $embalaje => $valor) {
+
+				if(!in_array($embalaje, $embalajes , true)){
+					$embalajes[] = $embalaje;
+				}
+				if(empty($totMarcaEmb[$producto['Almacenmarca']['id']][$embalaje])){
+					$totMarcaEmb[$producto['Almacenmarca']['id']][$embalaje] = $valor;
+				}else{
+					$totMarcaEmb[$producto['Almacenmarca']['id']][$embalaje] = $totMarcaEmb[$producto['Almacenmarca']['id']][$embalaje] + $valor;
+				}
+			}
+		}
+		$options =  array(
+			'conditions'=>array(
+				'Almacenmarcadetalle.almacenmarca_id'=> $marcas,
+				'Almacenmarcadetalle.almacenmateriale_id'=> $embalajes,
+			));
+		$congEmbalajesMarca = $this->Almacenmarcadetalle->find('all',$options);
+		$valido = true;
+		$message = '';
+		for ($i=0; $i < count($congEmbalajesMarca) && $valido = true; $i++) {
+			if(!empty($totMarcaEmb[(int)$congEmbalajesMarca[$i]['Almacenmarcadetalle']['almacenmarca_id']][$congEmbalajesMarca[$i]['Almacenmarcadetalle']['almacenmateriale_id']])){
+				$unidades = $totMarcaEmb[(int)$congEmbalajesMarca[$i]['Almacenmarcadetalle']['almacenmarca_id']][$congEmbalajesMarca[$i]['Almacenmarcadetalle']['almacenmateriale_id']];
+				$unidades = $unidades / (int)$congEmbalajesMarca[$i]['Almacenmarcadetalle']['cantidad'];
+				$entero = ceil($unidades);
+				if(($entero - $unidades) > 0){
+					$valido = false;
+					$message = 'hacen falta ' . ($entero - $unidades) * (int)$congEmbalajesMarca[$i]['Almacenmarcadetalle']['cantidad'] . ' Productos para la marca: '  . $congEmbalajesMarca[$i]['Almacenmarca']['nombre'] . ' y el embalaje ' .  $congEmbalajesMarca[$i]['Almacenmateriale']['nombre'];
+				}
+			}else{
+				$valido = false;
+				$message = 'No se encontro la configuracion de la marca ' . $congEmbalajesMarca[$i]['Almacenmarca']['nombre'] . ' y el embalaje ' .  $congEmbalajesMarca[$i]['Almacenmateriale']['nombre'];
+			}
+		}
+		if($valido == true){
+			return null;
+		}
+		else{
+			return $message;
+		}
+	}
+
 }
 ?>
