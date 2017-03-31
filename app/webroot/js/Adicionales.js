@@ -72,11 +72,34 @@ $(document).ready(function(){
                       },
                    })
          });
-        e.preventDefault();
+         e.preventDefault();
         if($(this).validate().form()){
-          console.log("Validate");
+          var venta = $(this).serialize();
+          $.ajax({
+            type: 'POST',
+            url: '/Ventas/validaVenta.json',
+            data: venta,
+            success: function(response){
+              if(response.status == 'OK'){
+                $formVenta.off('submit');
+                $formVenta.submit();
+              }else if (response.status == 'ERROR'){
+                if(response.message){
+                  alert(response.message);
+                }
+                if(response.redirect){
+                  window.location = response.redirect;
+                }
+                }else{
+                  alert('Error Inesperado');
+                }
+              },
+            error: function(){
+              alert('No fue posible aguardar la venta!! Favor de volver a intentar.');
+            }
+          });
         } else{
-           console.log("does not validate");
+
         }
   });
    $formVenta.validate();

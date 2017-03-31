@@ -13437,3 +13437,1068 @@ Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.tt
 Stack Trace:
 #0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2017-04-01 00:24:31 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/datatable/pdfmake.min.js.map
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:24:32 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:24:32 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff2
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:24:32 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.ttf
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:24:38 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/datatable/pdfmake.min.js.map
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:24:49 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:24:49 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff2
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:24:49 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.ttf
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:25:05 Error: [MissingViewException] View file "Ventas\json\valida_venta.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'Ventas\\json\\valida_venta.ctp',
+)
+Request URL: /Ventas/validaVenta.json
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\lib\Cake\View\JsonView.php(107): View->_getViewFileName(NULL)
+#1 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\lib\Cake\Controller\Controller.php(959): JsonView->render(NULL, NULL)
+#2 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\lib\Cake\Routing\Dispatcher.php(200): Controller->render()
+#3 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(VentasController), Object(CakeRequest))
+#4 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2017-04-01 00:31:08 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/datatable/pdfmake.min.js.map
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:31:17 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:31:18 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff2
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:31:18 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.ttf
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:32:00 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/datatable/pdfmake.min.js.map
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:32:12 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:32:12 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff2
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:32:12 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.ttf
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:44:53 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/datatable/pdfmake.min.js.map
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:45:03 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:45:03 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff2
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:45:03 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.ttf
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:45:25 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/datatable/pdfmake.min.js.map
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:52:05 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/datatable/pdfmake.min.js.map
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:52:05 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:52:06 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff2
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:52:06 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.ttf
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:52:09 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/datatable/pdfmake.min.js.map
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:52:17 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:52:18 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff2
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:52:18 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.ttf
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:52:57 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/datatable/pdfmake.min.js.map
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:52:58 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:52:58 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff2
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 00:52:58 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.ttf
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:01:00 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/datatable/pdfmake.min.js.map
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:01:00 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:01:01 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff2
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:01:01 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.ttf
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:01:06 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/datatable/pdfmake.min.js.map
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:01:15 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:01:15 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff2
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:01:15 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.ttf
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:01:55 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/datatable/pdfmake.min.js.map
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:01:55 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:01:56 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff2
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:01:56 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.ttf
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:02:06 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/datatable/pdfmake.min.js.map
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:02:06 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:02:07 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff2
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:02:07 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.ttf
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:02:42 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/datatable/pdfmake.min.js.map
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:02:42 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:02:43 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff2
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:02:43 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.ttf
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:02:48 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/datatable/pdfmake.min.js.map
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:02:48 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:02:48 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff2
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:02:48 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.ttf
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:02:57 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/datatable/pdfmake.min.js.map
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:02:57 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:02:57 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff2
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:02:57 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.ttf
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:14:42 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/datatable/pdfmake.min.js.map
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:14:43 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:14:43 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff2
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:14:43 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.ttf
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:18:10 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/datatable/pdfmake.min.js.map
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:18:10 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:18:10 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff2
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:18:11 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.ttf
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:18:55 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/datatable/pdfmake.min.js.map
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:18:55 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:18:55 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff2
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:18:55 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.ttf
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:19:42 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/datatable/pdfmake.min.js.map
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:19:42 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:19:43 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff2
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:19:43 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.ttf
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:20:24 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/datatable/pdfmake.min.js.map
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:20:25 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:20:25 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff2
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:20:25 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.ttf
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:21:07 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/datatable/pdfmake.min.js.map
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:21:07 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:21:08 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff2
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:21:08 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.ttf
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:21:14 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/datatable/pdfmake.min.js.map
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:21:14 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:21:15 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff2
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:21:15 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.ttf
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:21:18 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/datatable/pdfmake.min.js.map
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:21:18 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:21:18 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff2
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:21:19 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.ttf
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:21:40 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/datatable/pdfmake.min.js.map
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:21:40 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:21:40 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff2
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:21:40 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.ttf
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:24:04 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/datatable/pdfmake.min.js.map
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:24:04 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:24:05 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff2
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:24:05 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.ttf
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:25:19 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/datatable/pdfmake.min.js.map
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:25:19 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:25:19 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff2
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:25:19 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.ttf
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:25:59 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/datatable/pdfmake.min.js.map
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:26:00 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:26:00 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff2
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:26:00 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.ttf
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:28:47 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/datatable/pdfmake.min.js.map
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:28:47 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:28:47 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff2
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:28:47 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.ttf
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:28:57 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /js/datatable/pdfmake.min.js.map
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:28:57 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:28:58 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.woff2
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-04-01 01:28:58 Error: [MissingControllerException] Controller class TemplateController could not be found.
+Exception Attributes: array (
+  'class' => 'TemplateController',
+  'plugin' => NULL,
+)
+Request URL: /template/AdminLTE-2.3.0/dist/fonts/glyphicons-halflings-regular.ttf
+Stack Trace:
+#0 C:\CUBETECH\Soltera\Repo\CUBETECH-SOLTERA\app\webroot\index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}

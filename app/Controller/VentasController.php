@@ -1149,7 +1149,7 @@ const ENTREGADO  = 'ENT';
 				$entero = ceil($unidades);
 				if(($entero - $unidades) > 0){
 					$valido = false;
-					$message = 'hacen falta ' . ($entero - $unidades) * (int)$congEmbalajesMarca[$i]['Almacenmarcadetalle']['cantidad'] . ' Productos para la marca: '  . $congEmbalajesMarca[$i]['Almacenmarca']['nombre'] . ' y el embalaje ' .  $congEmbalajesMarca[$i]['Almacenmateriale']['nombre'];
+					$message = 'Hacen falta ' . ($entero - $unidades) * (int)$congEmbalajesMarca[$i]['Almacenmarcadetalle']['cantidad'] . ' Productos para la marca: '  . $congEmbalajesMarca[$i]['Almacenmarca']['nombre'] . ' y el embalaje ' .  $congEmbalajesMarca[$i]['Almacenmateriale']['nombre'];
 				}
 			}else{
 				$valido = false;
@@ -1162,6 +1162,27 @@ const ENTREGADO  = 'ENT';
 		else{
 			return $message;
 		}
+	}
+
+	public function ValidaVenta($id = null) {
+			$this->layout="ajax";
+			if(!$this->Session->check('usuario_valido')==false){
+				$rol_id              = $this->Session->read('ROL');
+				$response = array();
+				if($rol_id  == 1 || $rol_id == 2 || $rol_id  == 3 || $rol_id  == 5){
+					$validacion = $this->validaEmbalajeCompleto($this->request->data);
+					if(empty($validacion)){
+						$response['status'] = 'OK';
+					}else {
+						$response['status'] = 'ERROR';
+						$response['message'] = $validacion;
+					}
+				}else{
+					$response['status'] = 'ERROR';
+					$response['message'] = 'Usted no tiene acceso para realizar esta operacion';
+				}
+				$this->set('response', $response);
+			}
 	}
 
 }

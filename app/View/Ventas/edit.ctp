@@ -17,80 +17,80 @@
                     <hr>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-					<?php echo $this->Form->create('Venta', array('class'=>'form-horizontal')); ?>
+					<?php echo $this->Form->create(null, array('class'=>'form-horizontal',
+                                                      'id' => 'VentaAddForm'    )); ?>
 					<div class='row'>
 							<div class='col-md-12'>
 								<?php
-			
-echo $this->Form->input('id', array('class'=>'form-horizontal'));	
-echo'<div class="form-group">';	
-echo'<label class="control-label col-md-2" for="Ventaempresa_id">Empresa</label>';		
-echo'<div class="col-md-9">';			
-echo $this->Form->input('empresa_id', array('id'=>'Ventaempresa_id', 'div'=>false, 'label'=>false, 'class'=>'form-control'));		
-echo '</div>';	
+
+echo $this->Form->input('id', array('class'=>'form-horizontal'));
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Ventaempresa_id">Empresa</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('empresa_id', array('id'=>'Ventaempresa_id', 'div'=>false, 'label'=>false, 'class'=>'form-control'));
 echo '</div>';
-	
-echo'<div class="form-group">';	
-echo'<label class="control-label col-md-2" for="Ventaempresasurcusale_id">Sucursal</label>';		
-echo'<div class="col-md-9">';			
-echo $this->Form->input('empresasurcusale_id', array('id'=>'Ventaempresasurcusale_id', 'div'=>false, 'label'=>false, 'class'=>'form-control'));		
-echo '</div>';	
-echo '</div>';
-	
-echo'<div class="form-group">';	
-echo'<label class="control-label col-md-2" for="Ventacliente_id">Cliente</label>';		
-echo'<div class="col-md-9">';			
-echo $this->Form->input('cliente_id', array('empty'=>'--Seleccione--','empty'=>'--Seleccione--', 'id'=>'Ventacliente_id', 'div'=>false, 'label'=>false, 'class'=>'form-control', "onChange"=>"selectTagRemote('".$this->Html->url('/Ventas/cliente')."', 'div-cliente', this.value);"));		
-echo '</div>';	
 echo '</div>';
 
-echo'<div class="form-group">';	
-echo'<label class="control-label col-md-2" for="Ventainformacion">Información cliente</label>';		
-echo'<div class="col-md-9" id="div-cliente">';			
-echo $this->Form->input('informacion', array('id'=>'Ventainformacion', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'type'=>'textarea', 'readonly'=>true));		
-echo '</div>';	
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Ventaempresasurcusale_id">Sucursal</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('empresasurcusale_id', array('id'=>'Ventaempresasurcusale_id', 'div'=>false, 'label'=>false, 'class'=>'form-control'));
 echo '</div>';
-	
-echo'<div class="form-group">';	
-echo'<label class="control-label col-md-2" for="Ventauser_id">Vendedor</label>';		
-echo'<div class="col-md-9">';			
-echo $this->Form->input('user_id', array('id'=>'Ventauser_id', 'div'=>false, 'label'=>false, 'class'=>'form-control'));		
-echo '</div>';	
-echo '</div>';
-	
-echo'<div class="form-group">';	
-echo'<label class="control-label col-md-2" for="Ventaalmacentipo_id">Almacen tipo</label>';		
-echo'<div class="col-md-9">';			
-echo $this->Form->input('almacentipo_id', array('empty'=>'--Seleccione--','id'=>'Ventaalmacentipo_id', 'div'=>false, 'label'=>false, 'class'=>'form-control', "onChange"=>"selectTagRemote('".$this->Html->url('/Ventas/almacen')."', 'div-almacen', this.value);"));		
-echo '</div>';	
-echo '</div>';
-	
-echo'<div class="form-group">';	
-echo'<label class="control-label col-md-2" for="Ventaalmacene_id">Almacen</label>';		
-echo'<div class="col-md-9" id="div-almacen">';			
-echo $this->Form->input('almacene_id', array('id'=>'Ventaalmacene_id', 'div'=>false, 'label'=>false, 'class'=>'form-control'));		
-echo '</div>';	
 echo '</div>';
 
-echo'<div class="form-group">';	
-echo'<label class="control-label col-md-2" for="Ventatipo">Tipo</label>';		
-echo'<div class="col-md-9">';			
-echo $this->Form->input('tipo', array('options'=>array('1'=>'Venta', '2'=>'Cortesia'),  'id'=>'Ventatipo', 'div'=>false, 'label'=>false, 'class'=>'form-control'));		
-echo '</div>';	
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Ventacliente_id">Cliente</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('cliente_id', array('empty'=>'--Seleccione--','empty'=>'--Seleccione--', 'id'=>'Ventacliente_id', 'div'=>false, 'label'=>false, 'class'=>'form-control', "onChange"=>"selectTagRemote('".$this->Html->url('/Ventas/cliente')."', 'div-cliente', this.value);"));
+echo '</div>';
 echo '</div>';
 
-echo'<div class="form-group">';	
-echo'<label class="control-label col-md-2" for="Ventafecha">Fecha</label>';		
-echo'<div class="col-md-9">';			
-echo $this->Form->input('fecha', array('id'=>'Ventafecha', 'div'=>false, 'label'=>false, 'class'=>'form-control'));		
-echo '</div>';	
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Ventainformacion">Información cliente</label>';
+echo'<div class="col-md-9" id="div-cliente">';
+echo $this->Form->input('informacion', array('id'=>'Ventainformacion', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'type'=>'textarea', 'readonly'=>true));
 echo '</div>';
-	
-echo'<div class="form-group">';	
-echo'<label class="control-label col-md-2" for="Ventatotal">Total</label>';		
-echo'<div class="col-md-9">';			
-echo $this->Form->input('total', array('id'=>'Ventatotal', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'readonly'=>true));		
-echo '</div>';	
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Ventauser_id">Vendedor</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('user_id', array('id'=>'Ventauser_id', 'div'=>false, 'label'=>false, 'class'=>'form-control'));
+echo '</div>';
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Ventaalmacentipo_id">Almacen tipo</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('almacentipo_id', array('empty'=>'--Seleccione--','id'=>'Ventaalmacentipo_id', 'div'=>false, 'label'=>false, 'class'=>'form-control', "onChange"=>"selectTagRemote('".$this->Html->url('/Ventas/almacen')."', 'div-almacen', this.value);"));
+echo '</div>';
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Ventaalmacene_id">Almacen</label>';
+echo'<div class="col-md-9" id="div-almacen">';
+echo $this->Form->input('almacene_id', array('id'=>'Ventaalmacene_id', 'div'=>false, 'label'=>false, 'class'=>'form-control'));
+echo '</div>';
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Ventatipo">Tipo</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('tipo', array('options'=>array('1'=>'Venta', '2'=>'Cortesia'),  'id'=>'Ventatipo', 'div'=>false, 'label'=>false, 'class'=>'form-control'));
+echo '</div>';
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Ventafecha">Fecha</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('fecha', array('id'=>'Ventafecha', 'div'=>false, 'label'=>false, 'class'=>'form-control'));
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Ventatotal">Total</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('total', array('id'=>'Ventatotal', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'readonly'=>true));
+echo '</div>';
 echo '</div>';
 //pr($almacenmarcadetalles);
 //pr($almacenproductos);
@@ -120,14 +120,14 @@ echo '</div>';
 		                             		echo "  '<option value=\"".$almacenproducto['Almacenproducto']['id']."\" selected>".$almacenproducto['Almacenproducto']['nombre']."</option>'+   ";
 		                                    $almacenmarca_id = $almacenproducto['Almacenproducto']['almacenmarca_id'];
 		                                }else{
-		                                	echo "  '<option value=\"".$almacenproducto['Almacenproducto']['id']."\">".$almacenproducto['Almacenproducto']['nombre']."</option>'+   ";	
+		                                	echo "  '<option value=\"".$almacenproducto['Almacenproducto']['id']."\">".$almacenproducto['Almacenproducto']['nombre']."</option>'+   ";
 		                                }
 		                             }
 	                             ?>
 								</select>
 	                        </div>
 	                        <div class="col-md-1">
-								<input class="form-control pro-0-ext text-box single-line" placeholder="Cantidad" id="Productos_<?= $c ?>__Cantidad" name="data[Venta][Productos][<?= $c ?>][cant]" type="text" value="<?= $ventadetalle['Ventadetalle']['cantidad'] ?>" required="required" onchange="Javascript:total_p(<?= $c ?>);"/>
+								<input class="mayorcero form-control pro-0-ext text-box single-line" placeholder="Cantidad" id="Productos_<?= $c ?>__Cantidad" name="data[Venta][Productos][<?= $c ?>][cant]" type="text" value="<?= $ventadetalle['Ventadetalle']['cantidad'] ?>" required="required" onchange="Javascript:total_p(<?= $c ?>);"/>
 	                        </div>
 	                        <label class="control-label col-md-1">Existencia</label>
 	                        <div class="col-md-1">
@@ -221,7 +221,7 @@ $(document).ready(function() {
         return false;
     });
 });
-</script>	
+</script>
 </div>
 
 							</div>
@@ -237,3 +237,9 @@ $(document).ready(function() {
         </div><!-- /.col -->
     </div><!-- /.row -->
 </section><!-- /.content -->
+<?php
+echo $this->Html->script('jquery.validate.min.js');
+echo $this->Html->script('jquery-validate.bootstrap-tooltip.min.js');
+echo $this->Html->script('messages_es.js');
+echo $this->Html->script('Adicionales.js');
+?>
