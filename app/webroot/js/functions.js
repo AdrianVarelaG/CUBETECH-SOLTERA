@@ -62,8 +62,12 @@ function validar_nombre_rfc(){
                       },
                   success:function(n){
                       if(n!='0'){
-                            alert("El formato es incorrecto");
-                            $('input[type="submit"]').attr('disabled','disabled');
+                            if($('#Clienterequiere_factura1').prop('checked')) {
+                              alert("El formato es incorrecto");
+                              $('input[type="submit"]').attr('disabled','disabled');
+                            }else{
+                              $('input[type="submit"]').removeAttr('disabled');
+                            }
                       }else{
                             $('input[type="submit"]').removeAttr('disabled');
                       }
@@ -122,6 +126,7 @@ function activar_almacenfuente(){
 function activa_requiere_factura(a){
   // var a = $('#'+id).val();
    //alert(a);
+    $('input[type="submit"]').removeAttr('disabled');
    if(eval(a)==eval(1)){
             $('#Clienterazon_social').attr('required','required');
             $('#Clientecalle').attr('required','required');
