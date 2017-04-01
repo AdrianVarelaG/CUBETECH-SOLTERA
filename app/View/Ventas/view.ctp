@@ -9,173 +9,179 @@
   </ol>
 </section>
 <section class="content">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title"><?php echo __('Ventas'); ?> Detalles</h3>
-                        <hr>
-                    </div><!-- /.box-header -->
-                    <div class="box-body">
-						<dl class="dl-horizontal">
-								<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($venta['Venta']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Empresa'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($venta['Empresa']['razon_social'], array('controller' => 'empresas', 'action' => 'view', $venta['Empresa']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Empresasurcusale'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($venta['Empresasurcusale']['denominacion'], array('controller' => 'empresasurcusales', 'action' => 'view', $venta['Empresasurcusale']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Cliente'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($venta['Cliente']['nombre'], array('controller' => 'clientes', 'action' => 'view', $venta['Cliente']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Información cliente'); ?></dt>
-		<dd>
-			<?php echo h($venta['Venta']['informacion']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('User'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($venta['User']['username'], array('controller' => 'users', 'action' => 'view', $venta['User']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Almacentipo'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($venta['Almacentipo']['denominacion'], array('controller' => 'almacentipos', 'action' => 'view', $venta['Almacentipo']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Almacene'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($venta['Almacene']['nombre'], array('controller' => 'almacenes', 'action' => 'view', $venta['Almacene']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Tipo'); ?></dt>
-		<dd>
-			<?php echo h($venta['Venta']['tipo']==1?"Venta":"Cortesia"); ?>
-			&nbsp;
-		</dd>
-		
-		<dt><?php echo __('Fecha'); ?></dt>
-		<dd>
-			<?php echo h($venta['Venta']['fecha']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Pagado'); ?></dt>
-		<dd>
-			<?php echo h($venta['Venta']['pagado']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Fecha Pagado'); ?></dt>
-		<dd>
-			<?php echo h($venta['Venta']['fecha_pagado']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Total'); ?></dt>
-		<dd>
-			<?php echo h($venta['Venta']['total']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Estado'); ?></dt>
-		<dd>
-			<?php echo h($venta['Venta']['estado']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo h($venta['Venta']['created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Modified'); ?></dt>
-		<dd>
-			<?php echo h($venta['Venta']['modified']); ?>
-			&nbsp;
-		</dd>
-						</dl>
-						<p>
-						    		<?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $venta['Venta']['id'])); ?>
-                            |
-                            		<?php echo $this->Html->link(__('Volver'), array('action' => 'index')); ?>
-                        </p>
-					</div>
-			    </div><!-- /.box -->
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-</section><!-- /.content -->
-<?php /* ?><div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Venta'), array('action' => 'edit', $venta['Venta']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Venta'), array('action' => 'delete', $venta['Venta']['id']), array(), __('Are you sure you want to delete # %s?', $venta['Venta']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Ventas'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Venta'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Empresas'), array('controller' => 'empresas', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Empresa'), array('controller' => 'empresas', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Empresasurcusales'), array('controller' => 'empresasurcusales', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Empresasurcusale'), array('controller' => 'empresasurcusales', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Clientes'), array('controller' => 'clientes', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Cliente'), array('controller' => 'clientes', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Almacentipos'), array('controller' => 'almacentipos', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Almacentipo'), array('controller' => 'almacentipos', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Almacenes'), array('controller' => 'almacenes', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Almacene'), array('controller' => 'almacenes', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Ventadetalles'), array('controller' => 'ventadetalles', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Ventadetalle'), array('controller' => 'ventadetalles', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
-<div class="related">
-	<h3><?php echo __('Related Ventadetalles'); ?></h3>
-	<?php if (!empty($venta['Ventadetalle'])): ?>
-	<table cellpadding = "0" cellspacing = "0">
-	<tr>
-		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Venta Id'); ?></th>
-		<th><?php echo __('Almacenproducto Id'); ?></th>
-		<th><?php echo __('Cantidad'); ?></th>
-		<th><?php echo __('Existencia'); ?></th>
-		<th><?php echo __('Precio'); ?></th>
-		<th><?php echo __('Total'); ?></th>
-		<th><?php echo __('Embalaje'); ?></th>
-		<th><?php echo __('Created'); ?></th>
-		<th><?php echo __('Modified'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php foreach ($venta['Ventadetalle'] as $ventadetalle): ?>
-		<tr>
-			<td><?php echo $ventadetalle['id']; ?></td>
-			<td><?php echo $ventadetalle['venta_id']; ?></td>
-			<td><?php echo $ventadetalle['almacenproducto_id']; ?></td>
-			<td><?php echo $ventadetalle['cantidad']; ?></td>
-			<td><?php echo $ventadetalle['existencia']; ?></td>
-			<td><?php echo $ventadetalle['precio']; ?></td>
-			<td><?php echo $ventadetalle['total']; ?></td>
-			<td><?php echo $ventadetalle['embalaje']; ?></td>
-			<td><?php echo $ventadetalle['created']; ?></td>
-			<td><?php echo $ventadetalle['modified']; ?></td>
-			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'ventadetalles', 'action' => 'view', $ventadetalle['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'ventadetalles', 'action' => 'edit', $ventadetalle['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'ventadetalles', 'action' => 'delete', $ventadetalle['id']), array(), __('Are you sure you want to delete # %s?', $ventadetalle['id'])); ?>
-			</td>
-		</tr>
-	<?php endforeach; ?>
-	</table>
-<?php endif; ?>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title"><?php echo __('Edit Venta'); ?></h3>
+                    <hr>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+					<?php echo $this->Form->create(null, array('class'=>'form-horizontal',
+                                                      'id' => 'VentaAddForm'    )); ?>
+					<div class='row'>
+							<div class='col-md-12'>
+								<?php
 
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Ventadetalle'), array('controller' => 'ventadetalles', 'action' => 'add')); ?> </li>
-		</ul>
+echo $this->Form->input('id', array('class'=>'form-horizontal'));
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Ventaempresa_id">Empresa</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('empresa_id', array('id'=>'Ventaempresa_id', 'div'=>false, 'label'=>false, 'class'=>'form-control','disabled'=>true));
+echo '</div>';
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Ventaempresasurcusale_id">Sucursal</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('empresasurcusale_id', array('id'=>'Ventaempresasurcusale_id', 'div'=>false, 'label'=>false, 'class'=>'form-control','disabled'=>true));
+echo '</div>';
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Ventacliente_id">Cliente</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('cliente_id', array('empty'=>'--Seleccione--','empty'=>'--Seleccione--', 'id'=>'Ventacliente_id', 'div'=>false, 'label'=>false, 'class'=>'form-control','disabled'=>true ));
+echo '</div>';
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Ventainformacion">Información cliente</label>';
+echo'<div class="col-md-9" id="div-cliente">';
+echo $this->Form->input('informacion', array('id'=>'Ventainformacion', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'type'=>'textarea', 'readonly'=>true));
+echo '</div>';
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Ventauser_id">Vendedor</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('user_id', array('id'=>'Ventauser_id', 'div'=>false, 'label'=>false, 'class'=>'form-control','disabled'=>true));
+echo '</div>';
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Ventaalmacentipo_id">Almacen tipo</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('almacentipo_id', array('empty'=>'--Seleccione--','id'=>'Ventaalmacentipo_id', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'disabled'=>true));
+echo '</div>';
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Ventaalmacene_id">Almacen</label>';
+echo'<div class="col-md-9" id="div-almacen">';
+echo $this->Form->input('almacene_id', array('id'=>'Ventaalmacene_id', 'div'=>false, 'label'=>false, 'class'=>'form-control','disabled'=>true));
+echo '</div>';
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Ventatipo">Tipo</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('tipo', array('options'=>array('1'=>'Venta', '2'=>'Cortesia'),  'id'=>'Ventatipo', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'disabled'=>true));
+echo '</div>';
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Ventafecha">Fecha</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('fecha', array('id'=>'Ventafecha', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'disabled'=>true));
+echo '</div>';
+
+echo'<div class="form-group">';
+echo'<label class="control-label col-md-2" for="Ventatotal">Total</label>';
+echo'<div class="col-md-9">';
+echo $this->Form->input('total', array('id'=>'Ventatotal', 'div'=>false, 'label'=>false, 'class'=>'form-control', 'readonly'=>true));
+echo '</div>';
+echo '</div>';
+//pr($almacenmarcadetalles);
+//pr($almacenproductos);
+?>
+<div id="div-productos">
+<div class="row">
+	<div class="col-md-12 col-sm-9 col-xs-12">
+	    <div class="box box-solid box-default">
+	        <div class="box-header with-border">
+	            <h3 class="box-title">Productos</h3>
+
+	        </div><!-- /.box-header -->
+	        <div class="box-body">
+	            <div id="productos-container">
+	                <?php $c = 0; foreach($ventadetalles as $ventadetalle){ ?>
+	                <div id="productoscount">
+	                    <div class="form-group pro-con" id="producto_<?= $c ?>">
+	                        <div class="col-md-2">
+	                            <select class="form-control tel-0" disabled="disabled" id="Productos_<?= $c ?>__Pro" name="data[Venta][Productos][<?= $c ?>][pro]" required="required", 'div-embalaje-?= $c ?>', this.value);" >
+								<option value="">--Producto--</option>
+								<?php
+								$almacenmarca_id = 0;
+		                             foreach($almacenproductos as $almacenproducto){
+		                             	if($ventadetalle['Ventadetalle']['almacenproducto_id']==$almacenproducto['Almacenproducto']['id']){
+		                             		echo "  '<option value=\"".$almacenproducto['Almacenproducto']['id']."\" selected>".$almacenproducto['Almacenproducto']['nombre']."</option>'+   ";
+		                                    $almacenmarca_id = $almacenproducto['Almacenproducto']['almacenmarca_id'];
+		                                }else{
+		                                	echo "  '<option value=\"".$almacenproducto['Almacenproducto']['id']."\">".$almacenproducto['Almacenproducto']['nombre']."</option>'+   ";
+		                                }
+		                             }
+	                             ?>
+								</select>
+	                        </div>
+	                        <div class="col-md-1">
+								<input class="mayorcero form-control pro-0-ext text-box single-line" disabled="disabled" placeholder="Cantidad" id="Productos_<?= $c ?>__Cantidad" name="data[Venta][Productos][<?= $c ?>][cant]" type="text" value="<?= $ventadetalle['Ventadetalle']['cantidad'] ?>" required="required" onchange="Javascript:total_p(<?= $c ?>);"/>
+	                        </div>
+	                       
+	                        <label class="control-label col-md-1">Pre. U.</label>
+	                        <div class="col-md-1">
+	                            <input class="form-control pro-0-ext text-box single-line" disabled="disabled" id="Productos_<?= $c ?>__Precio"   name="data[Venta][Productos][<?= $c ?>][pre]"  type="text" value="<?= $ventadetalle['Ventadetalle']['precio'] ?>" required="required"  readonly=true />
+	                        </div>
+	                        <div class="col-md-2" id="div-embalaje-<?= $c ?>">
+	                        <?php
+                                    //pr($almacenmarcadetalles);
+	                        ?>
+	                            <select class="form-control tel-0" disabled="disabled" id="Productos_<?= $c ?>__Embalaje" name="data[Venta][Productos][<?= $c ?>][emb]" required="required">
+								<option value="">--Embalaje--</option>
+								<?php
+								foreach($almacenmarcadetalles as $almacenmarcadetalle){
+                                    if($almacenmarcadetalle['Almacenmarcadetalle']['almacenmarca_id'] == $almacenmarca_id){
+									 	if($ventadetalle['Ventadetalle']['embalaje']==$almacenmarcadetalle['Almacenmateriale']['id']){
+									 		echo "  '<option value=\"".$almacenmarcadetalle['Almacenmateriale']['id']."\" selected>".$almacenmarcadetalle['Almacenmateriale']['nombre']."</option>'+   ";
+									    }else{
+	                                        echo "  '<option value=\"".$almacenmarcadetalle['Almacenmateriale']['id']."\">".$almacenmarcadetalle['Almacenmateriale']['nombre']."</option>'+   ";
+									    }
+                                    }
+								}
+								?>
+								</select>
+	                        </div>
+	                        <label class="control-label col-md-1">Total</label>
+	                        <div class="col-md-1">
+	                            <input class="form-control pro-0-ext text-box single-line" id="Productos_<?= $c ?>__Total" name="data[Venta][Productos][<?= $c ?>][total]"  type="text" value="<?= $ventadetalle['Ventadetalle']['total'] ?>" required="required"  readonly=true />
+	                        </div>
+	                    </div>
+	                </div>
+	                <?php $c++;} ?>
+	            </div>
+	        </div>
+	    </div>
 	</div>
+	</div>
+
 </div>
-<?php */ ?>
+
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+	                                <div class="col-md-12">
+	                                    <?php echo $this->Html->link(__('Volver'), array('action' => 'index')); ?>
+	                                </div>
+	                            </div>
+                            </div>
+					</div></form>                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</section><!-- /.content -->
+<?php
+echo $this->Html->script('jquery.validate.min.js');
+echo $this->Html->script('jquery-validate.bootstrap-tooltip.min.js');
+echo $this->Html->script('messages_es.js');
+echo $this->Html->script('Adicionales.js');
+?>

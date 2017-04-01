@@ -159,8 +159,47 @@ const ENTREGADO  = 'ENT';
 		if (!$this->Venta->exists($id)) {
 			throw new NotFoundException(__('Invalid venta'));
 		}
+
 		$options = array('conditions' => array('Venta.' . $this->Venta->primaryKey => $id));
-		$this->set('venta', $this->Venta->find('first', $options));
+		$this->request->data = $this->Venta->find('first', $options);
+
+		$empresas = $this->Venta->Empresa->find('list', array('conditions'=>array('id'=>$empresa_id) ));
+		if($empresa_id==0 && $empresasurcusale_id==0){
+			$empresasurcusales = $this->Venta->Empresasurcusale->find('list');
+		}else if($empresa_id!=0 && $empresasurcusale_id==0){
+			$empresasurcusales = $this->Venta->Empresasurcusale->find('list', array('conditions'=>array('Empresasurcusale.empresa_id'=>$empresa_id)));
+		}else if($empresa_id!=0 && $empresasurcusale_id!=0){
+			$empresasurcusales = $this->Venta->Empresasurcusale->find('list', array('conditions'=>array('Empresasurcusale.empresa_id'=>$empresa_id,'Empresasurcusale.id'=>$empresasurcusale_id)));
+		}
+		if($empresa_id==0 && $empresasurcusale_id==0){
+			$users    = $this->Venta->User->find('list', array('conditions'=>array('or'=>array('role_id'=>array(3,4)))));
+		}else if($empresa_id!=0 && $empresasurcusale_id==0){
+			$users    = $this->Venta->User->find('list', array('conditions'=>array('or'=>array('role_id'=>array(3,4)), 'empresa_id'=>$empresa_id)));
+		}else if($empresa_id!=0 && $empresasurcusale_id!=0 && $rol_id==3){
+			$users    = $this->Venta->User->find('list', array('conditions'=>array('or'=>array('role_id'=>array(3,4)), 'empresa_id'=>$empresa_id, 'empresasurcusale_id'=>$empresasurcusale_id)));
+		}else if($empresa_id!=0 && $empresasurcusale_id!=0 && $rol_id==4){
+			$users    = $this->Venta->User->find('list', array('conditions'=>array('or'=>array('role_id'=>array(3,4)), 'User.empresa_id'=>$empresa_id, 'User.empresasurcusale_id'=>$empresasurcusale_id, 'User.id'=>$user_id)));
+		}
+		if($empresa_id==0 && $empresasurcusale_id==0){
+			$clientes    = $this->Venta->Cliente->find('list', array('conditions'=>array('activo'=>1)));
+		}else if($empresa_id!=0 && $empresasurcusale_id==0){
+			$clientes    = $this->Venta->Cliente->find('list', array('conditions'=>array('activo'=>1, 'empresa_id'=>$empresa_id)));
+		}else if($empresa_id!=0 && $empresasurcusale_id!=0 && $rol_id==3){
+			$clientes    = $this->Venta->Cliente->find('list', array('conditions'=>array('activo'=>1, 'empresa_id'=>$empresa_id, 'empresasurcusale_id'=>$empresasurcusale_id)));
+		}else if($empresa_id!=0 && $empresasurcusale_id!=0 && $rol_id==4){
+			$clientes    = $this->Venta->Cliente->find('list', array('conditions'=>array('activo'=>1, 'empresa_id'=>$empresa_id, 'empresasurcusale_id'=>$empresasurcusale_id, 'user_id'=>$user_id)));
+		}
+		$almacentipos     = $this->Venta->Almacentipo->find('list', array('conditions'=>array('empresa_id'=>$empresa_id)));
+		$almacenes        = $this->Venta->Almacene->find('list',    array('conditions'=>array('almacentipo_id'=>$this->request->data['Venta']['almacentipo_id'])));
+		$almacenproductos = $this->Almacenproducto->find('all',     array('conditions'=>array('Almacenproducto.empresa_id'=>$empresa_id)));
+		$ventadetalles    = $this->Ventadetalle->find('all',        array('conditions'=>array('Ventadetalle.venta_id'=>$this->request->data['Venta']['id'])));
+		$this->set(compact('ventadetalles', 'almacenproductos', 'empresas', 'empresasurcusales', 'clientes', 'users', 'almacentipos', 'almacenes'));
+		$this->set('id1',$this->request->data['Venta']['almacentipo_id']);
+		$this->set('id2',$this->request->data['Venta']['almacene_id']);
+		//$this->Almacenmarcadetalle->recursive = 3;
+		$almacenmarcadetalles = $this->Almacenmarcadetalle->find('all', array('conditions'=>array('Almacenmarca.empresa_id'=>$empresa_id)));
+		$this->set('almacenmarcadetalles',$almacenmarcadetalles);
+		//pr($data2);
 	}
 
 	/**
