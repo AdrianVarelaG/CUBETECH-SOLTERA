@@ -2,7 +2,7 @@
 tbody tr td input{
   display: none;
 }
-tbody tr td.date button{
+tbody tr td.date button.pagar{
   display: none;
 }
 tbody tr td.date input{

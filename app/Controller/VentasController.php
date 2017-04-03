@@ -1208,7 +1208,7 @@ const ENTREGADO  = 'ENT';
 			if(!$this->Session->check('usuario_valido')==false){
 				$rol_id              = $this->Session->read('ROL');
 				$response = array();
-				if($rol_id  == 1 || $rol_id == 2 || $rol_id  == 3 || $rol_id  == 5){
+				if($rol_id  == 1 || $rol_id == 2 || $rol_id  == 3 || $rol_id  == 4){
 					$validacion = $this->validaEmbalajeCompleto($this->request->data);
 					if(empty($validacion)){
 						$response['status'] = 'OK';

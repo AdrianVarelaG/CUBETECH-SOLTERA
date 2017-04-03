@@ -21,7 +21,7 @@
                     <div class="box-body">
                     <p><?php echo $this->Html->link(__('Crear Nuevo'), array('action' => 'add'),  array('class'=>'btn btn-primary')); ?></p>
 
-							<table id="data" class="table table-striped table-bordered responsive nowrap" width="100%" cellspacing="0">
+							<table id="data" class=" ventas table table-striped table-bordered responsive nowrap" width="100%" cellspacing="0">
 							<thead>
 							<tr>
 									<th><?php echo __('Id'); ?></th>
@@ -63,8 +63,8 @@
 	                   if($venta['Venta']['pagado']==2){
                        if($rol_id == 1 || $rol_id==2 || $rol_id==3){
                   ?>
-                      <button class="btn btn-danger" href="#">Pagar</button>
-                      <input data-id = "<?php echo h($venta['Venta']['id']) ?>"/>
+                      <button class="pagar btn btn-danger" href="#">Pagar</button>
+                      <input class="pagar" data-id = "<?php echo h($venta['Venta']['id']) ?>"/>
                   <?php
                       }else{
                         ?>

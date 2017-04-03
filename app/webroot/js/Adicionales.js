@@ -1,22 +1,20 @@
 $(document).ready(function(){
 
-
 /* BLOQUUE PARA LA FINCIONALIDAD DEL INDEX fecha de pago*/
-  var $tdPagar = $("td[title='Pagar']");
+  var $tVentas = $('table.ventas');
+  $tVentas.delegate('button.pagar', 'click', muestraDatePicker);
+  $tVentas.delegate('input.pagar', 'blur', ocultaDatePicker );
 
-  $tdPagar.find("button.btn-danger").on('click', muestraDatePicker);
-  $tdPagar.find("input").on('blur', ocultaDatePicker);
-  $tdPagar.find("input").datepicker({
-      format: 'YYYY-MM-DD',
-      maxDate: 0,
-      onSelect: actualizaFecha
-    });
   function muestraDatePicker(){
-    console.log(this);
     var $pagar = $(this).closest('td');
-
-    $pagar.addClass("date");
-    $pagar.children("input").focus();
+    var $input = $pagar.find('input.pagar');
+    $input.datepicker({
+        format: 'YYYY-MM-DD',
+        maxDate: 0,
+        onSelect: actualizaFecha
+      });
+    $pagar.addClass('date');
+    $input.focus();
   }
   function ocultaDatePicker(){
     var $pagar = $(this).closest('td');
@@ -24,7 +22,7 @@ $(document).ready(function(){
   }
   function actualizaFecha(date) {
     var $pagar = $(this).closest('td');
-
+    console.log($pagar);
     var ventaPago = {
       venta: $(this).attr('data-id'),
       fecha: date
@@ -35,7 +33,9 @@ $(document).ready(function(){
       data: ventaPago,
       success: function(response){
         if(response.status == 'OK'){
-          var $button = $pagar.children("button").removeClass('btn-danger').addClass('btn-success btn-sm').prop('disabled', true);
+
+          var $button = $pagar.find('button.pagar').removeClass('btn-danger').addClass('btn-success btn-sm').prop('disabled', true);
+          console.log($button);
           $button.text(date);
         }else if (response.status == 'ERROR'){
             if(response.message){

@@ -127,7 +127,7 @@ echo '</div>';
 								</select>
 	                        </div>
 	                        <div class="col-md-1">
-								<input class="mayorcero form-control pro-0-ext text-box single-line" placeholder="Cantidad" id="Productos_<?= $c ?>__Cantidad" name="data[Venta][Productos][<?= $c ?>][cant]" type="text" value="<?= $ventadetalle['Ventadetalle']['cantidad'] ?>" required="required" onchange="Javascript:total_p(<?= $c ?>);"/>
+								<input class="mayorcero form-control pro-0-ext text-box single-line" placeholder="Cantidad" id="Productos_<?= $c ?>__Cantidad" name="data[Venta][Productos][<?= $c ?>][cant]" type="text" value="<?=(int) $ventadetalle['Ventadetalle']['cantidad'] ?>" required="required" onchange="Javascript:total_p(<?= $c ?>);"/>
 	                        </div>
 	                        <label class="control-label col-md-1">Existencia</label>
 	                        <div class="col-md-1">
