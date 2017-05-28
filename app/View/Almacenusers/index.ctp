@@ -34,7 +34,7 @@
 							<tbody>
 							<?php foreach ($almacenusers as $almacenuser): ?>
 	<tr>
-		<td><?php echo h($almacenuser['Almacenuser']['id']); ?>&nbsp;</td>
+		<td><?php echo h($almacenuser['Almacenuser']['id']); ?></td>
 		<td><?php echo h($almacenuser['Empresa']['razon_social']); ?></td>
 		<td><?php echo h($almacenuser['Empresasurcusale']['denominacion']); ?></td>
 		<td><?php echo h($almacenuser['Almacentipo']['denominacion']); ?></td>
@@ -76,7 +76,11 @@
 	        buttons: [
 	            'excel'
 	        ],
-	        "language": 
+          columnDefs: [
+            { type: 'num',
+              targets: [0] },
+          ],
+	        "language":
 	        {
 				"sProcessing":     "Procesando...",
 				"sLengthMenu":     "Mostrar _MENU_ registros",

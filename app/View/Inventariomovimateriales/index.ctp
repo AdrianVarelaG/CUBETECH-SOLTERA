@@ -39,7 +39,7 @@
 							<tbody>
 							<?php foreach ($inventariomovimateriales as $inventariomovimateriale): ?>
 								<tr>
-									<td><?php echo h($inventariomovimateriale['Inventariomovimateriale']['id']); ?>&nbsp;</td>
+									<td><?php echo h($inventariomovimateriale['Inventariomovimateriale']['id']); ?></td>
 									<td><?php echo h($inventariomovimateriale['Empresa']['razon_social']); ?></td>
 									<td><?php echo h($inventariomovimateriale['Empresasurcusale']['denominacion']); ?></td>
 									<td><?php echo h($inventariomovimateriale['Almacentipo']['denominacion']); ?></td>
@@ -82,7 +82,6 @@
 	    $('#data').DataTable( {
 	    	dom: 'Bfrtlip',
 	    	responsive: true,
-          order: [[0, 'desc']],
 	        buttons: [
 	            {
 	                extend: 'excel',
@@ -107,8 +106,10 @@
 		            	visible: false,
 		            	searchable: false
 		            },
-
-
+                {
+                    type: 'num',
+                    targets: [0]
+                },
 		     ],
 	        "language":
 	        {

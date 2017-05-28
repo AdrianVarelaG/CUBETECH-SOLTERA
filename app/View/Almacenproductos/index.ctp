@@ -34,13 +34,13 @@
 							<tbody>
 							<?php foreach ($almacenproductos as $almacenproducto): ?>
 	<tr>
-		<td><?php echo h($almacenproducto['Almacenproducto']['id']); ?>&nbsp;</td>
+		<td><?php echo h($almacenproducto['Almacenproducto']['id']); ?></td>
 		<td><?php echo h($almacenproducto['Empresa']['razon_social']); ?></td>
 		<td><?php echo h($almacenproducto['Almacenproducto']['nombre']); ?>&nbsp;</td>
 		<td><?php echo h($almacenproducto['Almacenmarca']['nombre']); ?></td>
 		<td><?php echo h($almacenproducto['Almacenproducto']['precio']); ?>&nbsp;</td>
 		<td>
-		<?php 
+		<?php
 		 foreach ($almacenproducto['Almacenproductodetalle'] as $almacenproductodetalle){
                echo $almacenproductodetalle['Almacenmateriale']['nombre'].", cantidad: ".$almacenproductodetalle['cantidad']."<br>";
 		 }
@@ -87,7 +87,7 @@
 	                }
 	            }
 	        ],
-		    columnDefs: [ 
+		    columnDefs: [
 		            {
 		                targets: [ 2 ],
 		                visible: true,
@@ -103,10 +103,12 @@
 		            	visible: false,
 		            	searchable: false
 		            },
-		           
-		            
+                {
+                  type: 'num',
+                  targets: [0]
+                },
 		     ],
-	        "language": 
+	        "language":
 	        {
 				"sProcessing":     "Procesando...",
 				"sLengthMenu":     "Mostrar _MENU_ registros",

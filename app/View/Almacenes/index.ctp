@@ -34,7 +34,7 @@
 							<tbody>
 							<?php foreach ($almacenes as $almacene): ?>
 	<tr>
-		<td><?php echo h($almacene['Almacene']['id']); ?>&nbsp;</td>
+		<td><?php echo h($almacene['Almacene']['id']); ?></td>
 		<td><?php echo h($almacene['Almacentipo']['denominacion']); ?></td>
 		<td><?php echo h($almacene['Almacene']['nombre']); ?>&nbsp;</td>
 		<td><?php echo h(substr($almacene['Almacene']['direccion'],0,20)); ?>&nbsp;</td>
@@ -43,14 +43,14 @@
 		<td class="actions">
 			<?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $almacene['Almacene']['id']), array('class'=>'btn btn-primary')); ?>
 			<?php echo $this->Html->link(__('Ver'), array('action' => 'view', $almacene['Almacene']['id']),   array('class'=>'btn btn-success')); ?>
-			<?php 
+			<?php
 			$empresa_id          = $this->Session->read('empresa_id');
 	     	$empresasurcusale_id = $this->Session->read('empresasurcusale_id');
 	     	$rol_id              = $this->Session->read('ROL');
 	     	$user_id             = $this->Session->read('USUARIO_ID');
 	     	$pedido              = 0;//PEDIDOS
 	     	if($rol_id==3 || $rol_id==1 || $rol_id==2){
-				echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $almacene['Almacene']['id']), array('class'=>'btn btn-danger', 'confirm'=>__('Esta seguro que desea eliminar el registro # %s?', $almacene['Almacene']['id']))); 
+				echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $almacene['Almacene']['id']), array('class'=>'btn btn-danger', 'confirm'=>__('Esta seguro que desea eliminar el registro # %s?', $almacene['Almacene']['id'])));
 			}
 			?>
 		</td>
@@ -83,7 +83,11 @@
 	        buttons: [
 	            'excel'
 	        ],
-	        "language": 
+          columnDefs: [
+            { type: 'num',
+              targets: [0] },
+          ],
+	        "language":
 	        {
 				"sProcessing":     "Procesando...",
 				"sLengthMenu":     "Mostrar _MENU_ registros",

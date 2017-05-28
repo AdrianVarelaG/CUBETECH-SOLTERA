@@ -49,7 +49,7 @@
 							<tbody>
 							<?php foreach ($clientes as $cliente): ?>
 								<tr>
-									<td><?php echo h($cliente['Cliente']['id']); ?>&nbsp;</td>
+									<td><?php echo h($cliente['Cliente']['id']); ?></td>
 									<td><?php echo h($cliente['Empresa']['razon_social']); ?></td>
 									<td><?php echo h($cliente['Empresasurcusale']['denominacion']); ?>&nbsp;</td>
 									<td><?php echo h($cliente['Cliente']['nombre']); ?>&nbsp;</td>
@@ -131,8 +131,9 @@
 		            	visible: false,
 		            	searchable: false
 		            },
-
-
+                { type: 'num',
+                  targets: [0]
+                },
 		     ],
 	        "language":
 	        {

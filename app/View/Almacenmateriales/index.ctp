@@ -31,21 +31,21 @@
 							<tbody>
 							<?php foreach ($almacenmateriales as $almacenmateriale): ?>
 	<tr>
-		<td><?php echo h($almacenmateriale['Almacenmateriale']['id']); ?>&nbsp;</td>
+		<td><?php echo h($almacenmateriale['Almacenmateriale']['id']); ?></td>
 		<td><?php echo h($almacenmateriale['Almacenmateriale']['nombre']); ?>&nbsp;</td>
 		<td><?php echo h($almacenmateriale['Almacenmateriale']['tipo']==1?"INSUMO":"EMBALAJE"); ?>&nbsp;</td>
 		<td class="actions">
-			<?php 
+			<?php
 				$empresa_id          = $this->Session->read('empresa_id');
 				$empresasurcusale_id = $this->Session->read('empresasurcusale_id');
 				$rol_id              = $this->Session->read('ROL');
-				$user_id             = $this->Session->read('USUARIO_ID'); 
-			?> 
+				$user_id             = $this->Session->read('USUARIO_ID');
+			?>
 			<?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $almacenmateriale['Almacenmateriale']['id']), array('class'=>'btn btn-primary')); ?>
 			<?php echo $this->Html->link(__('Ver'), array('action' => 'view', $almacenmateriale['Almacenmateriale']['id']),   array('class'=>'btn btn-success')); ?>
-			<?php 
+			<?php
             if($rol_id==3 || $rol_id==1 || $rol_id==2){
-				echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $almacenmateriale['Almacenmateriale']['id']), array('class'=>'btn btn-danger', 'confirm'=>__('Esta seguro que desea eliminar el registro # %s?', $almacenmateriale['Almacenmateriale']['id']))); 
+				echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $almacenmateriale['Almacenmateriale']['id']), array('class'=>'btn btn-danger', 'confirm'=>__('Esta seguro que desea eliminar el registro # %s?', $almacenmateriale['Almacenmateriale']['id'])));
             }
 
 			?>
@@ -77,7 +77,11 @@
 	        buttons: [
 	           'excel'
 	        ],
-	        "language": 
+          columnDefs: [
+            { type: 'num',
+              targets: [0] },
+          ],
+	        "language":
 	        {
 				"sProcessing":     "Procesando...",
 				"sLengthMenu":     "Mostrar _MENU_ registros",

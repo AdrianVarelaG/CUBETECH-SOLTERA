@@ -47,7 +47,7 @@
               $user_id             = $this->Session->read('USUARIO_ID');
                 foreach($ventas as $venta): ?>
 								<tr>
-									<td><?php echo h($venta['Venta']['id']); ?>&nbsp;</td>
+									<td><?php echo h($venta['Venta']['id']); ?></td>
 									<td><?php echo h($venta['Empresa']['razon_social']); ?></td>
 									<td><?php echo h($venta['Empresasurcusale']['denominacion']); ?></td>
 									<td><?php echo h($venta['Cliente']['nombre']); ?></td>
@@ -198,9 +198,10 @@
 		            	visible: false,
 		            	searchable: false
 		            },
-
-
+                { type: 'num',
+                  targets: [0] },
 		     ],
+
 	        "language":
 	        {
 				"sProcessing":     "Procesando...",
