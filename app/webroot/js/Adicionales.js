@@ -103,33 +103,9 @@ $(document).ready(function(){
         }
   });
    $formVenta.validate();
-
-  /*
-  $formVenta.validate({
-    submitHandler: function (form) { // for demo
-          console.log('valid form submitted'); // for demo
-          return false; // for demo
-      }
-  });
-  */
-  /*
-  $formVenta.delegate('input.mayorcero', 'focus', function(){
-    console.log('Si soy');
-  });
-*/
-/*
-  $formVenta.on('submit', function(e){
-        e.preventDefault();
-        var data = $("#VentaAddForm :input").serializeArray();
-        console.log("Primeo On Submit");
-  });
-*/
-/*BLOQUE PARA LA FUNCIONALIDAD DEL ADD validar que los productos no sean 0
-  $('#GuardarVenta').on('click', validaProductos);
-  $divProductos = $('#div-productos');
-  function validaProductos(){
-    $productos = $divProductos.find("input.mayorcero");
-
-  }
-*/
+//Validas si el cliente ya cuenta con un pedido no pagado
+   $('#Ventacliente_id').on('change', function(){
+     var cliente = $(this).serialize();
+     
+   });
 });
