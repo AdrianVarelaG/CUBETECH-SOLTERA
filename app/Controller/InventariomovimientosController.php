@@ -91,6 +91,8 @@ class InventariomovimientosController extends AppController {
      	$stop                = 1;
      	$producto            = 0;
 		if ($this->request->is('post')) {
+			$this->layout ="default";
+
 			$this->Inventariomovimiento->begin();
 			$this->Inventariomovimiento->create();
 			if($this->request->data['Inventariomovimiento']['tipo']==3){
@@ -316,6 +318,7 @@ class InventariomovimientosController extends AppController {
 									     $this->Inventariomovimiento->create();
 										 $this->Inventariomovimiento->save($this->request->data);
                       	}
+////////////////////////////////////////////////////////////////////SALIDA//////////////////////////////////////////////////////////////////////////////////////////////////////////
                 }else if($this->request->data['Inventariomovimiento']['tipo']==2){//SALIDA
                 			  if($maquila==1 && $foraneo==2){//ADMINISTRADOR
 
@@ -342,34 +345,37 @@ class InventariomovimientosController extends AppController {
 																					                 	            ),
 																					                 'group' => 'Inventariomovimiento.empresa_id, deno_empresas, Inventariomovimiento.empresasurcusale_id, deno_empresasurcusales, Inventariomovimiento.almacentipo_id, deno_almacentipos, Inventariomovimiento.almacene_id, deno_almacenes, Inventariomovimiento.almacenproducto_id, deno_almacenproductos, entrada, salida'
 																					            ));
+
                         if(isset($inventariomovimientos[0][0]['entrada'])){
                                  $cantidad = $inventariomovimientos[0][0]['entrada'] - $inventariomovimientos[0][0]['salida'];
                         }else{
-                                 $cantidad = 0;
+                                 $cantidad = -1;
                         }
-						if($cantidad>=$this->request->data['Inventariomovimiento']['cantidad']){
+						if($cantidad>=0){
 						}else{
-                                $stop = 0;
+								$producto=1;
+                $stop = 0;
 						}
                 }else if($this->request->data['Inventariomovimiento']['tipo']==3){//TRANSFERENCIA
+
 	                	$inventariomovimientos = $this->Inventariomovimiento->find('all', array(
-																						            'conditions' => array('Inventariomovimiento.almacene_id'=>$this->request->data['Inventariomovimiento']['almacene_id'], 'Inventariomovimiento.almacentipo_id'=>$this->request->data['Inventariomovimiento']['almacentipo_id'], 'Inventariomovimiento.activo'=>1, 'Inventariomovimiento.empresa_id'=>$empresa_id, 'Inventariomovimiento.empresasurcusale_id'=>$empresasurcusale_id),
-																						                 'fields'=>array( 'Inventariomovimiento.empresa_id,
-																						                 	                (select a.razon_social from empresas a where a.id=Inventariomovimiento.empresa_id) as deno_empresas,
-																						                 	               Inventariomovimiento.empresasurcusale_id,
-																						                 	                (select a.denominacion from empresasurcusales a where a.id=Inventariomovimiento.empresasurcusale_id) as deno_empresasurcusales,
-																						                 	               Inventariomovimiento.almacentipo_id,
-																						                 	                (select a.denominacion from almacentipos a where a.id=Inventariomovimiento.almacentipo_id) as deno_almacentipos,
-																						                 	               Inventariomovimiento.almacene_id,
-																						                 	                (select a.nombre from almacenes a where a.id=Inventariomovimiento.almacene_id) as deno_almacenes,
-																						                 	               Inventariomovimiento.almacenproducto_id,
-																						                 	                (select a.nombre from almacenproductos a where a.id=Inventariomovimiento.almacenproducto_id) as deno_almacenproductos,
-																						                 	               (select SUM(a.cantidad) from inventariomovimientos a where a.activo=1 and (a.tipo=1 or a.tipo_transferencia=1) and a.empresa_id=Inventariomovimiento.empresa_id and a.empresasurcusale_id=Inventariomovimiento.empresasurcusale_id  and a.almacentipo_id=Inventariomovimiento.almacentipo_id  and a.almacene_id=Inventariomovimiento.almacene_id and a.almacenproducto_id=Inventariomovimiento.almacenproducto_id) AS entrada,
-																						                 	               (select SUM(a.cantidad) from inventariomovimientos a where a.activo=1 and (a.tipo=2 or a.tipo_transferencia=2) and a.empresa_id=Inventariomovimiento.empresa_id and a.empresasurcusale_id=Inventariomovimiento.empresasurcusale_id  and a.almacentipo_id=Inventariomovimiento.almacentipo_id  and a.almacene_id=Inventariomovimiento.almacene_id and a.almacenproducto_id=Inventariomovimiento.almacenproducto_id) AS salida
-																						                 	               '
-																						                 	            ),
-																						                 'group' => 'Inventariomovimiento.empresa_id, deno_empresas, Inventariomovimiento.empresasurcusale_id, deno_empresasurcusales, Inventariomovimiento.almacentipo_id, deno_almacentipos, Inventariomovimiento.almacene_id, deno_almacenes, Inventariomovimiento.almacenproducto_id, deno_almacenproductos, entrada, salida'
-																						            ));
+					            'conditions' => array('Inventariomovimiento.almacene_id'=>$this->request->data['Inventariomovimiento']['almacene_id'], 'Inventariomovimiento.almacentipo_id'=>$this->request->data['Inventariomovimiento']['almacentipo_id'], 'Inventariomovimiento.activo'=>1, 'Inventariomovimiento.empresa_id'=>$empresa_id, 'Inventariomovimiento.empresasurcusale_id'=>$empresasurcusale_id),
+					                 'fields'=>array( 'Inventariomovimiento.empresa_id,
+					                 	                (select a.razon_social from empresas a where a.id=Inventariomovimiento.empresa_id) as deno_empresas,
+					                 	               Inventariomovimiento.empresasurcusale_id,
+					                 	                (select a.denominacion from empresasurcusales a where a.id=Inventariomovimiento.empresasurcusale_id) as deno_empresasurcusales,
+					                 	               Inventariomovimiento.almacentipo_id,
+					                 	                (select a.denominacion from almacentipos a where a.id=Inventariomovimiento.almacentipo_id) as deno_almacentipos,
+					                 	               Inventariomovimiento.almacene_id,
+					                 	                (select a.nombre from almacenes a where a.id=Inventariomovimiento.almacene_id) as deno_almacenes,
+					                 	               Inventariomovimiento.almacenproducto_id,
+					                 	                (select a.nombre from almacenproductos a where a.id=Inventariomovimiento.almacenproducto_id) as deno_almacenproductos,
+					                 	               (select SUM(a.cantidad) from inventariomovimientos a where a.activo=1 and (a.tipo=1 or a.tipo_transferencia=1) and a.empresa_id=Inventariomovimiento.empresa_id and a.empresasurcusale_id=Inventariomovimiento.empresasurcusale_id  and a.almacentipo_id=Inventariomovimiento.almacentipo_id  and a.almacene_id=Inventariomovimiento.almacene_id and a.almacenproducto_id=Inventariomovimiento.almacenproducto_id) AS entrada,
+					                 	               (select SUM(a.cantidad) from inventariomovimientos a where a.activo=1 and (a.tipo=2 or a.tipo_transferencia=2) and a.empresa_id=Inventariomovimiento.empresa_id and a.empresasurcusale_id=Inventariomovimiento.empresasurcusale_id  and a.almacentipo_id=Inventariomovimiento.almacentipo_id  and a.almacene_id=Inventariomovimiento.almacene_id and a.almacenproducto_id=Inventariomovimiento.almacenproducto_id) AS salida
+					                 	               '
+					                 	            ),
+					                 'group' => 'Inventariomovimiento.empresa_id, deno_empresas, Inventariomovimiento.empresasurcusale_id, deno_empresasurcusales, Inventariomovimiento.almacentipo_id, deno_almacentipos, Inventariomovimiento.almacene_id, deno_almacenes, Inventariomovimiento.almacenproducto_id, deno_almacenproductos, entrada, salida'
+					            ));
                 	     $this->request->data['Inventariomovimiento']['empresa_id']              = $empresa_id;
 					     $this->request->data['Inventariomovimiento']['empresasurcusale_id']     = $empresasurcusale_id;
 					     $this->request->data['Inventariomovimiento']['almacentipo_id']          = $this->request->data['Inventariomovimiento']['almacentipofunte_id'];
