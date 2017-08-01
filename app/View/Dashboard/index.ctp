@@ -1,13 +1,23 @@
 <section class="content-header">
   <h1>
     Sistema de gestión
-    <small><?php echo __('Grafica Ventas mensual Soltera'); ?></small>
+
   </h1>
   <ol class="breadcrumb">
     <li><a href="<?= $this->Html->url('/Dashboard/')?>"><i class="fa fa-newspaper-o"></i> Inicio</a></li>
-    <li class="active"><?php echo __('Grafica Ventas mensual Soltera'); ?></li>
   </ol>
 </section>
+
+<?php
+  echo $this->element('InventarioProductos');
+  echo $this->Html->script('InventarioProducto.js');
+?>
+
+<?php
+  echo $this->element('InventarioMateriales');
+  echo $this->Html->script('InventarioMateriales.js');
+?>
+
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
@@ -76,7 +86,7 @@
                                         credits: {
                                             enabled: false
                                         },
-                                        series: [<?php 
+                                        series: [<?php
                                                       foreach ($ventadetalles as $ventadetalle){
                                                           echo "{ ";
                                                           echo "  name: '".$ventadetalle[0]['deno_producto']."' ,";
@@ -94,7 +104,7 @@
                                     </div>
                                 </div>
                             </div>
-                    </div>           
+                    </div>
                     </div><!-- /.box-body -->
             </div><!-- /.box -->
         </div><!-- /.col -->
@@ -131,7 +141,7 @@
                                     },
                                     xAxis: {
                                         categories: [
-                                            <?php 
+                                            <?php
                                               foreach ($ventadetalles2 as $ventadetalle2) {
                                                   echo "'".$ventadetalle2[0]['deno_producto']."',";
 
@@ -162,7 +172,7 @@
                                     },
                                     series: [{
                                         name: 'Cobrada',
-                                        data: [<?php 
+                                        data: [<?php
                                                       foreach ($ventadetalles2 as $ventadetalle2) {
                                                           echo "".$ventadetalle2[0]['pago'].",";
 
@@ -171,7 +181,7 @@
 
                                     }, {
                                         name: 'Pendiente por cobrar',
-                                        data: [<?php 
+                                        data: [<?php
                                                       foreach ($ventadetalles2 as $ventadetalle2) {
                                                           echo "".$ventadetalle2[0]['nopago'].",";
 
@@ -188,7 +198,7 @@
                                     </div>
                                 </div>
                             </div>
-                    </div>           
+                    </div>
                     </div><!-- /.box-body -->
             </div><!-- /.box -->
         </div><!-- /.col -->
@@ -222,7 +232,7 @@
                                     },
                                     xAxis: {
                                         categories: [
-                                        <?php 
+                                        <?php
                                               foreach ($ventas3 as $venta3) {
                                                   echo "'".$venta3[0]['deno_user']."',";
 
@@ -247,15 +257,15 @@
                                     },
                                     series: [{
                                         name:'Pendiente por cobrar',
-                                        data:[<?php 
+                                        data:[<?php
                                                       foreach ($ventas3 as $venta3) {
                                                           echo "".$venta3[0]['nopago'].",";
 
                                                       }
                                            ?>]
-                                    }, 
+                                    },
                                     {   name:'Cobradas',
-                                        data:[<?php 
+                                        data:[<?php
                                                       foreach ($ventas3 as $venta3) {
                                                           echo "".$venta3[0]['pago'].",";
 
@@ -271,7 +281,7 @@
                                     </div>
                                 </div>
                             </div>
-                    </div>           
+                    </div>
                     </div><!-- /.box-body -->
             </div><!-- /.box -->
         </div><!-- /.col -->

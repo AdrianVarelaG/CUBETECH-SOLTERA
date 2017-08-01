@@ -163,4 +163,87 @@ class Inventariomovimateriale extends AppModel {
 			'order' => ''
 		)
 	);
+
+	public function consultaTotales($empresa_id, $empresasurcusale_id, $rol_id, $user_id){
+		if($empresa_id==0 && $empresasurcusale_id==0){
+				return  $this->find('all', array(
+																											'conditions' => array('Inventariomovimateriale.activo'=>1),
+																													 'fields'=>array( 'Inventariomovimateriale.empresa_id,
+																																						(select a.razon_social from empresas a where a.id=Inventariomovimateriale.empresa_id) as deno_empresas,
+																																					 Inventariomovimateriale.empresasurcusale_id,
+																																						(select a.denominacion from empresasurcusales a where a.id=Inventariomovimateriale.empresasurcusale_id) as deno_empresasurcusales,
+																																					 Inventariomovimateriale.almacentipo_id,
+																																						(select a.denominacion from almacentipos a where a.id=Inventariomovimateriale.almacentipo_id) as deno_almacentipos,
+																																					 Inventariomovimateriale.almacene_id,
+																																						(select a.nombre from almacenes a where a.id=Inventariomovimateriale.almacene_id) as deno_almacenes,
+																																					 Inventariomovimateriale.almacenmateriale_id,
+																																						(select a.nombre from almacenmateriales a where a.id=Inventariomovimateriale.almacenmateriale_id) as deno_almacenmateriales,
+																																					 (select SUM(a.cantidad) from inventariomovimateriales a where a.activo=1 and (a.tipo=1) and a.empresa_id=Inventariomovimateriale.empresa_id and a.empresasurcusale_id=Inventariomovimateriale.empresasurcusale_id  and a.almacentipo_id=Inventariomovimateriale.almacentipo_id  and a.almacene_id=Inventariomovimateriale.almacene_id and a.almacenmateriale_id=Inventariomovimateriale.almacenmateriale_id) AS entrada,
+																																					 (select SUM(a.cantidad) from inventariomovimateriales a where a.activo=1 and (a.tipo=2) and a.empresa_id=Inventariomovimateriale.empresa_id and a.empresasurcusale_id=Inventariomovimateriale.empresasurcusale_id  and a.almacentipo_id=Inventariomovimateriale.almacentipo_id  and a.almacene_id=Inventariomovimateriale.almacene_id and a.almacenmateriale_id=Inventariomovimateriale.almacenmateriale_id) AS salida
+																																					 '
+																																				),
+																													 'group' => 'Inventariomovimateriale.empresa_id, deno_empresas, Inventariomovimateriale.empresasurcusale_id, deno_empresasurcusales, Inventariomovimateriale.almacentipo_id, deno_almacentipos, Inventariomovimateriale.almacene_id, deno_almacenes, Inventariomovimateriale.almacenmateriale_id, deno_almacenmateriales, entrada, salida'
+																										));
+		}else if($empresa_id!=0 && $empresasurcusale_id==0){
+		 	return $this->find('all', array(
+																											'conditions' => array('Inventariomovimateriale.activo'=>1, 'Inventariomovimateriale.empresa_id'=>$empresa_id),
+																													 'fields'=>array( 'Inventariomovimateriale.empresa_id,
+																																						(select a.razon_social from empresas a where a.id=Inventariomovimateriale.empresa_id) as deno_empresas,
+																																					 Inventariomovimateriale.empresasurcusale_id,
+																																						(select a.denominacion from empresasurcusales a where a.id=Inventariomovimateriale.empresasurcusale_id) as deno_empresasurcusales,
+																																					 Inventariomovimateriale.almacentipo_id,
+																																						(select a.denominacion from almacentipos a where a.id=Inventariomovimateriale.almacentipo_id) as deno_almacentipos,
+																																					 Inventariomovimateriale.almacene_id,
+																																						(select a.nombre from almacenes a where a.id=Inventariomovimateriale.almacene_id) as deno_almacenes,
+																																					 Inventariomovimateriale.almacenmateriale_id,
+																																						(select a.nombre from almacenmateriales a where a.id=Inventariomovimateriale.almacenmateriale_id) as deno_almacenmateriales,
+																																					 (select SUM(a.cantidad) from inventariomovimateriales a where a.activo=1 and (a.tipo=1) and a.empresa_id=Inventariomovimateriale.empresa_id and a.empresasurcusale_id=Inventariomovimateriale.empresasurcusale_id  and a.almacentipo_id=Inventariomovimateriale.almacentipo_id  and a.almacene_id=Inventariomovimateriale.almacene_id and a.almacenmateriale_id=Inventariomovimateriale.almacenmateriale_id) AS entrada,
+																																					 (select SUM(a.cantidad) from inventariomovimateriales a where a.activo=1 and (a.tipo=2) and a.empresa_id=Inventariomovimateriale.empresa_id and a.empresasurcusale_id=Inventariomovimateriale.empresasurcusale_id  and a.almacentipo_id=Inventariomovimateriale.almacentipo_id  and a.almacene_id=Inventariomovimateriale.almacene_id and a.almacenmateriale_id=Inventariomovimateriale.almacenmateriale_id) AS salida
+																																					 '
+																																				),
+																													 'group' => 'Inventariomovimateriale.empresa_id, deno_empresas, Inventariomovimateriale.empresasurcusale_id, deno_empresasurcusales, Inventariomovimateriale.almacentipo_id, deno_almacentipos, Inventariomovimateriale.almacene_id, deno_almacenes, Inventariomovimateriale.almacenmateriale_id, deno_almacenmateriales, entrada, salida'
+																										));
+		}else if($empresa_id!=0 && $empresasurcusale_id!=0 && $rol_id==3){
+			return $this->find('all', array(
+																											'conditions' => array('Inventariomovimateriale.activo'=>1, 'Inventariomovimateriale.empresa_id'=>$empresa_id, 'Inventariomovimateriale.empresasurcusale_id'=>$empresasurcusale_id),
+																													 'fields'=>array( '
+																																					 Inventariomovimateriale.empresa_id,
+																																						(select a.razon_social from empresas a where a.id=Inventariomovimateriale.empresa_id) as deno_empresas,
+																																					 Inventariomovimateriale.empresasurcusale_id,
+																																						(select a.denominacion from empresasurcusales a where a.id=Inventariomovimateriale.empresasurcusale_id) as deno_empresasurcusales,
+																																					 Inventariomovimateriale.almacentipo_id,
+																																						(select a.denominacion from almacentipos a where a.id=Inventariomovimateriale.almacentipo_id) as deno_almacentipos,
+																																					 Inventariomovimateriale.almacene_id,
+																																						(select a.nombre from almacenes a where a.id=Inventariomovimateriale.almacene_id) as deno_almacenes,
+																																					 Inventariomovimateriale.almacenmateriale_id,
+																																						(select a.nombre from almacenmateriales a where a.id=Inventariomovimateriale.almacenmateriale_id) as deno_almacenmateriales,
+																																					 (select SUM(a.cantidad) from inventariomovimateriales a where a.activo=1 and (a.tipo=1) and a.empresa_id=Inventariomovimateriale.empresa_id and a.empresasurcusale_id=Inventariomovimateriale.empresasurcusale_id  and a.almacentipo_id=Inventariomovimateriale.almacentipo_id  and a.almacene_id=Inventariomovimateriale.almacene_id and a.almacenmateriale_id=Inventariomovimateriale.almacenmateriale_id) AS entrada,
+																																					 (select SUM(a.cantidad) from inventariomovimateriales a where a.activo=1 and (a.tipo=2) and a.empresa_id=Inventariomovimateriale.empresa_id and a.empresasurcusale_id=Inventariomovimateriale.empresasurcusale_id  and a.almacentipo_id=Inventariomovimateriale.almacentipo_id  and a.almacene_id=Inventariomovimateriale.almacene_id and a.almacenmateriale_id=Inventariomovimateriale.almacenmateriale_id) AS salida
+																																					 '
+																																				),
+																													 'group' => 'Inventariomovimateriale.empresa_id, deno_empresas, Inventariomovimateriale.empresasurcusale_id, deno_empresasurcusales, Inventariomovimateriale.almacentipo_id, deno_almacentipos, Inventariomovimateriale.almacene_id, deno_almacenes, Inventariomovimateriale.almacenmateriale_id, deno_almacenmateriales, entrada, salida'
+																										));
+		}else{
+			return $this->find('all', array(
+																											'conditions' => array('Inventariomovimateriale.activo'=>1, 'Inventariomovimateriale.empresa_id'=>$empresa_id, 'Inventariomovimateriale.empresasurcusale_id'=>$empresasurcusale_id),
+																													 'fields'=>array( 'Inventariomovimateriale.empresa_id,
+																																						(select a.razon_social from empresas a where a.id=Inventariomovimateriale.empresa_id) as deno_empresas,
+																																					 Inventariomovimateriale.empresasurcusale_id,
+																																						(select a.denominacion from empresasurcusales a where a.id=Inventariomovimateriale.empresasurcusale_id) as deno_empresasurcusales,
+																																					 Inventariomovimateriale.almacentipo_id,
+																																						(select a.denominacion from almacentipos a where a.id=Inventariomovimateriale.almacentipo_id) as deno_almacentipos,
+																																					 Inventariomovimateriale.almacene_id,
+																																						(select a.nombre from almacenes a where a.id=Inventariomovimateriale.almacene_id) as deno_almacenes,
+																																					 Inventariomovimateriale.almacenmateriale_id,
+																																						(select a.nombre from almacenmateriales a where a.id=Inventariomovimateriale.almacenmateriale_id) as deno_almacenmateriales,
+																																					 (select SUM(a.cantidad) from inventariomovimateriales a where a.activo=1 and (a.tipo=1) and a.empresa_id=Inventariomovimateriale.empresa_id and a.empresasurcusale_id=Inventariomovimateriale.empresasurcusale_id  and a.almacentipo_id=Inventariomovimateriale.almacentipo_id  and a.almacene_id=Inventariomovimateriale.almacene_id and a.almacenmateriale_id=Inventariomovimateriale.almacenmateriale_id) AS entrada,
+																																					 (select SUM(a.cantidad) from inventariomovimateriales a where a.activo=1 and (a.tipo=2) and a.empresa_id=Inventariomovimateriale.empresa_id and a.empresasurcusale_id=Inventariomovimateriale.empresasurcusale_id  and a.almacentipo_id=Inventariomovimateriale.almacentipo_id  and a.almacene_id=Inventariomovimateriale.almacene_id and a.almacenmateriale_id=Inventariomovimateriale.almacenmateriale_id) AS salida
+																																					 '
+																																				),
+																													 'group' => 'Inventariomovimateriale.empresa_id, deno_empresas, Inventariomovimateriale.empresasurcusale_id, deno_empresasurcusales, Inventariomovimateriale.almacentipo_id, deno_almacentipos, Inventariomovimateriale.almacene_id, deno_almacenes, Inventariomovimateriale.almacenmateriale_id, deno_almacenmateriales, entrada, salida'
+																										));
+		}
+
+	}
+
 }

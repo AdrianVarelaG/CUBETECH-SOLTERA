@@ -40,7 +40,7 @@ class DashboardController extends AppController {
 	public $components = array('Paginator', 'Session', 'Flash');
 
 	public $uses = array(
-		                 'Venta', 'Ventadetalle', 'Inventariomovimiento','Inventariomovimateriale', 'Almacenproductodetalle', 
+		                 'Venta', 'Ventadetalle', 'Inventariomovimiento','Inventariomovimateriale', 'Almacenproductodetalle',
 		                 'Almacenmarcadetalle', 'Almacenproducto', 'Almacene'
 		                 );
 
@@ -57,14 +57,14 @@ class DashboardController extends AppController {
 		//if($id!=null){
  	    $mes     =  date("m")-1;
  	    $year    =  date("Y");
-        if($mes==0){ 
+        if($mes==0){
         				$fecha_a = (date("Y")-1)."-1-1";
         }else{
-                        $fecha_a = date("Y").".".$mes."-1";        
+                        $fecha_a = date("Y").".".$mes."-1";
         }
 		$fecha_b = date("Y-m-d");
 
-		 	  if($empresa_id==0 && $empresasurcusale_id==0){ 
+		 	  if($empresa_id==0 && $empresasurcusale_id==0){
 		    		$conditions = array('Venta.activo'=>1, 'year(Venta.fecha)'=>$year);
      	}else if($empresa_id!=0 && $empresasurcusale_id==0){
      				$conditions = array('Venta.activo'=>1, 'Venta.empresa_id'=>$empresa_id, 'year(Venta.fecha)'=>$year);
@@ -76,9 +76,9 @@ class DashboardController extends AppController {
          $this->set('ventadetalles', $this->Ventadetalle->find('all', array(
 													            'conditions' => array($conditions),
 													                 'order' => array('Ventadetalle.almacenproducto_id, Venta.pagado'=>'ASD'),
-													                'fields' => array(' Venta.empresa_id, 
-													                 	                (select a.razon_social from empresas a where a.id=Venta.empresa_id) as deno_empresas, 
-													                 	               Venta.empresasurcusale_id, 
+													                'fields' => array(' Venta.empresa_id,
+													                 	                (select a.razon_social from empresas a where a.id=Venta.empresa_id) as deno_empresas,
+													                 	               Venta.empresasurcusale_id,
 													                 	                (select a.denominacion from empresasurcusales a where a.id=Venta.empresasurcusale_id) as deno_empresasurcusales,
 													                 	               Ventadetalle.almacenproducto_id,
 													                 	                (select a.nombre from almacenproductos a where a.id=Ventadetalle.almacenproducto_id) as deno_producto,
@@ -101,7 +101,7 @@ class DashboardController extends AppController {
 												            )));
          //Ventadetalle
 		//}
-         if($empresa_id==0 && $empresasurcusale_id==0){ 
+         if($empresa_id==0 && $empresasurcusale_id==0){
 		    		$conditions = array('Venta.activo'=>1, 'Venta.fecha >='=>$fecha_a,  'Venta.fecha <='=>$fecha_b);
      	}else if($empresa_id!=0 && $empresasurcusale_id==0){
      				$conditions = array('Venta.activo'=>1, 'Venta.empresa_id'=>$empresa_id, 'Venta.fecha >='=>$fecha_a, 'Venta.fecha <='=>$fecha_b);
@@ -113,9 +113,9 @@ class DashboardController extends AppController {
          $this->set('ventadetalles2', $this->Ventadetalle->find('all', array(
 													            'conditions' => array($conditions),
 													                 'order' => array('Venta.user_id, Venta.pagado'=>'ASD'),
-													                'fields' => array(' Venta.empresa_id, 
-													                 	                (select a.razon_social from empresas a where a.id=Venta.empresa_id) as deno_empresas, 
-													                 	               Venta.empresasurcusale_id, 
+													                'fields' => array(' Venta.empresa_id,
+													                 	                (select a.razon_social from empresas a where a.id=Venta.empresa_id) as deno_empresas,
+													                 	               Venta.empresasurcusale_id,
 													                 	                (select a.denominacion from empresasurcusales a where a.id=Venta.empresasurcusale_id) as deno_empresasurcusales,
 													                 	               Ventadetalle.almacenproducto_id,
 													                 	                (select a.nombre from almacenproductos a where a.id=Ventadetalle.almacenproducto_id) as deno_producto,
@@ -129,7 +129,7 @@ class DashboardController extends AppController {
          //Ventadetalle
 
 
-          if($empresa_id==0 && $empresasurcusale_id==0){ 
+          if($empresa_id==0 && $empresasurcusale_id==0){
 		    		$conditions = array('Venta.activo'=>1, 'Venta.fecha >='=>$fecha_a,  'Venta.fecha <='=>$fecha_b);
      	}else if($empresa_id!=0 && $empresasurcusale_id==0){
      				$conditions = array('Venta.activo'=>1, 'Venta.empresa_id'=>$empresa_id, 'Venta.fecha >='=>$fecha_a, 'Venta.fecha <='=>$fecha_b);
@@ -141,9 +141,9 @@ class DashboardController extends AppController {
          $this->set('ventas3', $this->Venta->find('all', array(
 													            'conditions' => array($conditions),
 													            'order'      => array('Venta.user_id, Venta.pagado'=>'ASD'),
-													                 'fields'=> array('Venta.empresa_id, 
-													                 	                (select a.razon_social from empresas a where a.id=Venta.empresa_id) as deno_empresas, 
-													                 	               Venta.empresasurcusale_id, 
+													                 'fields'=> array('Venta.empresa_id,
+													                 	                (select a.razon_social from empresas a where a.id=Venta.empresa_id) as deno_empresas,
+													                 	               Venta.empresasurcusale_id,
 													                 	                (select a.denominacion from empresasurcusales a where a.id=Venta.empresasurcusale_id) as deno_empresasurcusales,
 													                 	               Venta.user_id,
 													                 	                (select a.username from users a where a.id=Venta.user_id) as deno_user,
@@ -153,6 +153,10 @@ class DashboardController extends AppController {
 													                 	            ),
 													                 'group' => 'Venta.empresa_id, deno_empresas, Venta.empresasurcusale_id, deno_empresasurcusales, Venta.user_id, deno_user, pago, nopago'
 												            )));
+
+	$this->set('inventariomovimientos', $this->Inventariomovimiento->consultaTotales($empresa_id, $empresasurcusale_id, $rol_id, $user_id));
+	$this->set('inventariomovimateriales',  $this->Inventariomovimateriale->consultaTotales($empresa_id, $empresasurcusale_id, $rol_id, $user_id));
+
 	}
 
 }
