@@ -154,7 +154,22 @@ class DashboardController extends AppController {
 													                 'group' => 'Venta.empresa_id, deno_empresas, Venta.empresasurcusale_id, deno_empresasurcusales, Venta.user_id, deno_user, pago, nopago'
 												            )));
 
-	$this->set('inventariomovimientos', $this->Inventariomovimiento->consultaTotales($empresa_id, $empresasurcusale_id, $rol_id, $user_id));
+		$datos = $this->Inventariomovimiento->consultaTotales($empresa_id, $empresasurcusale_id, $rol_id, $user_id);
+		$ret = array();
+
+		for($i = 0; $i < count($datos) ; $i++ ){
+			$band = true;
+			if(isset($datos[$i][0]['entrada']) && ($datos[$i][0]['salida'] - $datos[$i][0]['entrada']) == 0 ){
+				$producto = $this->Almacenproducto->find("first", array('conditions'=>array('Almacenproducto.id'=> $datos[$i]['Inventariomovimiento']['almacenproducto_id'] )));
+
+				$band = $producto['Almacenproducto']['activo'] == 1;
+			}
+			if($band){
+				$ret[$i] = $datos[$i];
+			}
+		}
+		$this->set('inventariomovimientos', $ret);
+
 	$this->set('inventariomovimateriales',  $this->Inventariomovimateriale->consultaTotales($empresa_id, $empresasurcusale_id, $rol_id, $user_id));
 
 	}
