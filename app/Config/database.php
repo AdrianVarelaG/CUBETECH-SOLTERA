@@ -71,7 +71,7 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => 'localhosts',
+		'host' => 'localhost',
 		'login' => 'cervezas_ADMIN',
 		'password' => 'aA2oeC=dhTAI',
 		'database' => 'cervezas_SISTEMA',
