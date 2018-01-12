@@ -411,47 +411,18 @@ const ENTREGADO  = 'ENT';
 		$this->request->data['Venta']['id']     = $id;
 		$this->request->data['Venta']['activo'] = 2;
 		if ($this->Venta->save($this->request->data)) {
-			if($this->request->data['Venta']['activo']==3){
-				$ventadetalles = $this->Ventadetalle->find('all', array('conditions' =>array('Ventadetalle.venta_id'=>$id)));
-				// pr($ventadetalles);
-				foreach($ventadetalles as $ventadetalle){
-					$this->request->data['Inventariomovimiento']['empresa_id']              = $ventadetalle['Venta']['empresa_id'];
-					$this->request->data['Inventariomovimiento']['empresasurcusale_id']     = $ventadetalle['Venta']['empresasurcusale_id'];
-					$this->request->data['Inventariomovimiento']['almacentipo_id']          = $ventadetalle['Venta']['almacentipo_id'];
-					$this->request->data['Inventariomovimiento']['almacene_id']             = $ventadetalle['Venta']['almacene_id'];
-					$this->request->data['Inventariomovimiento']['almacenproducto_id']      = $ventadetalle['Venta']['almacenproducto_id'];
-					$this->request->data['Inventariomovimiento']['tipo']                    = 1;
-					$this->request->data['Inventariomovimiento']['cantidad']                = $ventadetalle['Ventadetalle']['cantidad'];
-					$this->request->data['Inventariomovimiento']['fechaalta']               = $ventadetalle['Venta']['fecha'];
-					$this->request->data['Inventariomovimiento']['almacentipofunte_id']     = 0;
-					$this->request->data['Inventariomovimiento']['almacenefunte_id']        = 0;
-					$this->request->data['Inventariomovimiento']['referencia']              = 0;
-					$this->request->data['Inventariomovimiento']['ordenventa_id']           = 0;
-					$this->request->data['Inventariomovimiento']['userventa_id']            = 0;
-					$this->Inventariomovimiento->save($this->request->data);
-					$almacenmarca_id  = $ventadetalle['Venta']['almacenmarca_id'];
-					$almacene_id      = $ventadetalle['Venta']['almacene_id'];
-					$almacenes            = $this->Almacene->find('all', array('conditions'=>array('id'=>$almacene_id)));
-					$almacenmarcadetalles = $this->Almacenmarcadetalle->find('all', array('conditions'=>array('almacenmarca_id'=>$almacenmarca_id, 'default'=>1)));
-					if($almacenes[0]['Almacene']['foraneo']==2){
-						foreach($almacenmarcadetalles as $datos){
-							$cantidad =  $datos['Almacenmarcadetalle']['cantidad']/$ventadetalle['Ventadetalle']['cantidad'];
-							$this->request->data['Inventariomovimateriale']['empresa_id']              = $empresa_id;
-							$this->request->data['Inventariomovimateriale']['empresasurcusale_id']     = $empresasurcusale_id;
-							$this->request->data['Inventariomovimateriale']['almacentipo_id']          = $this->request->data['Inventariomovimiento']['almacentipo_id'];
-							$this->request->data['Inventariomovimateriale']['almacene_id']             = $this->request->data['Inventariomovimiento']['almacene_id'];
-							$this->request->data['Inventariomovimateriale']['almacenmateriale_id']     = $datos['Almacenmarcadetalle']['almacenmateriale_id'];
-							$this->request->data['Inventariomovimateriale']['tipo']                    = 2;
-							$this->request->data['Inventariomovimateriale']['cantidad']                = $cantidad;
-							$this->request->data['Inventariomovimateriale']['fechaalta']               = $this->request->data['Inventariomovimiento']['fechaalta'];
-							$this->request->data['Inventariomovimateriale']['usermovi_id']             = $user_id;
-							$this->request->data['Inventariomovimateriale']['inventariomovimiento_id'] = $id ;
-							$this->Inventariomovimateriale->save($this->request->data);
-						}
-					}
+			$data  = $this->Venta->findAllById($id);
+			$ok = true;
+			if($data[0]['Venta']['estado'] == 3){
+				$ok = $this->actualizaEstado($data, 1);
+				if($ok == false){
+					$this->request->data['Venta']['id']     = $id;
+					$this->request->data['Venta']['activo'] = 1;
+					$this->Venta->save($this->request->data);
 				}
 			}
-			$this->Flash->success(__('El Registro fue eliminado.'));
+			if($ok == true)
+				$this->Flash->success(__('El Registro fue eliminado.'));
 		} else {
 			$this->Flash->error(__('El Registro no fue eliminado. Por favor, inténtelo de nuevo.'));
 		}
@@ -857,6 +828,7 @@ const ENTREGADO  = 'ENT';
 		$user_id             = $this->Session->read('USUARIO_ID');
 		$this->set('id',$id);
 		$this->layout = 'pdf';
+		//$this->layout = 'default';
 
 		App::import('Vendor', 'Fpdf', array('file' => 'fpdf181/fpdf.php'));
 		$this->set('name', "venta_".$id."_".date('d_m_Y').".pdf");
@@ -865,6 +837,7 @@ const ENTREGADO  = 'ENT';
 
 		$datas = $this->Venta->find('all', array('conditions'=>array('Venta.id'=>$id)));
 		$this->set('datas', $datas);
+		//debug($datas);
 	}
 
 	public function estado(){
@@ -878,55 +851,7 @@ const ENTREGADO  = 'ENT';
 			if(count($data) > 0){
 				$estadosValidos = $this->cambioEstado($rol_id, $data[0]['Venta']['estado']);
 				if(in_array($estado, $estadosValidos , true)){
-					$estadoAnte = $data[0]['Venta']['estado'];
-					$data[0]['Venta']['estado'] = $estado;
-					if($this->Venta->save($data[0]['Venta'])){
-						if($estado == self::ENTREGADO){
-							$materiales = $this->calculaMateriales($data[0]);
-							if($this->validaMateriales($data[0], $materiales)){
-								if($this->generaMovimientosInventario($data[0], 2)){
-									if(!$this->generaMovimientosMateriales($data[0], $materiales, 2)){
-										$this->generaMovimientosInventario($data[0], 1);
-										$data[0]['Venta']['estado'] = $estadoAnte;
-										$this->Venta->save($data[0]['Venta']);
-										$ok = false;
-										$this->Flash->error(__('Error al afectar el inventario de materiales'));
-									}
-								}else{
-									$data[0]['Venta']['estado'] = $estadoAnte;
-									$this->Venta->save($data[0]['Venta']);
-									$ok = false;
-									$this->Flash->error(__('Error al afectar el inventario de productos'));
-								}
-							}else{
-								$data[0]['Venta']['estado'] = $estadoAnte;
-								$this->Venta->save($data[0]['Venta']);
-								$ok = false;
-								$this->Flash->error(__('Error No hay materiales suficientes'));
-							}
-						}else if($estadoAnte == self::ENTREGADO){
-							$materiales = $this->calculaMateriales($data[0]);
-							if($this->generaMovimientosInventario($data[0], 1)){
-								if(!$this->generaMovimientosMateriales($data[0], $materiales, 1)){
-									$this->generaMovimientosInventario($data[0], 2);
-									$data[0]['Venta']['estado'] = $estadoAnte;
-									$this->Venta->save($data[0]['Venta']);
-									$ok = false;
-									$this->Flash->error(__('Error al afectar el inventario de materiales'));
-								}
-							}
-							else {
-								$data[0]['Venta']['estado'] = $estadoAnte;
-								$this->Venta->save($data[0]['Venta']);
-								$this->Flash->error(__('Error al afectar el inventario de productos'));
-								$ok = false;
-							}
-						}
-					}else{
-						//marca error de actualizacion de estado
-						$this->Flash->error(__('Error al tratar de actualizar el estado'));
-						$ok = false;
-					}
+					$ok = $this->actualizaEstado($data, $estado);
 				}else{
 					$this->Flash->error(__('Cambio de estado Invalido'));
 					$ok = false;
@@ -943,6 +868,61 @@ const ENTREGADO  = 'ENT';
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+	private function actualizaEstado($venta, $estado){
+		$ok = true;
+		$estadoAnte = $venta[0]['Venta']['estado'];
+		$venta[0]['Venta']['estado'] = $estado;
+		if($this->Venta->save($venta[0]['Venta'])){
+			if($estado == self::ENTREGADO){
+				$materiales = $this->calculaMateriales($venta[0]);
+				if($this->validaMateriales($venta[0], $materiales)){
+					if($this->generaMovimientosInventario($venta[0], 2)){
+						if(!$this->generaMovimientosMateriales($venta[0], $materiales, 2)){
+							$this->generaMovimientosInventario($venta[0], 1);
+							$venta[0]['Venta']['estado'] = $estadoAnte;
+							$this->Venta->save($venta[0]['Venta']);
+							$ok = false;
+							$this->Flash->error(__('Error al afectar el inventario de materiales'));
+						}
+					}else{
+						$venta[0]['Venta']['estado'] = $estadoAnte;
+						$this->Venta->save($venta[0]['Venta']);
+						$ok = false;
+						$this->Flash->error(__('Error al afectar el inventario de productos'));
+					}
+				}else{
+					$venta[0]['Venta']['estado'] = $estadoAnte;
+					$this->Venta->save($venta[0]['Venta']);
+					$ok = false;
+					$this->Flash->error(__('Error No hay materiales suficientes'));
+				}
+			}else if($estadoAnte == self::ENTREGADO){
+				$materiales = $this->calculaMateriales($venta[0]);
+				if($this->generaMovimientosInventario($venta[0], 1)){
+					if(!$this->generaMovimientosMateriales($venta[0], $materiales, 1)){
+						$this->generaMovimientosInventario($venta[0], 2);
+						$venta[0]['Venta']['estado'] = $estadoAnte;
+						$this->Venta->save($venta[0]['Venta']);
+						$ok = false;
+						$this->Flash->error(__('Error al afectar el inventario de materiales'));
+					}
+				}
+				else {
+					$venta[0]['Venta']['estado'] = $estadoAnte;
+					$this->Venta->save($venta[0]['Venta']);
+					$this->Flash->error(__('Error al afectar el inventario de productos'));
+					$ok = false;
+				}
+			}
+		}else{
+			//marca error de actualizacion de estado
+			$this->Flash->error(__('Error al tratar de actualizar el estado'));
+			$ok = false;
+		}
+		return $ok;
+	}
+
 	/*
 	$tipo = 1 Entrada
 				= 2 Salida
