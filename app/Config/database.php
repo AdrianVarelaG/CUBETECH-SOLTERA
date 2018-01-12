@@ -71,7 +71,7 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => 'localhost',
+		'host' => 'cubetechsoltera_mysql_1',
 		'login' => 'cervezas_ADMIN',
 		'password' => 'aA2oeC=dhTAI',
 		'database' => 'cervezas_SISTEMA',
